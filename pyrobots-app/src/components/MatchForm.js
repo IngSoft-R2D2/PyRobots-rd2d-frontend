@@ -1,9 +1,19 @@
 import { useState } from 'react';
-import "./App.css";
+import { useNavigate } from 'react-router-dom';
+
+import "../App.css";
 
 const MatchForm = () => {
   
-  const [inputs, setInputs] = useState({});
+  const navigate = useNavigate();
+  const [inputs, setInputs] = useState({
+        name: '',
+        pwd: '',
+        min: 2,
+        max: 2,
+        games: 1,
+        rounds: 1
+  });
 
   const handleChange = (event) => {
     const name = event.target.name;
@@ -11,13 +21,24 @@ const MatchForm = () => {
     setInputs(values => ({...values, [name]: value}))
   }
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+
+    await fetch('http://localhost:3000/matches', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+            inputs,//o poner inputs.name...?
+        })
+    });
+
+    //alert('partida creada exitosamente');
+    await navigate(-1);
   }
 
   return(
     <div>
-      <form onSubmit={handleSubmit}>
+      <form className="App" onSubmit={handleSubmit}>
         <h1>Crear partida</h1>
         <p><label>nombre:
         <input 
@@ -72,7 +93,7 @@ const MatchForm = () => {
           onChange={handleChange}
         />
         </label></p>
-        <p><input type="submit"></input></p>
+        <p><button type="submit">crear</button></p>
       </form>
     </div>
   );
