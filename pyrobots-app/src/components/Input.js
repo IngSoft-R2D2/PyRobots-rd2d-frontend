@@ -26,6 +26,7 @@ const InputComponent = ({
 
   const onChange = (e) => {
     changeState({ ...state, field: e.target.value });
+
   };  
 
   const validation = () => {

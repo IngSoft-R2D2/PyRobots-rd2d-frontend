@@ -8,7 +8,7 @@ const Colors= {
 };
 
 const Form = styled.form`
-  display: grid;
+  display: inline-block;
   border: 5px solid #000;
   border-radius: 1em;
   padding: 1em;

@@ -6,13 +6,14 @@ import {
   Button
 } from "../elements/Forms.js";
 import Input from "./Input";
+import InputFile from "./InputFile";
 
 const SignUp = () => {
   const [user, changeUser] = useState({ field: "", valid: null });
   const [password, changePassword] = useState({ field: "", valid: null });
   const [password2, changePassword2] = useState({ field: "", valid: null });
   const [email, changeEmail] = useState({ field: "", valid: null });
-  const [avatar, changeAvatar] = useState({ field: "", myFile : "",valid: null });
+  const [avatar, changeAvatar] = useState({ field: "", myFile: "", valid: null });
   const expressions = {
     user: /^[a-zA-Z0-9_-]+$/,
     password: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[_-]).{8,}$/, 
@@ -37,7 +38,7 @@ const SignUp = () => {
   const onSubmit = async(e) => {
     e.preventDefault();
 
-    await fetch("http://localhost:3004/users", {
+    await fetch("http://localhost:3000/users", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -110,7 +111,7 @@ const SignUp = () => {
           obligatory="true"
         />
 
-        <Input
+        <InputFile
           state={avatar}
           changeState={changeAvatar}
           type="file"
