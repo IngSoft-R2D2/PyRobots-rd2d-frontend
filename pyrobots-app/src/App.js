@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes, } from 'react-router-dom';
 import './App.css';
+import MatchForm from "./components/MatchForm.js";
 import BotForm from "./components/BotForm.js";
 
 function App() {
@@ -8,6 +9,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/"/>
+          <Route path="/matches/" element={<MatchForm />}/>
           <Route path="/robots/" element={<BotForm />}/>
         </Routes>
       </BrowserRouter>
