@@ -1,11 +1,11 @@
 import { BrowserRouter, Route, Routes, } from 'react-router-dom';
+//import { RequireToken } from './components/Auth';
 import './components/LogIn.css';
 import LogIn from "./components/LogIn.js";
-//import {RequireToken} from './components/Auth.js'
 
 function App() {
     return (
-        <div className="LogIn" id="LogIn">
+        <div className="App" id="App">
           <BrowserRouter>
             <Routes>
               <Route path="/"/>

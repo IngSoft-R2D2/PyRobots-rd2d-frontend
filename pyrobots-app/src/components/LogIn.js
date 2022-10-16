@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-//import {useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import './LogIn.css';
 import {setToken, fetchToken} from './Auth.js'
 import {
@@ -10,11 +10,10 @@ import {
 import Input from "./Input";
 
 const LogIn = () => {
-  //const navigate = useNavigate();
+  const navigate = useNavigate();
   const [user, changeUser] = useState({ field: "", valid: null });
   const [password, changePassword] = useState({ field: "", valid: null });
   const expressions = {
-    user: /^[a-zA-Z0-9_-]+$/,
     password: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[_-]).{8,}$/
   };
 
@@ -32,11 +31,10 @@ const LogIn = () => {
     .then(function (response) {
       if(response.data.token){
           setToken(response.data.token)
-          //navigate("/game/");
+          navigate("/home/");
       }
     })
     .catch(function (error) {
-      console.log(error, 'error');
       alert(error);
     });
 
@@ -52,7 +50,7 @@ const LogIn = () => {
   return (
     fetchToken() 
     ? (
-    <p>Menú</p>
+    <p>Logueo exitoso!</p>
     ) 
     :(
     <main>
@@ -67,7 +65,6 @@ const LogIn = () => {
           placeholder="username"
           name="user"
           errorText="El user ya existe."
-          regularExpression={expressions.user}
           obligatory="true"
         />
         <Input

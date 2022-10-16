@@ -3,13 +3,8 @@ import {
   Input,
   Label,
   InputGroup,
-  ErrorText,
-  ValidationIcon
+  ErrorText
 } from "../elements/Forms";
-import {
-  faCheckCircle,
-  faTimesCircle
-} from "@fortawesome/free-solid-svg-icons";
 
 const InputComponent = ({
   state,
@@ -60,10 +55,6 @@ const InputComponent = ({
           onBlur={validation}
           valid={state.valid}
           obligatory={obligatory}
-        />
-        <ValidationIcon
-          icon={state.valid === "true" ? faCheckCircle : faTimesCircle}
-          valid={state.valid}
         />
       </InputGroup>
       <ErrorText valid={state.valid}>{errorText}</ErrorText>
