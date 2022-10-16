@@ -28,12 +28,15 @@ const MatchForm = () => {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
-            inputs,//o poner inputs.name...?
+            inputs
         })
+    })
+    .catch(function (error) {
+        console.log(error, 'error')
+        alert(error);
     });
 
-    //alert('partida creada exitosamente');
-    await navigate(-1);
+    navigate("/home");
   }
 
   return(
