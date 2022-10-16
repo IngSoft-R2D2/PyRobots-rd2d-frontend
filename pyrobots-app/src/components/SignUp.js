@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import {useNavigate} from "react-router-dom";
 import './SignUp.css';
 import {
   Form,
@@ -9,13 +10,13 @@ import Input from "./Input";
 import InputFile from "./InputFile";
 
 const SignUp = () => {
+  const navigate = useNavigate();
   const [user, changeUser] = useState({ field: "", valid: null });
   const [password, changePassword] = useState({ field: "", valid: null });
   const [password2, changePassword2] = useState({ field: "", valid: null });
   const [email, changeEmail] = useState({ field: "", valid: null });
   const [avatar, changeAvatar] = useState({ field: "", myFile: "", valid: null });
   const expressions = {
-    user: /^[a-zA-Z0-9_-]+$/,
     password: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[_-]).{8,}$/, 
     email: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
     avatar: /\.(gif|jpe?g|tiff?|png|webp|bmp)$/i
@@ -47,20 +48,14 @@ const SignUp = () => {
         email : email.field,
         avatar : avatar.myFile
       })
+    })
+
+    .then(navigate("/session/"))
+    
+    .catch(function (error) {
+      alert(error);
     });
 
-    if (
-      user.valid === "true" &&
-      password.valid === "true" &&
-      password2.valid === "true" &&
-      avatar.valid === "true"
-    ) {
-      changeUser({ field: "", valid: "" });
-      changePassword({ field: "", valid: null });
-      changePassword2({ field: "", valid: "null" });
-      changeEmail({ field: "", valid: null });
-      changeAvatar({ field: "", myFile: "", valid: null });
-    } 
   };
 
   return (
@@ -75,8 +70,6 @@ const SignUp = () => {
           label="Usuario"
           placeholder="username"
           name="user"
-          errorText="El user ya existe."
-          regularExpression={expressions.user}
           obligatory="true"
         />
         <Input
