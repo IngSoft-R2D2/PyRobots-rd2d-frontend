@@ -1,34 +1,45 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+//import { useNavigate } from "react-router-dom";
 import "../App.css";
 
 const BotForm = () => {
-  const navigate = useNavigate();
+//  const navigate = useNavigate();
   const [inputs, setInputs] = useState({
     name: "",
     avatar: "",
-    code: ""
+    avatarb64: "",
+    code: "",
+    codeb64: ""
   });
 
-  const handleChange = (event) => {
-    const name = event.target.name;
-    var value = event.target.value;
-    const allowedAvatarExtensions = /(jpg|jpeg|png|gif)$/i;
+  const convertToBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(file);
+      fileReader.onload = () => {
+        resolve(fileReader.result);
+      };
+      fileReader.onerror = (error) => {
+        reject(error);
+      };
+    });
+  };
 
-    if (name === "code") {
-      const filext = getFileExtension(value);
-      if (filext !== "py") {
-        alert("tipo de archivo inválido");
-        value = "";
-      }
-    } else if (name === "avatar") {
-      const filext = getFileExtension(value);
-      if (!allowedAvatarExtensions.exec(filext)) {
-        alert("tipo de archivo inválido");
-        value = "";
-      }
-    }
+  const handleChange = async (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
+
     setInputs((values) => ({ ...values, [name]: value }));
+
+    if (name === "avatar"){
+        const file = event.target.files[0];
+        const base64 = await convertToBase64(file);
+        setInputs((values) => ({ ...values, avatarb64: base64 }));
+    } else if (name === "code"){
+        const file = event.target.files[0];
+        const base64 = await convertToBase64(file);
+        setInputs((values) => ({ ...values, codeb64: base64 }));
+    }
   };
 
   const handleSubmit = async (event) => {
@@ -38,11 +49,13 @@ const BotForm = () => {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        inputs //o poner inputs.name...?
+        name: inputs.name,
+        avatar: inputs.avatarb64,
+        behavior_file: inputs.codeb64
       })
     });
 
-    await navigate(-1);
+//    await navigate("/home");
   };
 
   return (
@@ -63,13 +76,13 @@ const BotForm = () => {
         </p>
         <p>
           <label>
-            {" "}
             avatar:
             <input
               type="file"
               name="avatar"
               id="file"
               value={inputs.avatar}
+              accept = {[".jpg", ".jpeg", ".png", ".gif"]}
               onChange={handleChange}
             />
           </label>
@@ -82,6 +95,7 @@ const BotForm = () => {
               type="file"
               name="code"
               value={inputs.code}
+              accept = ".py"
               onChange={handleChange}
             />
           </label>
@@ -96,6 +110,3 @@ const BotForm = () => {
 
 export default BotForm;
 
-function getFileExtension(filename) {
-  return filename.split(".").pop();
-}
