@@ -1,9 +1,9 @@
 import { useState } from "react";
-//import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "../App.css";
 
 const BotForm = () => {
-//  const navigate = useNavigate();
+  const navigate = useNavigate();
   const [inputs, setInputs] = useState({
     name: "",
     avatar: "",
@@ -53,9 +53,12 @@ const BotForm = () => {
         avatar: inputs.avatarb64,
         behavior_file: inputs.codeb64
       })
+    })
+    .catch(function (error) {
+        alert(error);
     });
 
-//    await navigate("/home");
+    navigate("/home");
   };
 
   return (
