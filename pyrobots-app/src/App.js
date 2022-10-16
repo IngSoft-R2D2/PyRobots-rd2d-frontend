@@ -1,19 +1,22 @@
-import './App.css';
-import './components/Board.css';
-import Board from './components/Board.js'
 import { BrowserRouter, Route, Routes, } from 'react-router-dom';
+import './App.css';
+import MatchForm from "./components/MatchForm.js";
+import BotForm from "./components/BotForm.js";
+import Board from "./components/Board.js";
 
 function App() {
   return (
-      <div className="Board" id="Board">
-        <BrowserRouter>
-          <Routes>
-            <Route path="/"/>
-            <Route path="/board/" element={<Board />}/>
-          </Routes>
-        </BrowserRouter>
-      </div>
-    );
+    <div className="App" id="App">
+      <BrowserRouter>
+        <Routes>
+          <Route path="/"/>
+          <Route path="/matches/" element={<MatchForm />}/>
+          <Route path="/robots/" element={<BotForm />}/>
+          <Route path="/board/" element={<Board />}/>
+        </Routes>
+      </BrowserRouter>
+    </div>
+  );
 }
 
 export default App;
