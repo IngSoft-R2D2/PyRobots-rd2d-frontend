@@ -14,30 +14,30 @@ const LogIn = () => {
   const [user, changeUser] = useState({ field: "", valid: null });
   const [password, changePassword] = useState({ field: "", valid: null });
   const expressions = {
-    password: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[_-]).{8,}$/
+    password: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$/
   };
 
   const onSubmit = async(e) => {
     e.preventDefault();
-
-    try {
-      await fetch("http://localhost:3000/login", {
+    try{
+      const response = await fetch("http://localhost:8000/login", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        username : user.field,
-        password : password.field
-      })
-    }).then(function (response) {
-        if(response.data.access_token){
-            setToken(response.data.access_token)
-            navigate("/home/");
-        }
-      })
-    } catch(error) {
-      alert(error);
+      headers: { "accept": "application/json",
+                "Content-Type": "application/x-www-form-urlencoded"},
+      body: JSON.stringify(
+        // username : user.field,
+        // password : password.field
+        `grant_type=&username=${user.field}&password=${password.field}&scope=&client_id=&client_secret=` 
+      )})
+      const data = await response.json();
+      if (response.ok){
+        setToken(data.access_token)
+        console.log(data.access_token)
+        navigate("/home/");
+      }
+    } catch(e) {
+      alert(e);
     }
-
     if (
       user.valid === "true" &&
       password.valid === "true" 
