@@ -1,8 +1,10 @@
 import styled, { css } from "styled-components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Colors= {
   border: "#0075FF",
   error: "#bb2929",
+  success: "#1ed12d",
 };
 
 const Form = styled.form`
@@ -111,6 +113,27 @@ const Button = styled.button`
   }
 `;
 
+const ValidationIcon = styled(FontAwesomeIcon)`
+  position: absolute;
+  right: 10px;
+  bottom: 14px;
+  z-index: 100;
+  font-size: 16px;
+  opacity: 0;
+  ${(props) =>
+    props.valid === "false" &&
+    css`
+      opacity: 1;
+      color: ${Colors.error};
+    `}
+  ${(props) =>
+    props.valid === "true" &&
+    css`
+      opacity: 1;
+      color: ${Colors.success};
+    `}
+`;
+
 export {
   Form,
   Label,
@@ -118,5 +141,6 @@ export {
   Input,
   ErrorText,
   ButtonContainer,
-  Button
+  Button,
+  ValidationIcon
 };
