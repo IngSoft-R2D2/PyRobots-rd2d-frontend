@@ -55,7 +55,7 @@ const BotForm = () => {
       body: JSON.stringify({
         name: inputs.name,
         avatar: inputs.avatarb64,
-        behavior_file: inputs.codeb64
+        behaviour_file: inputs.codeb64
       })
     })
     .catch(function (error) {

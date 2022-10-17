@@ -17,7 +17,7 @@ const SignUp = () => {
   const [email, changeEmail] = useState({ field: "", valid: null });
   const [avatar, changeAvatar] = useState({ field: "", myFile: "", valid: null });
   const expressions = {
-    password: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[_-]).{8,}$/, 
+    password: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$/, 
     email: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
     avatar: /\.(gif|jpe?g|tiff?|png|webp|bmp)$/i
   };
@@ -39,7 +39,7 @@ const SignUp = () => {
   const onSubmit = async(e) => {
     e.preventDefault();
 
-    await fetch("http://localhost:3000/users", {
+    await fetch("http://localhost:8000/users", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
