@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { fetchToken } from './Auth.js';
 
 import "../App.css";
 
@@ -23,12 +24,20 @@ const MatchForm = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    const token = fetchToken();
+    alert(token);
 
     await fetch('http://localhost:3000/matches', {
         method: 'POST',
-        headers: {'Content-Type': 'application/json'},
+        headers: {'Content-Type': 'application/json',
+                  'Authorization': `Bearer  ${token}` },
         body: JSON.stringify({
-            inputs
+            name: inputs.name,
+            max_players: inputs.max,
+            min_players: inputs.min,
+            number_of_games: inputs.games,
+            number_of_rounds: inputs.rounds,
+            password: inputs.pwd,
         })
     })
     .catch(function (error) {

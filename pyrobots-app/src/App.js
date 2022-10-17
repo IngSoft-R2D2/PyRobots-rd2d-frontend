@@ -15,9 +15,9 @@ function App() {
           <Route path="/"/>
           <Route path="/users/" element={<SignUp />}/>
           <Route path="/login/" element={<LogIn />}/>
-          <Route path="/matches/" element={<MatchForm />}/>
-          <Route path="/robots/" element={<BotForm />}/>
-          <Route path="/board/" element={<Board />}/>
+          <Route path="/matches/" element={<RequireToken><MatchForm /></RequireToken>}/>
+          <Route path="/robots/" element={<RequireToken><BotForm /></RequireToken>}/>
+          <Route path="/board/" element={<RequireToken><Board /></RequireToken>}/>
         </Routes>
       </BrowserRouter>
     </div>
