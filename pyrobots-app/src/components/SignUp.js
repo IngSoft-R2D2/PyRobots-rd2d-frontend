@@ -50,7 +50,7 @@ const SignUp = () => {
       })
     })
 
-    .then(navigate("/session/"))
+    .then(navigate("/"))
     
     .catch(function (error) {
       alert(error);
