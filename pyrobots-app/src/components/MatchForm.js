@@ -25,7 +25,7 @@ const MatchForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const token = fetchToken();
-    alert(token);
+    //alert(token);
 
     await fetch('http://localhost:8000/matches', {
         method: 'POST',

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { fetchToken } from './Auth.js';
 import "../App.css";
 
 const BotForm = () => {
@@ -44,10 +45,13 @@ const BotForm = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    const token = fetchToken();
 
-    await fetch("http://localhost:3000/robots", {
+    await fetch("http://localhost:8000/robots", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { 'accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`},
       body: JSON.stringify({
         name: inputs.name,
         avatar: inputs.avatarb64,
@@ -55,6 +59,7 @@ const BotForm = () => {
       })
     })
     .catch(function (error) {
+        console.log(error, 'error')
         alert(error);
     });
 
