@@ -27,10 +27,11 @@ const MatchForm = () => {
     const token = fetchToken();
     alert(token);
 
-    await fetch('http://localhost:3000/matches', {
+    await fetch('http://localhost:8000/matches', {
         method: 'POST',
-        headers: {'Content-Type': 'application/json',
-                  'Authorization': `Bearer  ${token}` },
+        headers: {'accept': 'application/json',
+                  'Content-Type': 'application/json',
+                  'Authorization': `Bearer ${token}` },
         body: JSON.stringify({
             name: inputs.name,
             max_players: inputs.max,

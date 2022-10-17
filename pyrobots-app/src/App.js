@@ -13,6 +13,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/"/>
+          <Route path="/home"/>
           <Route path="/users/" element={<SignUp />}/>
           <Route path="/login/" element={<LogIn />}/>
           <Route path="/matches/" element={<RequireToken><MatchForm /></RequireToken>}/>
