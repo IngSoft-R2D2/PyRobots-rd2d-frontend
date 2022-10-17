@@ -20,23 +20,23 @@ const LogIn = () => {
   const onSubmit = async(e) => {
     e.preventDefault();
 
-    await fetch("http://localhost:3000/login", {
+    try {
+      await fetch("http://localhost:3000/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         username : user.field,
         password : password.field
       })
-    })
-    .then(function (response) {
-      if(response.data.token){
-          setToken(response.data.token)
-          navigate("/home/");
-      }
-    })
-    .catch(function (error) {
+    }).then(function (response) {
+        if(response.data.access_token){
+            setToken(response.data.access_token)
+            navigate("/home/");
+        }
+      })
+    } catch(error) {
       alert(error);
-    });
+    }
 
     if (
       user.valid === "true" &&
