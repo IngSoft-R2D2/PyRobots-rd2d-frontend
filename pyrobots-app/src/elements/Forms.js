@@ -87,6 +87,7 @@ const ErrorText = styled.p`
 `;
 
 const ButtonContainer = styled.div`
+  padding: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -111,6 +112,7 @@ const Button = styled.button`
     box-shadow: 3px 0px 30px rgba(163, 163, 163, 1);
   }
 `;
+
 const ValidationIcon = styled(FontAwesomeIcon)`
   position: absolute;
   right: 10px;
