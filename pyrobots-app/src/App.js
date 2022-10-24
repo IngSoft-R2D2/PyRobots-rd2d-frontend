@@ -6,6 +6,7 @@ import SignUp from "./components/SignUp.js";
 import MatchForm from "./components/MatchForm.js";
 import BotForm from "./components/BotForm.js";
 import Board from "./components/Board.js";
+import MatchesList from './components/matchesList';
 
 import Home from "./navigate/Home.js"
 import Root from "./navigate/Root.js"
@@ -22,6 +23,7 @@ function App() {
           <Route path="/matches/" element={<RequireToken><MatchForm /></RequireToken>}/>
           <Route path="/robots/" element={<RequireToken><BotForm /></RequireToken>}/>
           <Route path="/board/" element={<RequireToken><Board /></RequireToken>}/>
+          <Route path="/matchesList/" element={<MatchesList/>}/>
         </Routes>
       </BrowserRouter>
     </div>
