@@ -49,7 +49,8 @@ const LogInForm = (props) => {
               type="password"
               label="Contraseña"
               name="password1"
-              errorText="La contraseña tiene que ser de 8 caracteres como mínimo."
+              errorText="La contraseña tiene que ser de 8 caracteres como mínimo y 
+                        contener mayúsculas, minúsculas y números."
               regularExpression={expressions.password}
               obligatory="true"
             />
