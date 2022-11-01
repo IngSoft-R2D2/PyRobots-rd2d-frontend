@@ -4,8 +4,8 @@ import {
     Form,
     ButtonContainer,
     Button,
-    MensajeExito,
-    MensajeError
+    SuccessMessage,
+    ErrorMessage
   } from "../elements/Forms.js";
 import Input from "../elements/Input.js";
 
@@ -30,8 +30,8 @@ const LogInForm = (props) => {
 
     return (
         <main>
-          <h1>Hola de nuevo!</h1>
-          <h2>Iniciá sesión en PyRobots </h2>
+          <h1 class= "title">Hola de nuevo!</h1>
+          <h2 class= "subtitle">Iniciá sesión en PyRobots </h2>
           <Form action="" onSubmit={(event) => props.onSubmit(event)}>
             <Input
               state={user}
@@ -56,21 +56,21 @@ const LogInForm = (props) => {
             />
 
              
-            {validForm === false && <MensajeError>
+            {validForm === false && <ErrorMessage>
 					  <p>
             <FontAwesomeIcon icon={faExclamationTriangle}/>
             <b>Error: </b>
             {props.alertForm}
 					  </p>
-           </MensajeError>}
+           </ErrorMessage>}
     
             <ButtonContainer>
               <Button type="submit">Enviar</Button>
             </ButtonContainer>
 
-            {validForm === true && <MensajeExito> 
+            {validForm === true && <SuccessMessage> 
              Hola de nuevo, {user.field}
-           </MensajeExito>}
+           </SuccessMessage>}
              
           </Form>
         </main>
