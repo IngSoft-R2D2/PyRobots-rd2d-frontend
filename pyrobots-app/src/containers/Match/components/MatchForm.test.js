@@ -101,3 +101,67 @@ describe ("componentes formulario", () => {
         expect(screen.getByRole('option', {name: 'bot4'}).selected).toBe(true)
     }); 
 }) 
+
+describe ("campos", () => {
+    test('juegos validos', async () => {
+        await act( async () => {render(<Router> <Match/> </Router>)})
+        const games = screen.getByRole('spinbutton', { name: /juegos:/i})
+        // const submit = screen.getByRole('button', { name: /crear/i })
+        userEvent.type(games,'1')
+        expect(games).toBeValid()
+    });
+
+    test('juegos validos', async () => {
+        await act( async () => {render(<Router> <Match/> </Router>)})
+        const games = screen.getByRole('spinbutton', { name: /juegos:/i})
+        // const submit = screen.getByRole('button', { name: /crear/i })
+        userEvent.type(games,'1000')
+        expect(games).toBeInvalid()
+    });
+
+    test('rondas validas', async () => {
+        await act( async () => {render(<Router> <Match/> </Router>)})
+        const rounds = screen.getByRole('spinbutton', { name: /rondas:/i })
+        // const submit = screen.getByRole('button', { name: /crear/i })
+        userEvent.type(rounds,'100')
+        expect(rounds).toBeValid()
+    });
+
+    test('rondas invalidas', async () => {
+        await act( async () => {render(<Router> <Match/> </Router>)})
+        const rounds = screen.getByRole('spinbutton', { name: /rondas:/i })
+        // const submit = screen.getByRole('button', { name: /crear/i })
+        userEvent.type(rounds,'100000')
+        expect(rounds).toBeInvalid()
+    });
+
+    test('minimo usuarios validos', async () => {
+        await act( async () => {render(<Router> <Match/> </Router>)})
+        const min = screen.getByRole('spinbutton', { name: /mínimo jugadores:/i })
+        // const submit = screen.getByRole('button', { name: /crear/i })
+        userEvent.type(min,' ')
+        expect(min).toBeValid()
+    });
+
+    test('minimo usuarios invalidos', async () => {
+        await act( async () => {render(<Router> <Match/> </Router>)})
+        const min = screen.getByRole('spinbutton', { name: /mínimo jugadores:/i })
+        // const submit = screen.getByRole('button', { name: /crear/i })
+        userEvent.type(min,'3')
+        expect(min).toBeInvalid()
+    });
+
+    test('maximo usuarios validos', async () => {
+        await act( async () => {render(<Router> <Match/> </Router>)})
+        const max = screen.getByRole('spinbutton', { name: /máximo jugadores:/i })
+        userEvent.type(max,' ')
+        expect(max).toBeValid()
+    });
+
+    test('maximo usuarios invalidos', async () => {
+        await act( async () => {render(<Router> <Match/> </Router>)})
+        const max = screen.getByRole('spinbutton', { name: /máximo jugadores:/i })
+        userEvent.type(max,'3')
+        expect(max).toBeInvalid()
+    });
+})
