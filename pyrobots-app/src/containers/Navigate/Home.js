@@ -18,7 +18,7 @@ const Home = () => {
 
   return (
       <div>
-        <h1>Binvenide</h1>
+        <h1>Bienvenide</h1>
         <h2>Estas son las acciones que puedes elegir</h2>
         <p>
           <button onClick={goToMatchForm}>crear partida</button>
