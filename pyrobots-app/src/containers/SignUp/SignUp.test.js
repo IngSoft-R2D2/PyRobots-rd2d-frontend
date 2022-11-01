@@ -51,7 +51,6 @@ describe("Componente formulario de register", () => {
     test("El input para ingresar el nombre de usuario está en el componente", () => {
         const inputUsernamePlaceholder = screen.getByPlaceholderText(/username/i);
         expect(inputUsernamePlaceholder).toBeInTheDocument();
-        expect(inputUsernamePlaceholder).toBeInvalid();
     });
 
     test("El input para ingresar la contraseña está en el componente", () => {
