@@ -4,9 +4,7 @@ const MatchForm= (props) => {
 
     const inputs = props.inputs;
     const setInputs = props.setInputs; 
-    const robots = props.robots;
-    const loading = props.loading; 
-  
+    const robots = props.robots;  
     const handleChange = (event) => {
       const name = event.target.name;
       const value = event.target.value;

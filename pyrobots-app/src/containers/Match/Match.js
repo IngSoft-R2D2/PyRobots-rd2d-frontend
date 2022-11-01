@@ -2,24 +2,14 @@ import React from "react";
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { fetchToken } from './elements/Auth.js';
-import MatchForm from './components/MatchForm.js'
-import { Alert,Button,ButtonGroup,Box } from '@mui/material';
-import { AlertTitle } from '@mui/material';
-import SmartToyIcon from '@mui/icons-material/SmartToy';
-import UndoIcon from '@mui/icons-material/Undo';
-import { Stack } from "@mui/system";
+import MatchForm from './components/MatchForm.js';
+import NoBotScreen from './components/NoBotScreen.js';
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 
 const Match = () => {
 
     const navigate = useNavigate();
-    const goBack= async() => {
-        navigate("/home");
-    }
-    const goToRobot= async() => {
-        navigate("/robots");
-    }
 
     const [inputs, setInputs] = useState({
         name: '',
@@ -44,7 +34,6 @@ const Match = () => {
         })
          .then((response) => response.json())
          .then ((data)=> {
-            console.log(data);
             setRobots(data);
             setLoading(false);
          })
@@ -88,35 +77,11 @@ const Match = () => {
             <CircularProgress color="inherit" />
         </Backdrop> : (
         (Object.keys(robots).length === 0) ? 
-        <Stack
-            // display="flex"
-            // justifyContent="center"
-            // alignItems="center"
-            // minHeight="25vh"
-            spacing={2}
-            >
-            <Alert severity="error"
-                style={{
-                padding: "18px 36px",
-                }}>
-                <AlertTitle>No se puede crear partida</AlertTitle>
-                Para crear una partida debes tener al menos un robot
-            </Alert> 
-            <Button variant="contained" size="large" endIcon={<UndoIcon fontSize="large"/> } 
-                onClick={goBack} > Volver atras 
-            </Button>
-            <Button variant="contained" size="large" endIcon={<SmartToyIcon fontSize="large"/> } 
-            onClick={goToRobot} > Crear robot
-            </Button>
-        </Stack>
-        :
+        <NoBotScreen/> :
         <MatchForm onSubmit = {onSubmit_newMatch}
                    inputs = {inputs}
                    robots = {robots}
-                   loading = {loading}
                    setInputs = {setInputs}/>
     ))
-
 }
-
 export default Match;
