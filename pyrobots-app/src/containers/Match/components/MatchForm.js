@@ -5,6 +5,7 @@ const MatchForm= (props) => {
     const inputs = props.inputs;
     const setInputs = props.setInputs; 
     const robots = props.robots;  
+
     const handleChange = (event) => {
       const name = event.target.name;
       const value = event.target.value;
@@ -37,10 +38,11 @@ const MatchForm= (props) => {
           required
           type="number" 
           name = "robot"
-          onChange={handleChange}
+          onChange={(e) => 
+            setInputs({ ...inputs, robot_id: e.target.value})}
           >
-          {Object.keys(robots).map((key)=>(
-          <option value={parseInt(key)}>{robots[key]}</option>))}
+          {Object.keys(robots).map((key)=>
+          (<option value={key}>{robots[key]}</option>))}
         </select>
         </label></p>
         <p><label>mínimo jugadores:
