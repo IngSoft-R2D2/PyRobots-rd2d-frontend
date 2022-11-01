@@ -22,7 +22,7 @@ const LogIn = () => {
         `grant_type=&username=${user.field}&password=${password.field}&scope=&client_id=&client_secret=` 
       )})
       const data = await response.json();
-      if (response.ok){
+      if(response.ok){
         setToken(data.access_token)
         changeValidForm(true);
         setTimeout(() => {
@@ -30,19 +30,19 @@ const LogIn = () => {
         }, 4000);
       }
       else{
+        if(data.detail == "This username does not exist"){
+          changeValidForm(false);
+          changeAlertForm("Este nombre de usuario es inexistente");
+        }
 
-        if (response.status === 400){
+        if(data.detail == "Incorrect username or password"){
           changeValidForm(false);
-          changeAlertForm("La contrasena o el usuario son incorrectos");
+          changeAlertForm("La contraseña o el usuario son incorrectos");
         }
-        if (response.status === 401){
+        
+        if(data.detail == "The user is not confirmed"){
           changeValidForm(false);
-          changeAlertForm("La contrasena o el usuario son incorrectos");
-        }
-  
-        if (response.status === 422){
-          changeValidForm(false);
-          changeAlertForm("Rellene correctamente los campos");
+          changeAlertForm("El usuario no está confirmado");
         }
       }
     } catch(e) {
