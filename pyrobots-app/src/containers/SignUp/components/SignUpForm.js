@@ -74,7 +74,9 @@ const SignUpForm = (props) => {
           type="password"
           label="Contraseña"
           name="password1"
-          errorText="La contraseña tiene que ser de 8 caracteres como mínimo."
+          errorText="La contraseña tiene que ser de 8 caracteres como mínimo y 
+                    contener mayúsculas, minúsculas y números. No se permiten
+                    caracteres especiales."
           regularExpression={expressions.password}
           obligatory="true"
         />
@@ -121,7 +123,7 @@ const SignUpForm = (props) => {
         <ButtonContainer>
           <Button type="submit">Enviar</Button>
         </ButtonContainer>
-        {validForm === true && <MensajeExito>Formulario enviado exitosamente! {props.alertForm}</MensajeExito>}
+        {validForm === true && <MensajeExito>Usuario registrado! {props.alertForm}</MensajeExito>}
          
       </Form>
     </main>
