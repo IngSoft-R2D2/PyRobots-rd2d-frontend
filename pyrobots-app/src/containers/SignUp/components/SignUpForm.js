@@ -53,11 +53,10 @@ const SignUpForm = (props) => {
     }
   };
 
-  
     return (
       <main>
-      <h1 class= "title">Hola!</h1>
-      <h2 class="subtitle">Registrate en PyRobots</h2>
+      <h1 className= "title">Hola!</h1>
+      <h2 className="subtitle">Registrate en PyRobots</h2>
       <Form action="" onSubmit={(event) => props.onSubmit(event)}>
         <Input
           state={user}
@@ -73,7 +72,8 @@ const SignUpForm = (props) => {
           changeState={changePassword}
           type="password"
           label="Contraseña"
-          name="password1"
+          placeholder="password"
+          name="password"
           errorText="La contraseña tiene que ser de 8 caracteres como mínimo y 
                     contener mayúsculas, minúsculas y números. No se permiten
                     caracteres especiales."
