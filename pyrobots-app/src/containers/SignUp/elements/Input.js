@@ -51,6 +51,7 @@ const InputComponent = ({
       </Label>
       <InputGroup>
         <Input
+          required
           type={type}
           placeholder={placeholder}
           id={name}

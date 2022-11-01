@@ -53,7 +53,6 @@ const SignUpForm = (props) => {
     }
   };
 
-  
     return (
       <main>
       <h1 class= "title">Hola!</h1>
@@ -73,6 +72,7 @@ const SignUpForm = (props) => {
           changeState={changePassword}
           type="password"
           label="Contraseña"
+          placeholder="password"
           name="password1"
           errorText="La contraseña tiene que ser de 8 caracteres como mínimo y 
                     contener mayúsculas, minúsculas y números. No se permiten
