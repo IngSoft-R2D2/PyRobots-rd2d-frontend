@@ -8,6 +8,20 @@ beforeEach(() => {
         </Router> 
     );
   });
+
+  describe("Validación de campos", () => {
+    test("Un nombre de usuario vacío no es valido", () => {
+        const inputUsernamePlaceholder = screen.getByPlaceholderText(/username/i);
+        expect(inputUsernamePlaceholder).toBeInvalid();
+    });
+
+    test("Una contraseña vacía no es valida", () => {
+        const inputForPassword = screen.getByLabelText(/contraseña\*/i);
+        expect(inputForPassword).toBeInvalid();
+    });
+
+})
+
 describe("Componente formulario de login", () => {
     test("Renderiza el título", () => {
         const title = screen.getByText(/Hola de nuevo!/i);   
