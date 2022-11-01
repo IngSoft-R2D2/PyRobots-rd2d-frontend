@@ -26,7 +26,7 @@ const LogIn = () => {
         setToken(data.access_token)
         changeValidForm(true);
         setTimeout(() => {
-          navigate('/home')
+          navigate('/')
         }, 4000);
       }
       else{
