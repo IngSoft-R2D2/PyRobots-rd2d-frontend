@@ -26,7 +26,7 @@ const SimForm= (props) => {
   return(
     <main>
       <Form className="App" onSubmit={(event) => props.onSubmit(event)}>
-        <h1>Crear simulacion</h1>
+        <h1>Crear simulación</h1>
         <h4> seleccionar en orden</h4>
         <p><label> robot 1:
         <select 
