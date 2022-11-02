@@ -30,8 +30,8 @@ const LogInForm = (props) => {
 
     return (
         <main>
-          <h1 class= "title">Hola de nuevo!</h1>
-          <h2 class= "subtitle">Iniciá sesión en PyRobots </h2>
+          <h1 className= "title">Hola de nuevo!</h1>
+          <h2 className= "subtitle">Iniciá sesión en PyRobots </h2>
           <Form action="" onSubmit={(event) => props.onSubmit(event)}>
             <Input
               state={user}

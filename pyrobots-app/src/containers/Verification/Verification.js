@@ -9,7 +9,6 @@ import {useNavigate} from "react-router-dom";
 import { Alert,
         AlertTitle,
         Box } from '@mui/material';
-import './Navigate.css'
 
 const Verification = () => {
 
