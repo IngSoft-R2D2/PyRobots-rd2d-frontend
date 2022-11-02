@@ -24,38 +24,10 @@ const Home = () => {
     navigate("/board");
   }
 
-  return [
-    <AppBar position="static" sx={{ background: 'dark-blue' }} 
-        style={{
-          marginRight: "950px",
-            padding: "10px 36px"
-        }}>
-      <Toolbar >
-        <SmartToyIcon sx={{ fontSize: "80px" }} />
-        <Typography variant="h3" 
-          component="div" 
-          style={{fontWeight: "700",
-                  fontFamily: "Roboto",
-                  padding: "18px 36px"}}>
-          PyRobots
-        </Typography>
-      </Toolbar>
-    </AppBar>,
-    <Stack>
-      <Typography variant="h4" 
-                  component="div" 
-                  style={{fontWeight: "700",
-                    fontFamily: "Roboto",
-                    padding: "25px 36px"}}>
-      Bienvenide
-      </Typography>
-      <Typography variant="h5" 
-                  component="div" 
-                  style={{fontWeight: "700",
-                          fontFamily: "Roboto",
-                          padding: "10px 36px"}}>
-      Estas son las acciones que puedes elegir
-      </Typography>
+  return (
+      <div>
+        <h1>Bienvenide</h1>
+        <h2>Estas son las acciones que puedes elegir</h2>
         <p>
           <Button 
           style={{
