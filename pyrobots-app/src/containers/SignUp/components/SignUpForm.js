@@ -4,8 +4,8 @@ import {
   Form,
   ButtonContainer,
   Button,
-  MensajeExito,
-  MensajeError
+  SuccessMessage,
+  ErrorMessage
 } from "../elements/Forms.js";
 import Input from "../elements/Input.js";
 import InputFile from "../elements/InputFile.js";
@@ -30,14 +30,14 @@ const SignUpForm = (props) => {
     const changeAvatar = props.changeAvatar;
 
     const validForm = props.validForm;
-    const changeValidForm = props.changeValidForm;
     
     const alertForm = props.alertForm;
-  const expressions = {
-    password: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$/, 
-    email: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
-    avatar: /\.(gif|jpe?g|tiff?|png|webp|bmp)$/i
-  };
+    
+    const expressions = {
+      password: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$/, 
+      email: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+      avatar: /\.(gif|jpe?g|tiff?|png|webp|bmp)$/i
+    };
 
   const validatePassword2 = () => {
     if (password.field.length > 0) {
@@ -53,11 +53,10 @@ const SignUpForm = (props) => {
     }
   };
 
-  
     return (
       <main>
-      <h1>Hola!</h1>
-      <h2>Registrate en PyRobots</h2>
+      <h1 class= "title">Hola!</h1>
+      <h2 class="subtitle">Registrate en PyRobots</h2>
       <Form action="" onSubmit={(event) => props.onSubmit(event)}>
         <Input
           state={user}
@@ -73,6 +72,7 @@ const SignUpForm = (props) => {
           changeState={changePassword}
           type="password"
           label="Contraseña"
+          placeholder="password"
           name="password1"
           errorText="La contraseña tiene que ser de 8 caracteres como mínimo y 
                     contener mayúsculas, minúsculas y números. No se permiten
@@ -113,23 +113,22 @@ const SignUpForm = (props) => {
           obligatory="false"
         />
         
-        {validForm === false && <MensajeError>
+        {validForm === false && <ErrorMessage>
 					<p>
           <FontAwesomeIcon icon={faExclamationTriangle}/>
             <b>Error: </b>
-            {props.alertForm}
+            {alertForm}
 					</p>
-          </MensajeError>}
+          </ErrorMessage>}
         <ButtonContainer>
           <Button type="submit">Enviar</Button>
         </ButtonContainer>
-        {validForm === true && <MensajeExito>Usuario registrado! {props.alertForm}</MensajeExito>}
+        {validForm === true && <SuccessMessage>Usuario registrado! {alertForm}</SuccessMessage>}
          
       </Form>
     </main>
     
   );     
-  
 };  
   
 export default SignUpForm;

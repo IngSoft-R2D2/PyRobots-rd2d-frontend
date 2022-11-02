@@ -26,35 +26,41 @@ const SignUp = () => {
           avatar : avatar.myFile
         })
       })
-      if(response.ok){
-        alert("Usuario registrado exitosamente");
+      const data = await response.json();
+      if(data.detail === "Verification code successfully sent to your email"){
         changeValidForm(true);
-        changeAlertForm("Disfruta de PyRobots");
+        changeAlertForm("Se ha enviado un link de verificación a tu email");
         setTimeout(() => {
           navigate('/home')
-        }, 4000);
+        }, 7000);
       }
       else{
-        if (response.status === 409){
-          alert("El email y el usuario deben ser unicos");
+        if (data.detail === "A user with this username already exists"){
           changeValidForm(false);
-          changeAlertForm("El email y el usuario deben ser unicos");
+          changeAlertForm("Ya existe un usuario con este nombre");
         }
   
-        if (response.status === 422){
-          alert("La contrasena no cumple con los requerimientos");
+        if (data.detail === "A user with this email already exists"){
           changeValidForm(false);
-          changeAlertForm("La contrasena no cumple con los requerimientos");
+          changeAlertForm("Ya existe un usuario con este email");
+        }
+
+        if (data.detail === "Invalid password format"){
+          changeValidForm(false);
+          changeAlertForm("Formato de contraseña inválido");
+        }
+        
+        if (data.detail === "Email address does not exist"){
+          changeValidForm(false);
+          changeAlertForm("Email inválido");
         }
   
       }
       
     }
     catch(error) {
-      
       alert(error);
     }
-    
   }
 
   return(
@@ -70,7 +76,6 @@ const SignUp = () => {
     avatar = {avatar}
     changeAvatar = {changeAvatar}  
     validForm = {validForm}
-    changeValidForm = {changeValidForm}
     alertForm = {alertForm}
     />
   )

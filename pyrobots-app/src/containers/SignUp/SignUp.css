@@ -9,6 +9,14 @@ body {
   font: 700 1em "News Cycle", sans-serif;
 }
 
+.title {
+  text-align: left;
+}
+
+.subtitle {
+  text-align: left;
+}
+
 main {
   max-width: 800px;
   width: 90%;

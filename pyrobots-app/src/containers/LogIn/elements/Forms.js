@@ -18,7 +18,7 @@ const Form = styled.form`
   @media (max-width: 800px) {
     grid-template-columns: 1fr;
   }
-  width: 500px
+  width: 700px
 `;
 
 const Label = styled.label`
@@ -36,27 +36,30 @@ const Label = styled.label`
 
 const InputGroup = styled.div`
   position: relative;
+  color: #000
   z-index: 90;
 `;
 
 const Input = styled.input`
   width: 100%;
   background: #fff;
-  border-radius: 3px;
+  border-radius: 3px solid;
+  color: #000;
   height: 45px;
   line-height: 45px;
   padding: 0 40px 0 10px;
   transition: 0.3s ease all;
-  border: 3px solid transparent;
+  border: 3px solid #000;
   &:focus {
-    border: 3px solid ${Colors.border};
+    border: 2px solid #000;
     outline: none;
     box-shadow: 3px 0px 30px rgba(163, 163, 163, 0.4);
   }
   ${(props) =>
     props.valid === "true" &&
     css`
-      border: 3px solid transparent;
+      background-color: transparent;
+      border: 3px solid #000;
     `}
   ${(props) =>
     props.valid === "false" &&
@@ -67,12 +70,13 @@ const Input = styled.input`
     props.type === "file" &&
     css`
       background-color: transparent;
+      border:transparent;
     `}
 `;
 
 const ErrorText = styled.p`
   font-size: 12px;
-  margin-bottom: 0;
+  margin-bottom: 3;
   color: ${Colors.error};
   display: none;
   ${(props) =>
@@ -100,7 +104,7 @@ const ButtonContainer = styled.div`
 
 const Button = styled.button`
   height: 45px;
-  line-height: 45px;
+  line-height: 10px;
   width: 30%;
   background: #000;
   color: #fff;
@@ -135,7 +139,7 @@ const ValidationIcon = styled(FontAwesomeIcon)`
     `}
 `;
 
-const MensajeExito = styled.p`
+const SuccessMessage = styled.p`
   height: 45px;
   line-height: 45px;
   background: ${Colors.success};
@@ -152,7 +156,7 @@ const MensajeExito = styled.p`
 	color: #fff;
 `;
 
-const MensajeError = styled.div`
+const ErrorMessage = styled.div`
 	height: 45px;
 	line-height: 45px;
 	background: #F66060;
@@ -176,6 +180,6 @@ export {
   ButtonContainer,
   Button,
   ValidationIcon,
-  MensajeExito,
-  MensajeError
+  SuccessMessage,
+  ErrorMessage
 };
