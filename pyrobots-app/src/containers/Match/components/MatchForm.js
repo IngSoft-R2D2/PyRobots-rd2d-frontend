@@ -1,10 +1,22 @@
 import "../Match.css";
+import {
+  Form,
+  ButtonContainer,
+  Button,
+  SuccessMessage,
+  ErrorMessage
+} from "../elements/Forms.js";
+import Input from "../elements/Input.js";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 
 const MatchForm= (props) => {
 
     const inputs = props.inputs;
     const setInputs = props.setInputs; 
     const robots = props.robots;  
+    const validForm = props.validForm;
+    const alertForm = props.alertForm;
 
     const handleChange = (event) => {
       const name = event.target.name;
@@ -13,8 +25,8 @@ const MatchForm= (props) => {
     }
 
   return(
-    <div>
-      <form className="App" onSubmit={(event) => props.onSubmit(event)}>
+    <main>
+      <Form className="App" onSubmit={(event) => props.onSubmit(event)}>
         <h1>Crear partida</h1>
         <p><label>nombre:
         <input 
@@ -81,9 +93,21 @@ const MatchForm= (props) => {
           onChange={handleChange}
         />
         </label></p>
-        <p><button type="submit">crear</button></p>
-      </form>
-    </div>
+        
+        {validForm === false && <ErrorMessage>
+					<p>
+          <FontAwesomeIcon icon={faExclamationTriangle}/>
+            <b>Error: </b>
+            {alertForm}
+					</p>
+          </ErrorMessage>}
+          <ButtonContainer>
+          <Button type="submit">Enviar</Button>
+        </ButtonContainer>
+
+        {validForm === true && <SuccessMessage>{alertForm}</SuccessMessage>}
+      </Form>
+    </main>
   );
 };
 

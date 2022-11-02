@@ -7,6 +7,7 @@ import NoBotScreen from './components/NoBotScreen.js';
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 
+
 const Match = () => {
 
     const navigate = useNavigate();
@@ -20,9 +21,10 @@ const Match = () => {
         games: 1,
         rounds: 1
     });
-
     const [robots, setRobots] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [validForm, changeValidForm] = useState({valid: null });
+    const [alertForm, changeAlertForm] = useState({field: "" });
 
     useEffect(() => { 
         const token = fetchToken();
@@ -46,27 +48,39 @@ const Match = () => {
       event.preventDefault();
       const token = fetchToken();
       
-      const result = await fetch('http://localhost:8000/matches', {
-          method: 'POST',
-          headers: {'accept': 'application/json',
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}` },
-          body: JSON.stringify({
-              name: inputs.name,
-              robot_id: parseInt(inputs.robot_id),
-              max_players: inputs.max,
-              min_players: inputs.min,
-              number_of_games: inputs.games,
-              number_of_rounds: inputs.rounds,
-              password: inputs.pwd,
-          })
-      })
-      .catch(function (error) {
-          //console.log(error, 'error')
+      try{
+        const result = await fetch('http://localhost:8000/matches', {
+            method: 'POST',
+            headers: {'accept': 'application/json',
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}` },
+            body: JSON.stringify({
+                name: inputs.name,
+                robot_id: parseInt(inputs.robot_id),
+                max_players: inputs.max,
+                min_players: inputs.min,
+                number_of_games: inputs.games,
+                number_of_rounds: inputs.rounds,
+                password: inputs.pwd,
+            })
+        })
+        const data = await result.json();
+        // alert(data.operation_result);
+        if(result.ok){
+            changeValidForm(true);
+            changeAlertForm("Partida creada exitosamente");
+            setTimeout(() => {
+            navigate('/home')
+            }, 5000);
+        }
+        else{
+            changeValidForm(false);
+            changeAlertForm("error");
+        }
+      }
+      catch(error) {
           alert(error);
-      });
-      console.log(result);
-      navigate("/home");
+      };
     }
 
     return( loading ?  
@@ -81,7 +95,10 @@ const Match = () => {
         <MatchForm onSubmit = {onSubmit_newMatch}
                    inputs = {inputs}
                    robots = {robots}
-                   setInputs = {setInputs}/>
+                   setInputs = {setInputs}
+                   validForm = {validForm}
+                   alertForm = {alertForm}
+                   />
     ))
 }
 export default Match;
