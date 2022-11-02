@@ -42,7 +42,7 @@ const MatchForm= (props) => {
             setInputs({ ...inputs, robot_id: e.target.value})}
           >
           {Object.keys(robots).map((key)=>
-          (<option value={key}>{robots[key]}</option>))}
+          (<option key = {key} value={key}>{robots[key]}</option>))}
         </select>
         </label></p>
         <p><label>mínimo jugadores:
