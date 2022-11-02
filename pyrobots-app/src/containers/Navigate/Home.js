@@ -24,6 +24,10 @@ const Home = () => {
     navigate("/board");
   }
 
+  const goToSimForm = async() => {
+    navigate("/simulation");
+  }
+
   return [
     <AppBar position="static" sx={{ background: 'dark-blue' }} 
         style={{
@@ -66,7 +70,7 @@ const Home = () => {
           size="medium"
           variant="contained"  
           endIcon={<CreateIcon  sx={{ fontSize: "80px" }} /> }
-          sx={{  width: '300px' }}
+          sx={{  width: '340px' }}
           onClick={goToMatchForm}>crear partida</Button>
         </p>
         <p>
@@ -79,8 +83,21 @@ const Home = () => {
           size="medium"
           variant="contained"  
           endIcon={<FileUploadIcon  sx={{ fontSize: "80px" }} /> }
-          sx={{  width: '300px' }}
+          sx={{  width: '340px' }}
           onClick={goToBotForm}>crear Robot</Button>
+        </p>
+        <p>
+          <Button 
+          style={{
+            color: "#fff",
+            padding: "18px 36px",
+            fontSize: "22px"
+          }}
+          size="medium"
+          variant="contained"  
+          endIcon={<CreateIcon sx={{ fontSize: "80px" }} /> }
+          sx={{  width: '340px' }}
+          onClick={goToSimForm}>crear Simulación</Button>
         </p>
         <p>
           <Button 
@@ -92,7 +109,7 @@ const Home = () => {
             size="medium"
             variant="contained"  
             endIcon={<GridOnIcon  sx={{ fontSize: "80px" }} /> }
-            sx={{  width: '300px' }}
+            sx={{  width: '340px' }}
             onClick={seeBoard}>ver Tablero</Button>
         </p>
       </Stack>
