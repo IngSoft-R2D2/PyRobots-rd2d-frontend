@@ -16,6 +16,10 @@ const Home = () => {
     navigate("/board");
   }
 
+  const listMatches = async() => {
+    navigate("/matchesList");
+  }
+
   return (
       <div>
         <h1>Binvenide</h1>
@@ -28,6 +32,9 @@ const Home = () => {
         </p>
         <p>
           <button onClick={seeBoard}>ver Tablero</button>
+        </p>
+        <p>
+          <button onClick={listMatches}>listar partidas</button>
         </p>
       </div>
     );

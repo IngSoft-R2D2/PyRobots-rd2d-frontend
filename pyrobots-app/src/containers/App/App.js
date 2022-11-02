@@ -8,6 +8,7 @@ import Bot from "../Bot/Bot.js";
 import Board from "../Board/Board.js";
 import Home from "../Navigate/Home.js"
 import Root from "../Navigate/Root.js"
+import MatchesList from "../MatchesList/MatchesList.js"
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/matches/" element={<RequireToken><Match /></RequireToken>}/>
           <Route path="/robots/" element={<RequireToken><Bot /></RequireToken>}/>
           <Route path="/board/" element={<RequireToken><Board /></RequireToken>}/>
+          <Route path="/matchesList/" element={<RequireToken><MatchesList /></RequireToken>}/>
         </Routes>
       </BrowserRouter>
     </div>
