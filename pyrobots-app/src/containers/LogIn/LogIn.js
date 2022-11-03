@@ -30,17 +30,17 @@ const LogIn = () => {
         }, 4000);
       }
       else{
-        if(data.detail == "This username does not exist"){
+        if(data.detail === "This username does not exist"){
           changeValidForm(false);
           changeAlertForm("Este nombre de usuario es inexistente");
         }
 
-        if(data.detail == "Incorrect username or password"){
+        if(data.detail === "Incorrect username or password"){
           changeValidForm(false);
           changeAlertForm("La contraseña o el usuario son incorrectos");
         }
         
-        if(data.detail == "The user is not confirmed"){
+        if(data.detail === "The user is not confirmed"){
           changeValidForm(false);
           changeAlertForm("El usuario no está confirmado");
         }
