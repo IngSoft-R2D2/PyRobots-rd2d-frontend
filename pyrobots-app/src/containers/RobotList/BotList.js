@@ -10,7 +10,6 @@ import CircularProgress from '@mui/material/CircularProgress';
 
 const BotList = () => {
 
-    const navigate = useNavigate();
     const [robots, setRobots] = useState([]);
     const [loading, setLoading] = useState(true);
 
