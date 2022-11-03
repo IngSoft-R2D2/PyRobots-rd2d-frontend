@@ -64,7 +64,7 @@ const Match = () => {
                 password: inputs.pwd,
             })
         })
-        const data = await result.json();
+        //const data = await result.json();
         // alert(data.operation_result);
         if(result.ok){
             changeValidForm(true);
