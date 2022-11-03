@@ -28,10 +28,10 @@ const BotForm = (props) => {
         const file = event.target.files[0];
         const base64 = await convertToBase64(file);
         setInputs((values) => ({ ...values, avatarb64: base64 }));
-    } else if (name === "code"){
+    }
+    else if (name === "code"){
         const file = event.target.files[0];
-        const base64 = await convertToBase64(file);
-        setInputs((values) => ({ ...values, codeb64: base64 }));
+        setInputs((values) => ({ ...values, codefile: file}));
     }
   };
 
@@ -86,4 +86,3 @@ const BotForm = (props) => {
 };
 
 export default BotForm;
-
