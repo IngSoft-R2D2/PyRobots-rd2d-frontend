@@ -68,7 +68,7 @@ const Simulation = () => {
             changeValidForm(true);
             changeAlertForm("Simulacion creada exitosamente");
             setTimeout(() => {
-            navigate('/home') // en realidad a board
+            navigate('/Board') // en realidad a board
             }, 5000);
         }
         else{

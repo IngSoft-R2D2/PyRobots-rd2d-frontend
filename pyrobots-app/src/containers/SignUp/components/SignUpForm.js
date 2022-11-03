@@ -55,8 +55,8 @@ const SignUpForm = (props) => {
 
     return (
       <main>
-      <h1 class= "title">Hola!</h1>
-      <h2 class="subtitle">Registrate en PyRobots</h2>
+      <h1 className= "title">Hola!</h1>
+      <h2 className="subtitle">Registrate en PyRobots</h2>
       <Form action="" onSubmit={(event) => props.onSubmit(event)}>
         <Input
           state={user}
