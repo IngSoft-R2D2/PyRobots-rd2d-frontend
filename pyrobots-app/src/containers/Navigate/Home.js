@@ -8,6 +8,8 @@ import FileUploadIcon from '@mui/icons-material/FileUpload';
 import CreateIcon from '@mui/icons-material/Create';
 import GridOnIcon from '@mui/icons-material/GridOn';
 import SmartToyIcon from '@mui/icons-material/SmartToy';
+import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
+
 
 const Home = () => {
   const navigate = useNavigate();
@@ -26,6 +28,10 @@ const Home = () => {
 
   const goToSimForm = async() => {
     navigate("/simulation");
+  }
+
+  const goToListBots = async() => {
+    navigate("/listrobots");
   }
 
   return [
@@ -111,6 +117,20 @@ const Home = () => {
             endIcon={<GridOnIcon  sx={{ fontSize: "80px" }} /> }
             sx={{  width: '340px' }}
             onClick={seeBoard}>ver Tablero</Button>
+        </p>
+
+        <p>
+          <Button 
+          style={{
+              color: "#fff",
+              padding: "18px 36px",
+              fontSize: "22px"
+            }}
+            size="medium"
+            variant="contained"  
+            endIcon={<FormatListBulletedIcon  sx={{ fontSize: "80px" }} /> }
+            sx={{  width: '340px' }}
+            onClick={goToListBots}>Listar robots</Button>
         </p>
       </Stack>
   ];

@@ -22,7 +22,8 @@ const Verification = () => {
         style={{
             marginRight: 800,
             padding: "18px 36px"
-        }}>
+        }}
+        key = {0} >
         <Toolbar sx={{ justifyContent: "space-between" }}>
           <SmartToyIcon sx={{ fontSize: "80px" }} />
           <Typography variant="h3" 
@@ -52,6 +53,7 @@ const Verification = () => {
         justifyContent="center"
         alignItems="center"
         minHeight="25vh"
+        key = {1}
         >
           <Alert severity="success"
           sx={{  width: '800px','& .MuiAlert-message':{textAlign:"center", width:"100%"} }}
