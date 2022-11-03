@@ -34,6 +34,10 @@ const Home = () => {
     navigate("/listrobots");
   }
 
+  const goToMatchesList = async() => {
+    navigate("/listmatches");
+  }
+
   return [
     <AppBar position="static" sx={{ background: 'dark-blue' }} 
         style={{
@@ -131,6 +135,20 @@ const Home = () => {
             endIcon={<FormatListBulletedIcon  sx={{ fontSize: "80px" }} /> }
             sx={{  width: '340px' }}
             onClick={goToListBots}>Listar robots</Button>
+        </p>
+
+        <p>
+          <Button 
+          style={{
+              color: "#fff",
+              padding: "18px 36px",
+              fontSize: "22px"
+            }}
+            size="medium"
+            variant="contained"  
+            endIcon={<FormatListBulletedIcon  sx={{ fontSize: "80px" }} /> }
+            sx={{  width: '340px' }}
+            onClick={goToMatchesList}>Partidas</Button>
         </p>
       </Stack>
   ];
