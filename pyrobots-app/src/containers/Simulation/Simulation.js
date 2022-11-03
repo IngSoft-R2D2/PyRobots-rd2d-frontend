@@ -63,7 +63,6 @@ const Simulation = () => {
               number_of_rounds: parseInt(inputs.rounds),
           })
         })
-        const data = await result.json();
         if(result.ok){
             changeValidForm(true);
             changeAlertForm("Simulacion creada exitosamente");

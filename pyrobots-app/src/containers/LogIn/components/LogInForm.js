@@ -60,7 +60,7 @@ const LogInForm = (props) => {
 					  <p>
             <FontAwesomeIcon icon={faExclamationTriangle}/>
             <b>Error: </b>
-            {props.alertForm}
+            {alertForm}
 					  </p>
            </ErrorMessage>}
     

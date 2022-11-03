@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {useNavigate} from "react-router-dom";
 import SignUpForm from './components/SignUpForm.js' 
 
@@ -28,6 +28,7 @@ const SignUp = () => {
       })
       const data = await response.json();
       if(data.detail === "Verification code successfully sent to your email"){
+        alert("Se ha enviado un link de verificación a tu email");
         changeValidForm(true);
         changeAlertForm("Se ha enviado un link de verificación a tu email");
         setTimeout(() => {
