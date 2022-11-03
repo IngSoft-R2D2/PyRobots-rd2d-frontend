@@ -1,6 +1,5 @@
 import React from "react";
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { fetchToken } from './elements/Auth.js';
 import RobotList from './components/RobotList.js';
 import NoBotScreen from './components/NoBotScreen.js';
