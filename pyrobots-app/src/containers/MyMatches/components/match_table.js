@@ -18,6 +18,7 @@ const MatchTable = (props) => {
     const navigate = useNavigate();
     const goBack= async() => {
         navigate("/home");
+    
     }
     return(
         <Stack
@@ -34,7 +35,7 @@ const MatchTable = (props) => {
                 <TableBody>
                     {matches.map((match) => (
                         <TableRow
-                        key={"sdfs"}
+                        key={'tablerowkey'+match[0]}
                         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                         >
                         <TableCell component="th" scope="row">

@@ -41,7 +41,7 @@ import Button from '@mui/material/Button';
           
           <MatchTable matches = {matches} mode = {"join"}/>
           <Button variant="contained" size="small"
-                onClick={goMyMatches} > Mis Partidas
+                onClick={goMyMatches} > Ver Partidas Iniciables
           </Button>
         </Stack>
     )
