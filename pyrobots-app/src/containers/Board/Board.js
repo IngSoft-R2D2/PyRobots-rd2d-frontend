@@ -4,7 +4,6 @@ import './Board.css';
 
 const Board = (props) => { 
   const ronda = props.round; 
-  const finished = props.finished; 
   const array_ronda = Object.keys(ronda); 
   const colors = ["red","blue","brown","green"]
 
@@ -31,30 +30,24 @@ const Board = (props) => {
         ))}
        {Object.keys(ronda).map((robot)=>(
        <Text 
+          fontFamily={'Roboto'}
+          fill = {colors[array_ronda.indexOf(robot)]}
           x={600} 
           y={50*array_ronda.indexOf(robot)+50} 
-          fontSize={50} 
-          text = {"Robot: "+robot} 
+          fontSize={40} 
+          text = {"Robot: "+robot+' vida: '+ (100-ronda[robot].damage)+'%'} 
           key={robot}/>
        ))}
 
        {Object.keys(ronda).map((robot)=>(
        <Rect 
-          x={900} 
+          key={robot}
+          x={1000} 
           y={50*array_ronda.indexOf(robot)+50}   
           width={500-5*+ronda[robot].damage}
           height={50}
-          fill= "red"
-          shadowBlur={10}/>
-       ))}
-       {Object.keys(ronda).map((robot)=>(
-       <Rect 
-          x={900} 
-          y={50*array_ronda.indexOf(robot)+50}   
-          width={500-5*+ronda[robot].damage}
-          height={50}
-          fill= "red"
-          shadowBlur={10}/>
+          fill= "green"
+          />
        ))}
       </Layer>
     </Stage>
