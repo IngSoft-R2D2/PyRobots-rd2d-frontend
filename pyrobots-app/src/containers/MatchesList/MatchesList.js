@@ -9,7 +9,8 @@ import Button from '@mui/material/Button';
   
   export default function MatchesList() {
     const token = fetchToken();
-    const [data, setMatches] = useState([]);
+    const [data_join, setMatchesJoin] = useState([]);
+    const [data_mine, setMatchesMine] = useState([]);
     const navigate = useNavigate();
 
     const goMyMatches= async() => {
@@ -23,26 +24,45 @@ import Button from '@mui/material/Button';
                             'Content-Type': 'application/json',
                             'Authorization': `Bearer ${token}`}})
             const content = await response.json();
-            setMatches(content);
+            setMatchesJoin(content);
         })();
     }, []);
 
-    var matches = [];
-    for(var i in data)
-        // var robots = JSON.stringify(data [i].users_robots)
-        // robots = robots.replace(/[{}]/g, '');
-        // robots = robots.replace(/[""]/g, '');
-        // robots = robots.replace(/[":"]/g, ':  ');
-        matches.push([(data [i].name),JSON.stringify(data [i].users_robots)]);
+    useEffect(() => {
+      (async () => {
+          const response = await fetch("http://localhost:8000/matches/begin", {
+              method: "GET",
+              headers: { 'accept': 'application/json',
+                          'Content-Type': 'application/json',
+                          'Authorization': `Bearer ${token}`}})
+          const content = await response.json();
+          setMatchesMine(content);
+      })();
+  }, []);
+
+
+    var matches_join = [];
+    for(var i in data_join)
+        matches_join.push([(data_join [i].name), 
+         (JSON.stringify(data_join [i].users_robots))
+          .replace(/[{}]/g, '').replace(/[""]/g, '')
+          .replace(/[":"]/g, ':  ')]);
+
+    var matches_mine = [];
+    for(var i in data_mine)
+        matches_mine.push([(data_mine [i].name),
+        (JSON.stringify(data_mine [i].users_robots))
+        .replace(/[{}]/g, '').replace(/[""]/g, '')
+        .replace(/[":"]/g, ':  ')]);
 
     return (
         <Stack
         spacing={2}>
           
-          <MatchTable matches = {matches} mode = {"join"}/>
-          <Button variant="contained" size="small"
-                onClick={goMyMatches} > Ver Partidas Iniciables
-          </Button>
+          <MatchTable matches_join = {matches_join} matches_mine = {matches_mine} mode = {"join"}/>
+          {/* <Button variant="contained" size="small"
+                onClick={goMyMatches} > Ver Partidas
+          </Button> */}
         </Stack>
     )
   }
