@@ -9,6 +9,7 @@ const Animation = (simulation_json) => {
     const obj = Object.values(json["simulation_json"]); 
     const [index, setIndex] = useState(0); //frame 
     const intervalRef = useRef();
+    const colors = ["red","blue","brown","green"]
 
     useEffect(() => {
       intervalRef.current = getInterval()
@@ -27,16 +28,16 @@ const Animation = (simulation_json) => {
     }
 
     useEffect(() => {
-      const interval = setInterval(animation,20);
+      const interval = setInterval(animation,100);
       return () => clearInterval(interval); 
     })
-    // console.log(obj[index])
+    // console.log(obj[1])
     // return renderFrame(frame)
     return(
-    // (obj[index]==undefined) ? 
-    // <Board finished = {true} round = {obj[index-1]}/> :
-    // <Board finished = {false} round = {obj[index]}/>)
-    <Board finished = {false} round = {obj[1]}/>)
+    (index>=(obj.length-1)) ? 
+    <Board finished = {true} round = {obj[obj.length-1]}/> :
+    <Board finished = {false} round = {obj[index]}/>)
+    //<Board finished = {false} round = {obj[10]}/>)
     // por alguna extrania razon del universo esto funciona!!!! :D 
 }
 

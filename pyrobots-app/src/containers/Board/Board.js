@@ -5,47 +5,62 @@ import './Board.css';
 const Board = (props) => { 
   const ronda = props.round; 
   const finished = props.finished; 
+  const array_ronda = Object.keys(ronda); 
+  const colors = ["red","blue","brown","green"]
 
   return (
-    finished ? 
-    // caso se acaba la animacion 
-    <Stage width={window.innerWidth} height={window.innerHeight}>
-        <Layer>
-        <Text x={600} y={50} fontSize={50} text = "simulacion terminada"/>
-          <Rect
-            x={20}
-            y={50}
-            width={500}
-            height={500}
-            fill= "rgb(68, 189, 92)"
-            shadowBlur={10}
-          />
-      </Layer>
-    </Stage> : 
-    // caso animacion normal 
     
     <Stage width={window.innerWidth} height={window.innerHeight}>
         <Layer>
           <Rect
             x={20}
             y={50}
-            width={500}
-            height={500}
+            width={510}
+            height={510}
             fill= "rgb(68, 189, 92)"
             shadowBlur={10}
           />
        {Object.keys(ronda).map((robot)=>(
-       <Circle x={ronda[robot].position[0]/2+20} y={ronda[robot].position[1]/2+50} radius={10} fill={'#'+parseInt(robot)} stroke="black" key={robot} text="123"/>
+       <Circle 
+          x={ronda[robot].position[0]/2+20} 
+          y={ronda[robot].position[1]/2+50} 
+          radius={10} 
+          fill={colors[array_ronda.indexOf(robot)]} 
+          stroke="black" 
+          key={robot} />
         ))}
        {Object.keys(ronda).map((robot)=>(
-       <Text x={600} y={50} fontSize={20} text = {"nombre: "+robot+" damage: "+ronda[robot].damage}/>
+       <Text 
+          x={600} 
+          y={50*array_ronda.indexOf(robot)+50} 
+          fontSize={50} 
+          text = {"Robot: "+robot} 
+          key={robot}/>
        ))}
-        <Text x={600} y={70} fontSize={20} text = {"nombre: "+"R1"+" damage: "+ronda["R1"].damage}/>
 
+       {Object.keys(ronda).map((robot)=>(
+       <Rect 
+          x={900} 
+          y={50*array_ronda.indexOf(robot)+50}   
+          width={500-5*+ronda[robot].damage}
+          height={50}
+          fill= "red"
+          shadowBlur={10}/>
+       ))}
+       {Object.keys(ronda).map((robot)=>(
+       <Rect 
+          x={900} 
+          y={50*array_ronda.indexOf(robot)+50}   
+          width={500-5*+ronda[robot].damage}
+          height={50}
+          fill= "red"
+          shadowBlur={10}/>
+       ))}
       </Layer>
     </Stage>
-    // </Stack>
-  );
+    );
 }
-
+// como hacer q los robots no se salgan?
+// como hacer para que tengan distinto color?
+// como hacer para poder mapear bien su estado?  
 export default Board;
