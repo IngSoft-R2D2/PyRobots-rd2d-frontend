@@ -1,23 +1,25 @@
 import * as React from 'react';
-import StartIcon from '@mui/icons-material/Start';
-import Button from '@mui/material/Button';
-//import { useNavigate } from 'react-router-dom';
+import DangerousIcon from '@mui/icons-material/Dangerous';
+import { useNavigate } from 'react-router-dom';
 import { fetchToken } from '../elements/Auth.js';
+import Button from '@mui/material/Button';
+
 import { createTheme, ThemeProvider} from '@mui/material/styles';
 
 const theme = createTheme({
     palette: {
-      join: {
-        light: '#f28933',
-        main: '#ef6c00',
-        dark: '#a74b00',
-        contrastText: '#fff',
+      primary: {
+        light: '#ea605d',
+        main: '#e53935',
+        dark: '#a02725',
+        contrastText: '#000',
       },
     },
   });
 
-const Join = (props) => {
-    //const navigate = useNavigate();
+
+const Leave = (props) => {
+    const navigate = useNavigate();
     const match_id = props.match_id
     const joinMatch = async() => {
         const token = fetchToken();
@@ -30,10 +32,10 @@ const Join = (props) => {
                 })
             const data = await response.json();
             if(response.ok){
-                alert("Unido a la partida exitosamente")
-                // setTimeout(() => {
-                // navigate('/lobby')
-                // }, 4000);
+                alert("Partida abandonada exitosamente")
+                setTimeout(() => {
+                navigate('/lobby')
+                }, 4000);
             }
             else {
                 alert(data.detail)
@@ -45,14 +47,19 @@ const Join = (props) => {
     return(
         <ThemeProvider theme={theme}>
             <Button 
-                color="join"
-                variant="outlined" size="medium"
-                endIcon={<StartIcon sx={{ fontSize: "large" }} /> }
+                color= "primary"
+                variant="outlined" size="large"
+                endIcon={<DangerousIcon sx={{ fontSize: "large" }} /> }
                 onClick={joinMatch} > 
-                Unirse
+                Abandonar partida
             </Button>
         </ThemeProvider>
     )
 }
 
-export default Join;
+export default Leave;
+
+
+
+    
+
