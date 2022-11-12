@@ -1,4 +1,9 @@
-import "../Bot.css";
+//import "../Bot.css";
+//import Button from '@mui/material/Button';
+import { Stack } from "@mui/system";
+import Box from '@mui/material/Box';
+import PhotoCamera from '@mui/icons-material/PhotoCamera';
+import { Avatar, IconButton, Button, Typography, TextField } from '@mui/material';
 
 const BotForm = (props) => {
   
@@ -35,54 +40,91 @@ const BotForm = (props) => {
     }
   };
 
-  return (
+  return [
     <div>
+      <Box
+      sx={{
+        width: 400,
+        height: 500,
+        backgroundColor: "#ffa",
+      }}
+      >
       <form onSubmit={(event) => props.onSubmit(event)}>
-        <h1>Crear Robot</h1>
+        <Typography variant="h2" 
+                    style={{fontWeight: "700",
+                    fontFamily: "Roboto",
+                    padding: "18px 36px"}}>
+            Crear Robot
+        </Typography>
         <p>
-          <label>
-            nombre:
-            <input
+            <TextField
               required
-              type="text"
+              label= "Nombre"
+              type={"text"}
               name="name"
               value={inputs.name}
               onChange={handleChange}
+              placeholder = "Nombre"
+              variant= "outlined"
+              size= "small"
             />
-          </label>
         </p>
         <p>
-          <label>
-            avatar:
-            <input
-              type="file"
-              name="avatar"
-              id="file"
-              value={inputs.avatar}
-              accept = {[".jpg", ".jpeg", ".png", ".gif"]}
-              onChange={handleChange}
-            />
-          </label>
+        <Avatar 
+          alt="A" src={inputs.avatar}
+          sizes = "large"
+          sx= {{left: '45%', width: 50, height: 50}} />
+
+        <IconButton 
+          color="primary" 
+          aria-label="upload picture" 
+          component="label">
+          <input 
+            type="file"
+            hidden
+            name="avatar"
+            value={inputs.avatar}
+            accept = {[".jpg", ".jpeg", ".png", ".gif"]}
+            onChange={handleChange} />
+          <PhotoCamera />
+        </IconButton>
+        </p>
+
+        <p>
+        <Button
+          variant="contained"
+          component="label"
+        >
+          código (.py)
+          <input
+            type="file"
+            hidden
+            required
+            name="code"
+            value={inputs.code}
+            accept = ".py"
+            onChange={handleChange}
+          />
+        </Button>
+        <Typography variant="h5" 
+                    style={{fontWeight: "700",
+                    fontFamily: "Roboto",
+                    padding: "18px 36px"}}>
+            {inputs.code}
+        </Typography>
         </p>
         <p>
-          <label>
-            código: (.py)
-            <input
-              required
-              type="file"
-              name="code"
-              value={inputs.code}
-              accept = ".py"
-              onChange={handleChange}
-            />
-          </label>
-        </p>
-        <p>
-          <input type="submit"></input>
+        <Button 
+          type = "submit"
+          variant = "contained"
+          size= "medium"
+        > Crear
+        </Button>
         </p>
       </form>
+      </Box>
     </div>
-  );
+  ];
 };
 
 export default BotForm;
