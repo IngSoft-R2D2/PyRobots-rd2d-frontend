@@ -23,7 +23,7 @@ const Leave = (props) => {
     const joinMatch = async() => {
         const token = fetchToken();
         try{
-                const response = await fetch("http://localhost:8000/matches/join/?id=${match_id}", {
+                const response = await fetch("http://localhost:8000/matches/leave/${match_id}", {
                 method: "PUT",
                 headers: { "accept": "application/json",
                             'Authorization': `Bearer ${token}`},
@@ -33,7 +33,7 @@ const Leave = (props) => {
             if(response.ok){
                 alert("Partida abandonada exitosamente")
                 setTimeout(() => {
-                navigate('/')
+                navigate('/home')
                 }, 4000);
             }
             else {
