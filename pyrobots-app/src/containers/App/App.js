@@ -4,6 +4,7 @@ import { RequireToken } from './elements/Auth.js';
 import LogIn from "../LogIn/LogIn.js";
 import SignUp from "../SignUp/SignUp.js";
 import Match from "../Match/Match.js";
+import Lobby from "../Lobby/Loby.js"
 import Bot from "../Bot/Bot.js";
 import Board from "../Board/Board.js";
 import Home from "../Navigate/Home.js"
@@ -25,6 +26,7 @@ function App() {
           <Route path="/login" element={<LogIn />}/>
           <Route path="/home" element={<RequireToken><Home /></RequireToken>}/>
           <Route path="/matches/" element={<RequireToken><Match /></RequireToken>}/>
+          <Route path="/lobby/" element={<RequireToken><Lobby /></RequireToken>}/>
           <Route path="/robots/" element={<RequireToken><Bot /></RequireToken>}/>
           <Route path="/board/" element={<RequireToken><Board /></RequireToken>}/>
           <Route path="/simulation/" element={<RequireToken><Simulation /></RequireToken>}/>
