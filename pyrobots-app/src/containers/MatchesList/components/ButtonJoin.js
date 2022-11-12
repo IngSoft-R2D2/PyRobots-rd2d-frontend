@@ -1,7 +1,7 @@
 import * as React from 'react';
 import StartIcon from '@mui/icons-material/Start';
 import Button from '@mui/material/Button';
-//import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { fetchToken } from '../elements/Auth.js';
 import { createTheme, ThemeProvider} from '@mui/material/styles';
 
@@ -17,12 +17,13 @@ const theme = createTheme({
   });
 
 const Join = (props) => {
-    //const navigate = useNavigate();
+    const navigate = useNavigate();
     const match_id = props.match_id
+    const robot_id = props.robot_id    
     const joinMatch = async() => {
         const token = fetchToken();
         try{
-                const response = await fetch("http://localhost:8000/matches/join/?id=${match_id}", {
+                const response = await fetch("http://localhost:8000/matches/join/${match_id}/robot/${robot_id}", {
                 method: "PUT",
                 headers: { "accept": "application/json",
                             'Authorization': `Bearer ${token}`},
@@ -31,9 +32,9 @@ const Join = (props) => {
             const data = await response.json();
             if(response.ok){
                 alert("Unido a la partida exitosamente")
-                // setTimeout(() => {
-                // navigate('/lobby')
-                // }, 4000);
+                setTimeout(() => {
+                navigate('/lobby')
+                }, 4000);
             }
             else {
                 alert(data.detail)
@@ -46,7 +47,7 @@ const Join = (props) => {
         <ThemeProvider theme={theme}>
             <Button 
                 color="join"
-                variant="outlined" size="medium"
+                variant="contained" size="medium"
                 endIcon={<StartIcon sx={{ fontSize: "large" }} /> }
                 onClick={joinMatch} > 
                 Unirse
