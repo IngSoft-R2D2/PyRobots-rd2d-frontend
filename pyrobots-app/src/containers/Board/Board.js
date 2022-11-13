@@ -22,7 +22,7 @@ const Board = (props) => {
         <Text 
             fontFamily={'Roboto'}
             fill = {colors[array_ronda.indexOf(robot)]}
-            x={ronda[robot].position[0]/2+30} 
+            x={ronda[robot].position[0]/2+40} 
             y={ronda[robot].position[1]/2+50} 
             fontSize={20} 
             text = {"X"}
@@ -30,7 +30,7 @@ const Board = (props) => {
           :
         <Circle 
             x={ronda[robot].position[0]/2+40} 
-            y={ronda[robot].position[1]/2+50} 
+            y={ronda[robot].position[1]/2+60} 
             radius={10} 
             fill={colors[array_ronda.indexOf(robot)]} 
             stroke="black" 

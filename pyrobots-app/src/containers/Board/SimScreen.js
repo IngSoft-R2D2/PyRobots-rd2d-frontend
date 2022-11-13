@@ -10,7 +10,8 @@ import SmartToyIcon from '@mui/icons-material/SmartToy';
 import UndoIcon from '@mui/icons-material/Undo';
 import Animation from './animation.js';
 
-const SimScreen = () => {
+const SimScreen = (props) => {
+    const json_sim = props.json;
     const navigate = useNavigate();
     const goBack= async() => {
         navigate("/home");
@@ -46,7 +47,9 @@ const SimScreen = () => {
         </Button>
       </Toolbar>
     </AppBar>
-    <Animation />
+    <Animation
+      json = {json_sim}
+      />
     </Stack>
     )
 }
