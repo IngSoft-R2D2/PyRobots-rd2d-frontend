@@ -1,19 +1,11 @@
-import React from "react";
+import Board from "./Board.js"
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { fetchToken } from './elements/Auth.js';
-import SimForm from './components/SimForm.js';
-import NoBotSimScreen from './components/NoBotSimScreen.js';
-import Backdrop from '@mui/material/Backdrop';
-import CircularProgress from '@mui/material/CircularProgress';
-import SimScreen from '../Board/SimScreen.js';
 
 
-
-const Simulation = () => {
-
-    const navigate = useNavigate();
-    const json_response = {
+const Animation = (props) => {
+    const json = props.json; 
+    //const json = simulation_json; 
+    const json1 = {
       "simulation_json": {
         "round_0": {
           "R1_Megatron": {
@@ -2824,101 +2816,41 @@ const Simulation = () => {
       },
       "operation_result": "Simulation successfully runned."
     }    
+    const obj = Object.values(json["simulation_json"]); 
+    const [index, setIndex] = useState(0); //frame 
 
-    const [inputs, setInputs] = useState({
-        robot_id1:'',
-        robot_id2:'',
-        robot_id3:'',
-        robot_id4:'',
-        rounds: 1
-    });
+    // useEffect(() => {
+    //   intervalRef.current = getInterval()
+    //   return () => clearInterval(intervalRef.current);
+    // });
 
-    const [robots, setRobots] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [validForm, changeValidForm] = useState({valid: null });
-    const [alertForm, changeAlertForm] = useState({field: "" });
-    const [simReady,setReady] = useState(false)
-    // const [simulation,setSimulation] = useState({simulation_json: "", operation_result: ""}); 
-    const [simulation,setSimulation] = useState([]); 
+    // const getInterval = () => {
+    //   const progressInterval = setInterval(() => {
+    //     if (index<obj.length-1){
+    //       setIndex ((index) => index + 1);
+    //     } 
+    //   }, 500);
+    //   console.log(obj.length);
+    //   console.log(index); 
+    //   return progressInterval; 
+    // }
 
-    useEffect(() => { 
-        const token = fetchToken();
-        fetch(`http://localhost:8000/robots`,{
-            method: "GET",
-            headers: {'accept': 'application/json',
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}` },
-        })
-         .then((response) => response.json())
-         .then ((data)=> {
-            setRobots(data);
-            setLoading(false);
-         })
-         .catch((err) => {
-            console.log(err.message);
-         });
-       }, []);
-
-    const onSubmit_newSim = async (event) => {
-      event.preventDefault();
-      const token = fetchToken();
-      const robots_fetch = [parseInt(inputs.robot_id1),parseInt(inputs.robot_id2),
-        parseInt(inputs.robot_id3),parseInt(inputs.robot_id4)]
-      
-      const robots_clean = robots_fetch.filter( value => !Number.isNaN(value) );
-      
-      try {
-        const result = await fetch('http://localhost:8000/simulation', {
-          method: 'POST',
-          headers: {'accept': 'application/json',
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}` },
-          body: JSON.stringify({
-              robots_id: robots_clean,
-              number_of_rounds: parseInt(inputs.rounds),
-          })
-        })
-        const data = await result.json()
-        if(result.ok){
-            setSimulation(data);
-            setReady(true)
-            //console.log(simulation);
-            changeValidForm(true);
-            changeAlertForm("Simulacion creada exitosamente");
-            // setTimeout(() => {
-            // navigate('/Board') // en realidad a board
-            // }, 5000);
-        }
-        else{
-            changeValidForm(false);
-            changeAlertForm("error");
-        }
-      }
-      
-      catch(error) {
-          alert(error);
-      };
-      // no deberia hacer esto, deberia esperar la respuesta
+    const animation = () => {
+      if (index<obj.length-1){
+          setIndex ((index) => index + 1);
+        }  
     }
 
-    return( loading ?  
-        <Backdrop
-            sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
-            open={loading}
-            >
-            <CircularProgress color="inherit" />
-        </Backdrop> : 
-        ((simReady==true) ? 
-        <SimScreen json = {simulation}/>
-          :
-        ((Object.keys(robots).length === 0) ? 
-        <NoBotSimScreen/> :
-        <SimForm onSubmit = {onSubmit_newSim}
-                   inputs = {inputs}
-                   robots = {robots}
-                   validForm = {validForm}
-                   alertForm = {alertForm}
-                   setInputs = {setInputs}/>)
-        ))
+    useEffect(() => {
+      const interval = setInterval(animation,50);
+      return () => clearInterval(interval); 
+    })
+    // console.log(obj[1])
+    // return renderFrame(frame)
+    return(
+    <Board round = {obj[index]}/>)
+    // por alguna extrania razon del universo esto funciona!!!! :D 
 }
-export default Simulation;
+
+export default Animation; 
+
