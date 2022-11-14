@@ -64,8 +64,8 @@ const Match = () => {
                 password: inputs.pwd,
             })
         })
-        //const data = await result.json();
-        // alert(data.operation_result);
+        const data = await result.json();
+        console.log(data)
         if(result.ok){
             changeValidForm(true);
             changeAlertForm("Partida creada exitosamente");
@@ -82,23 +82,25 @@ const Match = () => {
           alert(error);
       };
     }
-
-    return( loading ?  
+    return( 
+    loading 
+    ?
         <Backdrop
             sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
             open={loading}
-            >
+        >
             <CircularProgress color="inherit" />
-        </Backdrop> : (
-        (Object.keys(robots).length === 0) ? 
+        </Backdrop> 
+    :
+        ((Object.keys(robots).length === 0) ? 
         <NoBotScreen/> :
         <MatchForm onSubmit = {onSubmit_newMatch}
-                   inputs = {inputs}
-                   robots = {robots}
-                   setInputs = {setInputs}
-                   validForm = {validForm}
-                   alertForm = {alertForm}
-                   />
-    ))
+                inputs = {inputs}
+                robots = {robots}
+                setInputs = {setInputs}
+                validForm = {validForm}
+                alertForm = {alertForm}
+        />)
+    )
 }
 export default Match;

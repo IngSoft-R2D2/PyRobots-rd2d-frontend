@@ -6,15 +6,13 @@ import { useEffect, useState } from "react";
 // en return poner uno u otro según si es el creador o no
 
 const Lobby = (props) => {
-  const ws = new WebSocket(`ws://localhost:3000/matches/${props.match_id}`);
+  const ws = new WebSocket(`ws://127.0.0.1:8000/ws/${props.match_id}`);
   const [users, setUsers] = useState(["default", "hola"]);
   const [robots, setRobots] = useState(["defaultbot1", "altoRobo"]);
-  const [results, setResults] = useState({finish: false, winner: ["jose"]})
-//para ver quien es el creador solo fijarme el primero de la lista (creo)
-//o sea simpre va a ser l primero en unirse
+  const [results, setResults] = useState({started: false, res: []})
 
   useEffect(() => {
-    if (results.finish === false){
+    if (results.started === false){
         ws.onopen = () => {
             console.log('WebSocket Client Connected');
         };
@@ -22,33 +20,35 @@ const Lobby = (props) => {
         const json = JSON.parse(event.data);
         console.log(`[message] Data received from server: ${json}`);
         const evType = json.event;
-        if (evType === "join") {
+        if (evType === "Join") {
             //agregar usuario a lista de users y su robot a lista robots
             const newuserList = users.concat(json.player);
-            const newBotList = robots.concat(json.bot);
+            const newBotList = robots.concat(json.robot);
             setUsers(newuserList);
             setRobots(newBotList);
         }
-        if (evType === "left") {
+        if (evType === "Leave") {
             //eliminar usuario de la lista de users y su robot de lista robots
             const newuserList = users.filter((item) => item !== json.player);
-            const newBotList = robots.filter((item) => item !== json.bot);
+            const newBotList = robots.filter((item) => item !== json.robot);
             setUsers(newuserList);
             setRobots(newBotList);
         }
-        if (evType === "finish") {
-            //eliminar usuario de la lista de users y su robot de lista robots
-            const winners = json.winners;
-            setResults({finish: true, winner: winners});
+        if (evType === "Start"){
+            setResults({started: true, res: []});
+        }
+        if (evType === "Results") {
+            const listRes = json.participants;
+            setResults({started: true, res: listRes});
         }
         };
     }
   });
 
   return (
-    results.finish
+    results.started
     ? 
-        <Results results = {results.winner}/>
+        <Results results = {results.res}/>
     :
         <LobbyView users={users}
                    robots={robots} />

@@ -8,6 +8,8 @@ import Typography from '@mui/material/Typography';
 //import Button from '@mui/material/Button';
 //import IconButton from '@mui/material/IconButton';
 
+
+//cambiar esto a una tabla y agregar los nombres de los robots
 const LobbyView = (props) => {
   return (
     <div>
@@ -34,12 +36,6 @@ const LobbyView = (props) => {
             <ListItemText primary={`jugador ${value}`} />
           </ListItem>
         ))}
-        {/* {props.robots.map((value) => (
-          <ListItem 
-          key = {value}>
-            <ListItemText primary={`bot ${value}`} />
-          </ListItem>
-        ))} */}
       </List>
     </div>
   );
