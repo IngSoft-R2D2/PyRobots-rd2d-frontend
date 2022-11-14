@@ -18,6 +18,7 @@ const Board = (props) => {
             fill= "rgb(68, 189, 92)"
             shadowBlur={10}
           />
+        {/* robots muertos o vivos */}
        {Object.keys(ronda).map((robot)=>( (ronda[robot].damage===100) ? 
         <Text 
             fontFamily={'Roboto'}
@@ -32,6 +33,24 @@ const Board = (props) => {
             x={ronda[robot].position[0]/2+40} 
             y={ronda[robot].position[1]/2+60} 
             radius={10} 
+            fill={colors[array_ronda.indexOf(robot)]} 
+            stroke="black" 
+            key={robot} />
+          ))}
+        {/* misiles */}
+        {Object.keys(ronda).map((robot)=>( (ronda[robot].damage===100) ? 
+        <Circle 
+        x={-1000} 
+        y={-1000} 
+        radius={5} 
+        fill={colors[array_ronda.indexOf(robot)]} 
+        stroke="black" 
+        key={robot} />
+          :
+        <Circle 
+            x={ronda[robot].missile[0]/2+40} 
+            y={ronda[robot].missile[1]/2+60} 
+            radius={5} 
             fill={colors[array_ronda.indexOf(robot)]} 
             stroke="black" 
             key={robot} />
