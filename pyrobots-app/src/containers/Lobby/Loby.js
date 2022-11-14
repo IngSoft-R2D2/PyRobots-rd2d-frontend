@@ -7,9 +7,17 @@ import { useEffect, useState } from "react";
 
 const Lobby = (props) => {
   const ws = new WebSocket(`ws://127.0.0.1:8000/ws/${props.match_id}`);
-  const [users, setUsers] = useState(["default", "hola"]);
-  const [robots, setRobots] = useState(["defaultbot1", "altoRobo"]);
-  const [results, setResults] = useState({started: false, res: []})
+  const [users, setUsers] = useState(["default", "hola"]); // ["props.creatorname"] o algo así
+  const [robots, setRobots] = useState(["defaultbot1", "altoRobo"]); // ["props.creatorbot"]
+  const [results, setResults] = useState({
+    started: true,
+    res:
+    [{
+        'user_name': "Pepito", 
+        'robot_name': "Megatron",
+        'won_games': "45"
+    }]
+})
 
   useEffect(() => {
     if (results.started === false){
@@ -17,33 +25,38 @@ const Lobby = (props) => {
             console.log('WebSocket Client Connected');
         };
         ws.onmessage = (event) => {
-        const json = JSON.parse(event.data);
-        console.log(`[message] Data received from server: ${json}`);
-        const evType = json.event;
-        if (evType === "Join") {
-            //agregar usuario a lista de users y su robot a lista robots
-            const newuserList = users.concat(json.player);
-            const newBotList = robots.concat(json.robot);
-            setUsers(newuserList);
-            setRobots(newBotList);
-        }
-        if (evType === "Leave") {
-            //eliminar usuario de la lista de users y su robot de lista robots
-            const newuserList = users.filter((item) => item !== json.player);
-            const newBotList = robots.filter((item) => item !== json.robot);
-            setUsers(newuserList);
-            setRobots(newBotList);
-        }
-        if (evType === "Start"){
-            setResults({started: true, res: []});
-        }
-        if (evType === "Results") {
-            const listRes = json.participants;
-            setResults({started: true, res: listRes});
-        }
+            const json = JSON.parse(event.data);
+            console.log(`[message] Data received from server: ${json}`);
+            const evType = json.event;
+            if (evType === "Join") {
+                //agregar usuario a lista de users y su robot a lista robots
+                const newuserList = users.concat(json.player);
+                const newBotList = robots.concat(json.robot);
+                setUsers(newuserList);
+                setRobots(newBotList);
+            }
+            if (evType === "Leave") {
+                //eliminar usuario de la lista de users y su robot de lista robots
+                const newuserList = users.filter((item) => item !== json.player);
+                const newBotList = robots.filter((item) => item !== json.robot);
+                setUsers(newuserList);
+                setRobots(newBotList);
+            }
+            if (evType === "Start"){
+                setResults({started: true, res: []});
+            }
+            if (evType === "Results") {
+                const listRes = json.participants;
+                setResults({started: true, res: listRes});
+            }
         };
     }
-  });
+    else {
+        ws.onclose = (event) => {
+            ws.close();
+        };
+    }
+  }); //, [users, robots, results, ws]
 
   return (
     results.started

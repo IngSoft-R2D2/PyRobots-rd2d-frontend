@@ -20,7 +20,7 @@ const Results = (props) => {
             }}
             key={value}
           >
-            <ListItemText primary={`jugador ${value}`} />
+            <ListItemText primary={`jugador ${value.user_name}`} />
           </ListItem>
         ))}
       </List>
