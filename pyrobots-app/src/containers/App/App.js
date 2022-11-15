@@ -20,18 +20,18 @@ function App() {
     <div className="App" id="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Root />}/>
+          <Route path="/" element={<Lobby />}/>
           <Route path="/users" element={<SignUp />}/>
           <Route path="/users/verified" element={<Verification />}/>
           <Route path="/login" element={<LogIn />}/>
           <Route path="/home" element={<RequireToken><Home /></RequireToken>}/>
           <Route path="/matches/" element={<RequireToken><Match /></RequireToken>}/>
-          <Route path="/lobby/" element={<RequireToken><Lobby /></RequireToken>}/>
           <Route path="/robots/" element={<RequireToken><Bot /></RequireToken>}/>
           <Route path="/board/" element={<RequireToken><Board /></RequireToken>}/>
           <Route path="/simulation/" element={<RequireToken><Simulation /></RequireToken>}/>
           <Route path="/listrobots/" element={<RequireToken><BotList /></RequireToken>}/>
           <Route path="/listmatches/" element={<RequireToken><MatchesList /></RequireToken>}/>
+          <Route path="/listmatches/lobby/:match_id" element={<RequireToken><Lobby /></RequireToken>}/>
           <Route path="/mymatches/" element={<RequireToken><MyMatches/></RequireToken>}/>
         </Routes>
       </BrowserRouter>

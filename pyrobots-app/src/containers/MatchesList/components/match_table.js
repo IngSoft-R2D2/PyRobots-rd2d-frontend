@@ -11,15 +11,23 @@ import UndoIcon from '@mui/icons-material/Undo';
 import { Stack } from "@mui/system";
 import { useNavigate } from "react-router-dom";
 
-
 const MatchTable = (props) => {
     const matches = props.matches
+    const data = props.data
+    
     const mode = props.mode
     const navigate = useNavigate();
+
     const goBack= async() => {
         navigate("/home");
 
     }
+
+    const goToLobby= async() => {
+        navigate(`lobby/${data[0]}`);
+
+    }
+
     return(
         <Stack
         spacing={2}
@@ -43,8 +51,8 @@ const MatchTable = (props) => {
                         </TableCell>
                         <TableCell align="right">{match[1]}</TableCell>
                         <TableCell align="right">{(mode==="join") ? 
-                            <Button variant="contained">Unirse</Button>
-                            : <Button variant="contained">Iniciar</Button>}
+                            <Button variant="contained" onClick={goToLobby}>Unirse</Button>
+                            : <Button variant="contained" onClick={goToLobby}>Lobby</Button>}
                         </TableCell>
                         </TableRow>
                     ))}
