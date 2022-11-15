@@ -16,7 +16,8 @@ export default function MatchesList() {
   }
     useEffect(() => {
         (async () => {
-            const response = await fetch("http://localhost:8000/matches/join", {
+            const response = await fetch("http://localhost:8000/matches", {
+                //endpoint de todas las partidas
                 method: "GET",
                 headers: { 'accept': 'application/json',
                             'Content-Type': 'application/json',
@@ -27,23 +28,23 @@ export default function MatchesList() {
         })();
     }, []);
 
-    var matches = [];
-    var json = [];
-    for(var i in data)
-        // var robots = JSON.stringify(data [i].users_robots)
-        // robots = robots.replace(/[{}]/g, '');
-        // robots = robots.replace(/[""]/g, '');
-        // robots = robots.replace(/[":"]/g, ':  ');
-        matches.push([(data [i].name),JSON.stringify(data [i].users_robots)]);
+    // var matches = [];
+    // var json = [];
+    // for(var i in data)
+    //     // var robots = JSON.stringify(data [i].users_robots)
+    //     // robots = robots.replace(/[{}]/g, '');
+    //     // robots = robots.replace(/[""]/g, '');
+    //     // robots = robots.replace(/[":"]/g, ':  ');
+    //     matches.push([(data [i].name),JSON.stringify(data [i].users_robots),(data [i].id)]);
 
-    for(var j in data)
-    json.push([(data [j].id)]);
+    // for(var j in data)
+    // json.push([(data [j].id)]);
 
     return (
         <Stack
         spacing={2}>
           
-          <MatchTable matches = {matches} data = {json}  mode = {"join"}/>
+          <MatchTable matches={data}/>
           <Button variant="contained" size="small"
                 onClick={goMyMatches} > Ver Partidas Iniciables
           </Button>

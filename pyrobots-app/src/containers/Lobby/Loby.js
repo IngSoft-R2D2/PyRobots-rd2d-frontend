@@ -12,7 +12,7 @@ const Lobby = (props) => {
   const [users, setUsers] = useState(["default", "hola"]); // ["props.creatorname"] o algo así
   const [robots, setRobots] = useState(["defaultbot1", "altoRobo"]); // ["props.creatorbot"]
   const [results, setResults] = useState({
-    started: true,
+    started: false,
     res:
     [{
         'user_name': "Pepito", 

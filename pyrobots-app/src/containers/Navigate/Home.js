@@ -9,19 +9,18 @@ import CreateIcon from '@mui/icons-material/Create';
 import GridOnIcon from '@mui/icons-material/GridOn';
 import SmartToyIcon from '@mui/icons-material/SmartToy';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
-import { makeStyles } from '@material-ui/core/styles';
+//import { makeStyles } from '@material-ui/core/styles';
 import { Box } from '@mui/material';
-import { faLeftLong } from "@fortawesome/free-solid-svg-icons";
 
 const Home = () => {
 
-  const useStyles = makeStyles(theme => ({
-    title: {
-      flexGrow: 1,
-      textAlign: 'center'
-    },
-  }));
-  const classes = useStyles();
+  // const useStyles = makeStyles(theme => ({
+  //   title: {
+  //     flexGrow: 1,
+  //     textAlign: 'center'
+  //   },
+  // }));
+  // const classes = useStyles();
   const navigate = useNavigate();
 
   const goToMatchForm = async() => {
@@ -59,7 +58,8 @@ const Home = () => {
                       style={{fontWeight: "700",
                         fontFamily: "Roboto",
                         padding: "18px 36px"}} 
-                      className={classes.title}>
+                      // className={classes.title}
+                      >
             PyRobots
           </Typography>
         </Box>  
