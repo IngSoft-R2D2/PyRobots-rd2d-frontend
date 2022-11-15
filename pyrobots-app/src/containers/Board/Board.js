@@ -4,6 +4,7 @@ import './Board.css';
 
 const Board = (props) => { 
   const ronda = props.round; 
+  const finished = props.finished; 
   const array_ronda = Object.keys(ronda); 
   const colors = ["red","blue","brown","green"]
 
@@ -38,7 +39,15 @@ const Board = (props) => {
             key={robot} />
           ))}
         {/* misiles */}
-        {Object.keys(ronda).map((robot)=>( (ronda[robot].damage===100) ? 
+        {Object.keys(ronda).map((robot)=>( finished ? 
+        <Circle 
+        x={-1000} 
+        y={-1000} 
+        radius={15} 
+        fill="rgb(68, 189, 92)" 
+        stroke={colors[array_ronda.indexOf(robot)]} 
+        key={robot} />:
+        (ronda[robot].damage===100) ? 
         <Circle 
         x={-1000} 
         y={-1000} 
@@ -50,9 +59,9 @@ const Board = (props) => {
         <Circle 
             x={ronda[robot].missile[0]/2+40} 
             y={ronda[robot].missile[1]/2+60} 
-            radius={5} 
-            fill={colors[array_ronda.indexOf(robot)]} 
-            stroke="black" 
+            radius={15} 
+            fill="rgb(68, 189, 92)"
+            stroke={colors[array_ronda.indexOf(robot)]} 
             key={robot} />
           ))}
        {Object.keys(ronda).map((robot)=>(
@@ -60,17 +69,17 @@ const Board = (props) => {
           fontFamily={'Roboto'}
           fill = {colors[array_ronda.indexOf(robot)]}
           x={600} 
-          y={50*array_ronda.indexOf(robot)+50} 
+          y={130*array_ronda.indexOf(robot)+50} 
           fontSize={40} 
-          text = {"Robot: "+robot+' vida: '+ (100-ronda[robot].damage)+'%'} 
+          text = {"Robot: "+robot+'\n\nvida: '+ (100-ronda[robot].damage)+'%'} 
           key={robot}/>
        ))}
 
        {Object.keys(ronda).map((robot)=>(
        <Rect 
           key={robot}
-          x={1200} 
-          y={50*array_ronda.indexOf(robot)+50}   
+          x={800} 
+          y={130*array_ronda.indexOf(robot)+120}   
           width={500-5*+ronda[robot].damage}
           height={50}
           fill= "green"
@@ -80,7 +89,5 @@ const Board = (props) => {
     </Stage>
     );
 }
-// como hacer q los robots no se salgan?
-// como hacer para que tengan distinto color?
-// como hacer para poder mapear bien su estado?  
+ 
 export default Board;
