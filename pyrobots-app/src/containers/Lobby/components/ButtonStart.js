@@ -1,5 +1,6 @@
 import * as React from 'react';
-import StartIcon from '@mui/icons-material/Start';
+import PlayCircleFilledWhiteIcon from 
+'@mui/icons-material/PlayCircleFilledWhite';
 import Button from '@mui/material/Button';
 import { useNavigate } from 'react-router-dom';
 import { fetchToken } from '../elements/Auth.js';
@@ -7,34 +8,33 @@ import { createTheme, ThemeProvider} from '@mui/material/styles';
 
 const theme = createTheme({
     palette: {
-      join: {
-        light: '#f28933',
-        main: '#ef6c00',
-        dark: '#a74b00',
-        contrastText: '#fff',
+      start: {
+        light: '#6fbf73',
+        main: '#4caf50',
+        dark: '#357a38',
+        contrastText: '#000',
       },
     },
   });
 
-const Join = ({match_id, robot_id}) => {
-    
+const Start = (props) => {
     const navigate = useNavigate();
-    const joinMatch = async() => {
+    const match_id = props.match_id
+    const startMatch = async() => {
         const token = fetchToken();
         try{
-                const response = await fetch(`http://localhost:8000/matches/join/${match_id}/robot/${robot_id}`, {
+                const response = await fetch("http://localhost:8000/matches/join/?id=${match_id}", {
                 method: "PUT",
                 headers: { "accept": "application/json",
-                            'Content-Type': 'application/json',
                             'Authorization': `Bearer ${token}`},
                 body: JSON.stringify({})
                 })
             const data = await response.json();
             if(response.ok){
-                alert("Unido a la partida exitosamente")
-                setTimeout(() => {
-                navigate(`/listmatches/lobby/${match_id}`)
-                }, 4000);
+                alert("Partida iniciada exitosamente")
+                // setTimeout(() => {
+                // navigate('/lobby')
+                // }, 4000);
             }
             else {
                 alert(data.detail)
@@ -46,14 +46,14 @@ const Join = ({match_id, robot_id}) => {
     return(
         <ThemeProvider theme={theme}>
             <Button 
-                color="join"
-                variant="contained" size="medium"
-                endIcon={<StartIcon sx={{ fontSize: "large" }} /> }
-                onClick={joinMatch} > 
-                Unirse
+                color="start" 
+                variant="outlined" size="medium"
+                endIcon={<PlayCircleFilledWhiteIcon sx={{ fontSize: "large" }} /> }
+                onClick={startMatch} > 
+                Iniciar
             </Button>
         </ThemeProvider>
     )
 }
 
-export default Join;
+export default Start;

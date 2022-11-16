@@ -10,7 +10,7 @@ import Button from '@mui/material/Button';
 import UndoIcon from '@mui/icons-material/Undo';
 import { Stack } from "@mui/system";
 import { useNavigate } from "react-router-dom";
-import ButtonJoin from "./ButtonJoin.js"
+//import ButtonJoin from "./ButtonJoin.js"
 
 const MatchTable = ({matches}) => {
     console.log(matches)
@@ -22,16 +22,14 @@ const MatchTable = ({matches}) => {
     }
 
     const goToLobby= async(m) => {
-        navigate(`lobby/${m.id}`); //lo de los props
+        navigate(`lobby/${m.id}`, {state: m.players});
+        //lista de users y robots
     }
 
-    /*
-    "user_is_creator": false,
-    "is_available_to_join": false,
-    "is_available_to_leave": true,
-    "is_ready_to_start": false,
-    "user_is_already_joined": true
-    */
+    const goToSelectBot= async(m_id) => {
+        navigate(`select`, {state: m_id});
+    }
+
 
     return(
         <Stack
@@ -60,8 +58,7 @@ const MatchTable = ({matches}) => {
                                                    matches[match].user_is_already_joined===false &&
                                                    matches[match].is_available_to_join===true &&
                                                    matches[match].is_started===false) ? 
-                            <Button variant="contained" onClick={goToLobby(matches[match])}>Unirse</Button>
-                            // <ButtonJoin lobby={goToLobby} matches={matches}/>
+                            <Button variant="contained" onClick={() => goToSelectBot(matches[match].id)}>unirse</Button>
                             : <Button variant="contained" onClick={() => goToLobby(matches[match])}>Lobby</Button>}
                         </TableCell>
                         </TableRow>
