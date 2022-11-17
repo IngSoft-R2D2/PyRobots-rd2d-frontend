@@ -28,7 +28,7 @@ const MatchTable = ({matches}) => {
     }
 
     const goToSelectBot= async(m_id) => {
-        navigate(`select`, {state: m_id});
+        navigate(`select`, {state: m_id}); 
     }
 
 

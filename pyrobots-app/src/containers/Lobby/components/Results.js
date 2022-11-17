@@ -14,7 +14,7 @@ import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 import Divider from '@mui/material/Divider';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import styled, { ThemeProvider } from "styled-components";
+//import styled from "styled-components";
 import ButtonGroup from '@mui/material/ButtonGroup';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import CreateIcon from '@mui/icons-material/Create';
@@ -29,74 +29,72 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const IconContainer = styled.div`
-  display: flex;
-`;
+// const IconContainer = styled.div`
+//   display: flex;
+// `;
 
 const Results = (props) => {
   const navigate = useNavigate();
 
-    const goToHome= async() => {
-        navigate("/home");
-    }
+  const goToHome= async() => {
+    navigate("/home");
+  }
   
-    const goToMatchesList = async() => {
-      navigate("/listmatches");
-    }
+  const goToMatchesList = async() => {
+    navigate("/listmatches");
+  }
   
-    const goToMatchForm = async() => {
-      navigate("/matches");
-    }
+  const goToMatchForm = async() => {
+    navigate("/matches");
+  }
   
-    const classes = useStyles();
+  const classes = useStyles();
 
-    return [
-      <AppBar position="fixed" sx={{ background: 'dark-blue' }} 
-        key = {0} >
-        <Toolbar style={{display:'flex', justifyContent:"space-between", width:'100%'}}>
-        
-          <SmartToyIcon sx={{ fontSize: "80px" }} />
-          <Typography variant="h3" 
-                      component="div" 
-                      style={{fontWeight: "700",
-                        fontFamily: "Roboto",
-                        padding: "18px 36px"}} 
+  return [
+    <AppBar position="fixed" sx={{ background: 'dark-blue' }} 
+      key = {0} >
+      <Toolbar style={{display:'flex', justifyContent:"space-between", width:'100%'}}>    
+        <SmartToyIcon sx={{ fontSize: "80px" }} />
+        <Typography variant="h3" 
+                    component="div" 
+                    style={{fontWeight: "700",
+                      fontFamily: "Roboto",
+                      padding: "18px 36px"}} 
                       className={classes.title}>
-            PyRobots
-
-          </Typography>
-          <ButtonGroup variant="secondary" aria-label="outlined primary button group">
+          PyRobots
+        </Typography>
+        <ButtonGroup variant="secondary" aria-label="outlined primary button group">
+        <Button 
+          style={{
+            color: "#fff",
+            fontSize: "22px"
+          }}
+          size="medium"
+          variant="secondary"  
+          startIcon={<CreateIcon  sx={{ fontSize: "large" }} /> }
+          onClick={goToMatchForm}>
+            crear partida
+          </Button>
           <Button 
             style={{
-              color: "#fff",
-              fontSize: "22px"
+                color: "#fff",
+                fontSize: "22px"
             }}
             size="medium"
-            variant="secondary"  
-            startIcon={<CreateIcon  sx={{ fontSize: "large" }} /> }
-            onClick={goToMatchForm}>
-              crear partida
+            variant="secondary"   
+            startIcon={<FormatListBulletedIcon  sx={{ fontSize: "large" }} /> }
+            onClick={goToMatchesList}>
+              Ver partidas
             </Button>
             <Button 
               style={{
-                  color: "#fff",
-                  fontSize: "22px"
-                }}
-                size="medium"
-                variant="secondary"   
-                startIcon={<FormatListBulletedIcon  sx={{ fontSize: "large" }} /> }
-                onClick={goToMatchesList}>
-              Ver partidas
-              </Button>
-              <Button 
-                style={{
-                  color: "#fff",
-                  fontSize: "22px"
-                }}
-                variant="secondary" 
-                startIcon={<HomeIcon  sx={{ fontSize: "large" }} /> } 
-                onClick={goToHome} 
-                sx={{ marginLeft: "auto"}}>
+                color: "#fff",
+                fontSize: "22px"
+              }}
+              variant="secondary" 
+              startIcon={<HomeIcon  sx={{ fontSize: "large" }} /> } 
+              onClick={goToHome} 
+              sx={{ marginLeft: "auto"}}>
                 Menú
             </Button>
           </ButtonGroup>
@@ -115,18 +113,15 @@ const Results = (props) => {
         fontFamily: "Roboto",
         padding: "18px 0px"}}>Partida finalizada!</Typography>
       </Stack>
-      </Box>
-       ,
-        <Box
-        display="flex"
-        justifyContent="flex-start"
-        alignItems="left"
-        minHeight="25vh"
-        key = {2}
-        >
-          <Stack>
-
-          
+      </Box>,
+      <Box
+      display="flex"
+      justifyContent="flex-start"
+      alignItems="left"
+      minHeight="25vh"
+      key = {2}
+      >
+        <Stack>
         <Typography variant="h6" gutterBottom
         style={{fontWeight: "500",
         fontFamily: "Roboto",
@@ -147,11 +142,11 @@ const Results = (props) => {
               primaryTypographyProps={{ style: { fontSize: '1rem', fontFamily: "Roboto" } }}/>
               </ListItem>
               <Divider variant="inset" component="li" />
-              </Stack>
+            </Stack>
           ))}
         </List>
         </Stack>
-        </Box>
+      </Box>
   ];
 }
 

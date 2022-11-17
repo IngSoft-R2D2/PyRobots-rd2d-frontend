@@ -33,7 +33,7 @@ const Join = ({match_id, robot_id}) => {
             if(response.ok){
                 alert("Unido a la partida exitosamente")
                 setTimeout(() => {
-                navigate(`/listmatches/lobby/${match_id}`)
+                navigate(`/listmatches/lobby/${match_id}`) //user_id
                 }, 4000);
             }
             else {

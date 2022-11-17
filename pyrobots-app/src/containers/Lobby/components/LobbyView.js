@@ -15,7 +15,7 @@ import SummarizeIcon from '@mui/icons-material/Summarize';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 import Divider from '@mui/material/Divider';
-import styled, { ThemeProvider } from "styled-components";
+import styled from "styled-components";
 import ButtonGroup from '@mui/material/ButtonGroup';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import CreateIcon from '@mui/icons-material/Create';

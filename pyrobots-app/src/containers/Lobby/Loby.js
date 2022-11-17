@@ -17,19 +17,12 @@ const Lobby = () => {
   const ws = new WebSocket(`ws://127.0.0.1:8000/match/${match_id}/user/${user_id}`);
   const [users, setUsers] = useState([]);
   const [robots, setRobots] = useState([]);
-  const [results, setResults] = useState({
-    started: false,
-    res:
-    [{
-        'user_name': "Pepito", 
-        'robot_name': "Megatron",
-        'won_games': "45"
-    }]
-})
+  const [results, setResults] = useState({ started: false, res:[]})
   const players = location.state.players;
   const is_creator = location.state.is_creator;
+  //agregar booleano
 
-
+  //warning
   Object.keys(players).map((player) => 
   {if (!users.includes(player)){
     (users.push(player))
@@ -41,9 +34,10 @@ const Lobby = () => {
             console.log('WebSocket Client Connected');
         };
         ws.onmessage = (event) => {
-        const json = JSON.parse(event.data);
+        const json = JSON.parse(event.data);//event.data;//
         console.log(`[message] Data received from server: ${json}`);
         const evType = json.event;
+        console.log(json.event);
         if (evType === "Join") {
             //agregar usuario a lista de users y su robot a lista robots
             const newuserList = users.concat(json.player);
@@ -72,13 +66,13 @@ const Lobby = () => {
           ws.close();
       };
   }
-}); //, [users, robots, results, ws]
-
+},[users, robots, results]); //, [users, robots, results, ws]
+console.log(results.started)
   return (
     results.started
     ? 
         <Results results = {results.res}/>
-    : is_creator
+    : is_creator 
         ?
       <div>
         <LobbyView users={users}
