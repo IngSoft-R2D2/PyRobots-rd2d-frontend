@@ -23,7 +23,7 @@ const Join = (props) => {
     const joinMatch = async() => {
         const token = fetchToken();
         try{
-                const response = await fetch("http://localhost:8000/matches/join/${match_id}/robot/${robot_id}", {
+                const response = await fetch(`http://localhost:8000/matches/join/${match_id}/robot/${robot_id}`, {
                 method: "PUT",
                 headers: { "accept": "application/json",
                             'Authorization': `Bearer ${token}`},
