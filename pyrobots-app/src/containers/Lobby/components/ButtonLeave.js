@@ -1,29 +1,29 @@
 import * as React from 'react';
-import PlayCircleFilledWhiteIcon from 
-'@mui/icons-material/PlayCircleFilledWhite';
-import Button from '@mui/material/Button';
+import DangerousIcon from '@mui/icons-material/Dangerous';
 import { useNavigate } from 'react-router-dom';
 import { fetchToken } from '../elements/Auth.js';
+import Button from '@mui/material/Button';
+
 import { createTheme, ThemeProvider} from '@mui/material/styles';
 
 const theme = createTheme({
     palette: {
-      start: {
-        light: '#6fbf73',
-        main: '#4caf50',
-        dark: '#357a38',
+      leave: {
+        light: '#ea605d',
+        main: '#e53935',
+        dark: '#a02725',
         contrastText: '#000',
       },
     },
   });
 
-const Start = (props) => {
+const Leave = (props) => {
     const navigate = useNavigate();
     const match_id = props.match_id
-    const startMatch = async() => {
+    const joinMatch = async() => {
         const token = fetchToken();
         try{
-                const response = await fetch("http://localhost:8000/matches/join/?id=${match_id}", {
+                const response = await fetch(`http://localhost:8000/matches/leave/${match_id}`, {
                 method: "PUT",
                 headers: { "accept": "application/json",
                             'Authorization': `Bearer ${token}`},
@@ -31,10 +31,10 @@ const Start = (props) => {
                 })
             const data = await response.json();
             if(response.ok){
-                alert("Partida iniciada exitosamente")
-                // setTimeout(() => {
-                // navigate('/lobby')
-                // }, 4000);
+                alert("Partida abandonada exitosamente")
+                setTimeout(() => {
+                navigate('/home')
+                }, 4000);
             }
             else {
                 alert(data.detail)
@@ -46,13 +46,14 @@ const Start = (props) => {
     return(
         <ThemeProvider theme={theme}>
             <Button 
-                color="start" 
-                variant="outlined" size="medium"
-                endIcon={<PlayCircleFilledWhiteIcon sx={{ fontSize: "large" }} /> }
-                onClick={startMatch} > 
-                Iniciar
+                color= "leave"
+                variant="outlined" size="large"
+                endIcon={<DangerousIcon sx={{ fontSize: "large" }} /> }
+                onClick={joinMatch} > 
+                Abandonar partida
             </Button>
         </ThemeProvider>
     )
 }
-export default Start;
+
+export default Leave;

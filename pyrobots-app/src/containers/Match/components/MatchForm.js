@@ -52,8 +52,10 @@ const MatchForm= (props) => {
           onChange={(e) => 
             setInputs({ ...inputs, robot_id: e.target.value})}
           >
+          <option value = {''}> seleccione un robot </option>
+
           {Object.keys(robots).map((key)=>
-          (<option key = {key} value={key}>{robots[key]}</option>))}
+          (<option key = {key} value={key}>{robots[key].name}</option>))}
         </select>
         </label></p>
         <p><label>mínimo jugadores:
