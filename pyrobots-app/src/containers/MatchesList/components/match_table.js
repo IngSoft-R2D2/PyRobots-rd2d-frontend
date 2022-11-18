@@ -4,6 +4,8 @@ import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
+import MuiTableHead from "@material-ui/core/TableHead";
+import { makeStyles, withStyles } from "@material-ui/core/styles";
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
@@ -34,31 +36,37 @@ const MatchTable = ({matches}) => {
                                     is_creator: m.user_is_creator}}); 
     }
 
+    const TableHead = withStyles(theme => ({
+        root: {
+          backgroundColor: "rgb(204, 254, 251 )"
+        }
+      }))(MuiTableHead);
+
 
     return(
         <Stack
         spacing={2}
         >
         <TableContainer component={Paper}>
-                <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                <Table sx={{ minWidth: 500 }} aria-label="simple table">
                 <TableHead>
                     <TableRow>
-                    <TableCell>Nombre</TableCell>
-                    <TableCell align="right">Participantes</TableCell>
+                    <TableCell align="left">Nombre</TableCell>
+                    <TableCell align="left">Jugadores</TableCell>
+                    <TableCell align="left"> </TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
                     {Object.keys(matches).map((match) => (
-                        <TableRow
-                        key={'tablerowkey'+matches[match]} //reemplazar por una key siempre única
-                        sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                        >
-                        <TableCell component="th" scope="row">
+                        <TableRow key= {match}>
+                        <TableCell component="th" scope="row" align="left">
                             {matches[match].name}
                         </TableCell>
-                        <TableCell align="right">{JSON.stringify(matches[match].players)}</TableCell>
+                        <TableCell align="left">   
+                            {Object.values(matches[match].players).length+"/"+matches[match].max_players}
+                        </TableCell>
                         {/* aparece el boton join si: no es creador, no esta unido, hay lugar y no empezo*/}
-                        <TableCell align="right">{(matches[match].user_is_creator===false && 
+                        <TableCell align="left">{(matches[match].user_is_creator===false && 
                                                    matches[match].user_is_already_joined===false &&
                                                    matches[match].is_available_to_join===true &&
                                                    matches[match].is_started===false) ? 
