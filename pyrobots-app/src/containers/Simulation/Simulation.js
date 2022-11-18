@@ -9,7 +9,6 @@ import CircularProgress from '@mui/material/CircularProgress';
 import SimScreen from '../Board/SimScreen.js';
 
 
-
 const Simulation = () => {
 
     const navigate = useNavigate();

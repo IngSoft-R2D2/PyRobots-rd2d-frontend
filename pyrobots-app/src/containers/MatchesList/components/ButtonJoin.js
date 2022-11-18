@@ -16,16 +16,16 @@ const theme = createTheme({
     },
   });
 
-const Join = (props) => {
+const Join = ({match_id, robot_id, players, user_id, is_creator}) => {
+    
     const navigate = useNavigate();
-    const match_id = props.match_id
-    const robot_id = props.robot_id    
     const joinMatch = async() => {
         const token = fetchToken();
         try{
                 const response = await fetch(`http://localhost:8000/matches/join/${match_id}/robot/${robot_id}`, {
                 method: "PUT",
                 headers: { "accept": "application/json",
+                            'Content-Type': 'application/json',
                             'Authorization': `Bearer ${token}`},
                 body: JSON.stringify({})
                 })
@@ -33,7 +33,7 @@ const Join = (props) => {
             if(response.ok){
                 alert("Unido a la partida exitosamente")
                 setTimeout(() => {
-                navigate('/lobby')
+                navigate(`/listmatches/lobby/${match_id}`, {state: {players: players, id: user_id, is_creator: is_creator}}) 
                 }, 4000);
             }
             else {

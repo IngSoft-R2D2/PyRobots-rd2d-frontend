@@ -10,16 +10,31 @@ import Button from '@mui/material/Button';
 import UndoIcon from '@mui/icons-material/Undo';
 import { Stack } from "@mui/system";
 import { useNavigate } from "react-router-dom";
+//import ButtonJoin from "./ButtonJoin.js"
 
-
-const MatchTable = (props) => {
-    const matches = props.matches
-    const mode = props.mode
+const MatchTable = ({matches}) => {
+    console.log(matches)
     const navigate = useNavigate();
+
     const goBack= async() => {
         navigate("/home");
 
     }
+
+    const goToLobby= async(m) => {
+        navigate(`lobby/${m.id}`, 
+        {state: {players: m.players, id: m.user_id, is_creator: m.user_is_creator}});
+        //lista de users y robots
+    }
+
+    const goToSelectBot= async(m) => {
+        navigate(`select`, {state: {m_id: m.id, 
+                                    players: m.players,
+                                    id: m.user_id,
+                                    is_creator: m.user_is_creator}}); 
+    }
+
+
     return(
         <Stack
         spacing={2}
@@ -33,18 +48,22 @@ const MatchTable = (props) => {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {matches.map((match) => (
+                    {Object.keys(matches).map((match) => (
                         <TableRow
-                        key={'tablerowkey'+match[0]} //reemplazar por una key siempre única
+                        key={'tablerowkey'+matches[match]} //reemplazar por una key siempre única
                         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                         >
                         <TableCell component="th" scope="row">
-                            {match[0]}
+                            {matches[match].name}
                         </TableCell>
-                        <TableCell align="right">{match[1]}</TableCell>
-                        <TableCell align="right">{(mode==="join") ? 
-                            <Button variant="contained">Unirse</Button>
-                            : <Button variant="contained">Iniciar</Button>}
+                        <TableCell align="right">{JSON.stringify(matches[match].players)}</TableCell>
+                        {/* aparece el boton join si: no es creador, no esta unido, hay lugar y no empezo*/}
+                        <TableCell align="right">{(matches[match].user_is_creator===false && 
+                                                   matches[match].user_is_already_joined===false &&
+                                                   matches[match].is_available_to_join===true &&
+                                                   matches[match].is_started===false) ? 
+                            <Button variant="contained" onClick={() => goToSelectBot(matches[match])}>unirse</Button>
+                            : <Button variant="contained" onClick={() => goToLobby(matches[match])}>Lobby</Button>}
                         </TableCell>
                         </TableRow>
                     ))}
