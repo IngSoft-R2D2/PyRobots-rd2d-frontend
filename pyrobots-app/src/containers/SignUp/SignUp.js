@@ -27,7 +27,8 @@ const SignUp = () => {
         })
       })
       const data = await response.json();
-      if(data.operation_result === "Verification code successfully sent to your email"){
+      if(data.detail === "Verification code successfully sent to your email"){
+        alert("Se ha enviado un link de verificación a tu email");
         changeValidForm(true);
         changeAlertForm("Se ha enviado un link de verificación a tu email");
         setTimeout(() => {
