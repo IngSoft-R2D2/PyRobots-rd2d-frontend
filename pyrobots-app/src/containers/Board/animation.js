@@ -36,7 +36,7 @@ const Animation = (props) => {
     }
 
     useEffect(() => {
-      const interval = setInterval(animation,80);
+      const interval = setInterval(animation,50);
       return () => clearInterval(interval); 
     })
     // console.log(obj[1])
