@@ -27,8 +27,11 @@ const MatchTable = ({matches}) => {
         //lista de users y robots
     }
 
-    const goToSelectBot= async(m_id) => {
-        navigate(`select`, {state: m_id}); 
+    const goToSelectBot= async(m) => {
+        navigate(`select`, {state: {m_id: m.id, 
+                                    players: m.players,
+                                    id: m.user_id,
+                                    is_creator: m.user_is_creator}}); 
     }
 
 
@@ -59,7 +62,7 @@ const MatchTable = ({matches}) => {
                                                    matches[match].user_is_already_joined===false &&
                                                    matches[match].is_available_to_join===true &&
                                                    matches[match].is_started===false) ? 
-                            <Button variant="contained" onClick={() => goToSelectBot(matches[match].id)}>unirse</Button>
+                            <Button variant="contained" onClick={() => goToSelectBot(matches[match])}>unirse</Button>
                             : <Button variant="contained" onClick={() => goToLobby(matches[match])}>Lobby</Button>}
                         </TableCell>
                         </TableRow>

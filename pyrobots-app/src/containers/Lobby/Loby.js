@@ -34,10 +34,9 @@ const Lobby = () => {
             console.log('WebSocket Client Connected');
         };
         ws.onmessage = (event) => {
-        const json = JSON.parse(event.data);//event.data;//
+        const json = JSON.parse(event.data);
         console.log(`[message] Data received from server: ${json}`);
         const evType = json.event;
-        console.log(json.event);
         if (evType === "Join") {
             //agregar usuario a lista de users y su robot a lista robots
             const newuserList = users.concat(json.player);
@@ -67,17 +66,19 @@ const Lobby = () => {
       };
   }
 },[users, robots, results]); //, [users, robots, results, ws]
+
 console.log(results.started)
+
   return (
     results.started
     ? 
         <Results results = {results.res}/>
-    : is_creator 
+    : is_creator
         ?
       <div>
         <LobbyView users={users}
                    robots={robots} />
-        <ButtonStart match_id={match_id}/>
+        <ButtonStart match_id={match_id} number_of_participants={users.length} />
       </div>
         :
       <div>

@@ -14,7 +14,6 @@ import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 import Divider from '@mui/material/Divider';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-//import styled from "styled-components";
 import ButtonGroup from '@mui/material/ButtonGroup';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import CreateIcon from '@mui/icons-material/Create';
@@ -28,10 +27,6 @@ const useStyles = makeStyles(theme => ({
     textAlign: 'left',
   },
 }));
-
-// const IconContainer = styled.div`
-//   display: flex;
-// `;
 
 const Results = (props) => {
   const navigate = useNavigate();

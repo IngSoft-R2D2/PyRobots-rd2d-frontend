@@ -2,7 +2,6 @@ import * as React from 'react';
 import PlayCircleFilledWhiteIcon from 
 '@mui/icons-material/PlayCircleFilledWhite';
 import Button from '@mui/material/Button';
-//import { useNavigate } from 'react-router-dom';
 import { fetchToken } from '../../Bot/elements/Auth.js';
 import { createTheme, ThemeProvider} from '@mui/material/styles';
 
@@ -18,7 +17,7 @@ const theme = createTheme({
   });
 
 const ButtonStart = (props) => {
-    //const navigate = useNavigate();
+    const number_of_participants = props.number_of_participants
     const match_id = props.match_id
     const startMatch = async() => {
         const token = fetchToken();
@@ -32,9 +31,6 @@ const ButtonStart = (props) => {
             const data = await response.json();
             if(response.ok){
                 alert("Partida iniciada exitosamente")
-                // setTimeout(() => {
-                // navigate('/lobby')
-                // }, 4000);
             }
             else {
                 alert(data.detail)
@@ -44,6 +40,8 @@ const ButtonStart = (props) => {
         }
     }
     return(
+        (number_of_participants>= 2 && number_of_participants <= 4)
+        ?
         <ThemeProvider theme={theme}>
             <Button 
                 color="start" 
@@ -53,6 +51,18 @@ const ButtonStart = (props) => {
                 Iniciar
             </Button>
         </ThemeProvider>
+        :
+        <ThemeProvider theme={theme}>
+        <Button 
+            disabled
+            color="start" 
+            variant="outlined" size="medium"
+            endIcon={<PlayCircleFilledWhiteIcon sx={{ fontSize: "large" }} /> }
+            onClick={startMatch} > 
+            Iniciar
+        </Button>
+    </ThemeProvider>
+
     )
 }
 

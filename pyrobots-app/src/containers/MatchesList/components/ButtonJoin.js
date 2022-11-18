@@ -16,7 +16,7 @@ const theme = createTheme({
     },
   });
 
-const Join = ({match_id, robot_id}) => {
+const Join = ({match_id, robot_id, players, user_id, is_creator}) => {
     
     const navigate = useNavigate();
     const joinMatch = async() => {
@@ -33,7 +33,7 @@ const Join = ({match_id, robot_id}) => {
             if(response.ok){
                 alert("Unido a la partida exitosamente")
                 setTimeout(() => {
-                navigate(`/listmatches/lobby/${match_id}`) //user_id
+                navigate(`/listmatches/lobby/${match_id}`, {state: {players: players, id: user_id, is_creator: is_creator}}) 
                 }, 4000);
             }
             else {
