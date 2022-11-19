@@ -12,68 +12,91 @@ const Root = () => {
 
   const navigate = useNavigate();
 
-  const goToSignUp = async() => {
+  const goToSignUp = async () => {
     navigate("/users");
   }
 
-  const goToLogin= async() => {
+  const goToLogin = async () => {
     navigate("/login");
   }
 
-  return [
-    <AppBar position="static" sx={{ background: 'dark-blue' }} 
+  return (
+    <div style={{
+        display: "flex",
+        position: "absolute",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "100%",
+        width: "100%",
+        top: 0,
+        left: 0
+    }}>
+      <AppBar position="fixed" sx={{ background: 'dark-blue' }}
         style={{
-          marginRight: "950px",
-            padding: "10px 36px"
+          marginRight: "0px",
+          padding: "10px 36px"
         }}
-    >
-      <Toolbar >
-        <SmartToyIcon sx={{ fontSize: "80px" }} />
-        <Typography variant="h3" 
-                      component="div" 
-                      style={{fontWeight: "700",
-                        fontFamily: "Roboto",
-                        padding: "18px 36px"}}>
-        PyRobots
-        </Typography>
+      >
+        <Toolbar >
+          <SmartToyIcon sx={{ fontSize: "80px" }} />
+          <Typography variant="h3"
+            component="div"
+            style={{
+              fontWeight: "700",
+              fontFamily: "Roboto",
+              padding: "18px 36px"
+            }}>
+            PyRobots
+          </Typography>
         </Toolbar>
-      </AppBar>,
-      <Stack>
-        <Typography variant="h4" 
-                      component="div" 
-                      style={{fontWeight: "700",
-                        fontFamily: "Roboto",
-                        padding: "30px 36px"}}>
-        Bienvenide
-        </Typography>
-        <p>
-          <Button 
+      </AppBar>
+      <div>
+        <Stack
+          style={{
+            height: "100%",
+            width: "100%",
+            padding: "10px 36px"
+          }}
+        >
+          <Typography variant="h4"
+            component="div"
             style={{
-              color: "#fff",
-              padding: "18px 36px",
-              fontSize: "22px"
-            }}
-            size="medium"
-            variant="contained" 
-            endIcon={<PersonIcon  sx={{ fontSize: "large" }} /> }
-            sx={{  width: '300px' }}
-            onClick={goToSignUp}>Registrarme</Button>
-            </p>
+              fontWeight: "700",
+              fontFamily: "Roboto",
+              padding: "30px 36px"
+            }}>
+            Bienvenide
+          </Typography>
           <p>
-          <Button 
-            style={{
-              color: "#fff",
-              padding: "18px 36px",
-              fontSize: "22px"
-            }}
-            size="medium"
-            variant="contained"  
-            endIcon={<LoginIcon  sx={{ fontSize: "large" }} /> }
-            sx={{  width: '300px' }}
-            onClick={goToLogin}>Loguearme</Button>
+            <Button
+              style={{
+                color: "#fff",
+                padding: "18px 36px",
+                fontSize: "22px"
+              }}
+              size="medium"
+              variant="contained"
+              endIcon={<PersonIcon sx={{ fontSize: "large" }} />}
+              sx={{ width: '300px' }}
+              onClick={goToSignUp}>Registrarme</Button>
           </p>
-      </Stack>
-    ];
+          <p>
+            <Button
+              style={{
+                color: "#fff",
+                padding: "18px 36px",
+                fontSize: "22px"
+              }}
+              size="medium"
+              variant="contained"
+              endIcon={<LoginIcon sx={{ fontSize: "large" }} />}
+              sx={{ width: '300px' }}
+              onClick={goToLogin}>Loguearme</Button>
+          </p>
+        </Stack>
+      </div>
+    </div>
+  );
 };
 
 export default Root;
