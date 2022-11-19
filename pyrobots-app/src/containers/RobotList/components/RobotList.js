@@ -5,6 +5,7 @@ import ListItemButton from '@mui/material/ListItemButton';
 import { ListItem, ListItemText } from '@mui/material';
 import SmartToyIcon from '@mui/icons-material/SmartToy';
 import ListItemIcon from '@mui/material/ListItemIcon';
+import Divider from '@mui/material/Divider';
 import { Typography } from "@mui/material";
 import Box from '@mui/material/Box';
 import { Avatar, Button, Container } from "@mui/material";
@@ -36,7 +37,7 @@ const RobotList = (props) => {
       spacing={0}
       direction='row'
       style={{
-        display: "flex",
+        display: "flex-start",
         position: "absolute",
         justifyContent: "center",
         alignItems: "center",
@@ -65,78 +66,81 @@ const RobotList = (props) => {
         >
           Robots
         </Typography>
-        <List
-          sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
-          aria-label="robots"
-        >
-          {Object.keys(robots).map((key) => (
-            <ExpandableItem
-              render={xprops => (
-                <>
-                  <ListItem
-                    button onClick={() => xprops.setOpen(!xprops.open)}
-                    key={key}
-                    name={robots[key].name}
-                    alignItems="flex"
-                    style={{
-                      padding: "18px 36px",
-                      background: "lightblue",
-                    }}
-                  >
-                    <ListItemIcon>
-                      <Avatar sx={{ bgcolor: 'blue' }}>
-                        <SmartToyIcon />
-                      </Avatar>
-                    </ListItemIcon>
-                    <ListItemText primary={robots[key].name}
-                      primaryTypographyProps={{ fontSize: '35px' }} />
-                  </ListItem>
-                  <Collapse in={xprops.open} timeout="auto" unmountOnExit>
-                    <List component="div" disablePadding>
-                      <ListItem>
-                        <ListItemIcon>
-                          <SentimentSatisfiedAltIcon 
-                            variant="contained"
-                            fontSize="large"
-                            style={{
-                              color:"blue"
-                            }}
-                          />
-                        </ListItemIcon>
-                        <ListItemText primary={"Won Matches: " + robots[key].matches_won} />
-                      </ListItem>
-                      <ListItem>
-                        <ListItemIcon>
-                          <SentimentNeutralIcon
-                            variant="contained"
-                            fontSize="large"
-                            style={{
-                              color:"blue"
-                            }}
-                          />
-                        </ListItemIcon>
-                        <ListItemText primary={"Tied Matches: " + robots[key].matches_tied} />
-                      </ListItem>
-                      <ListItem>
-                        <ListItemIcon>
-                          <SentimentVeryDissatisfiedIcon
-                            variant="contained"
-                            fontSize="large"
-                            style={{
-                              color:"blue"
-                            }}
-                          />
-                        </ListItemIcon>
-                        <ListItemText primary={"Lost Matches: " + robots[key].matches_tied} />
-                      </ListItem>
-                    </List>
-                  </Collapse>
-                </>
-              )}
-            />
-          ))
-          }
-        </List>
+        {Object.keys(robots).map((key) => (
+          <ExpandableItem
+            key={key}
+            render={xprops => (
+              <>
+                <ListItem
+                  key={key}
+                  button onClick={() => xprops.setOpen(!xprops.open)}
+                  name={robots[key].name}
+                  alignItems="center"
+                  style={{
+                    border:"5px solid blue",
+                    padding: "18px 36px",
+                    background: "lightblue",
+                  }}
+                >
+                  <ListItemIcon>
+                    <Avatar sx={{ bgcolor: 'blue' }}>
+                      <SmartToyIcon />
+                    </Avatar>
+                  </ListItemIcon>
+                  <ListItemText primary={robots[key].name}
+                    primaryTypographyProps={{ fontSize: '35px' }} />
+                </ListItem>
+                <Collapse in={xprops.open} timeout="auto" unmountOnExit>
+                  <List component="div" disablePadding>
+                    <ListItem
+                      key={robots[key].matches_won}
+                    >
+                      <ListItemIcon>
+                        <SentimentSatisfiedAltIcon
+                          variant="contained"
+                          fontSize="large"
+                          style={{
+                            color: "blue"
+                          }}
+                        />
+                      </ListItemIcon>
+                      <ListItemText primary={"Won Matches: " + robots[key].matches_won} />
+                    </ListItem>
+                    <ListItem
+                      key={robots[key].matches_tied}
+                    >
+                      <ListItemIcon>
+                        <SentimentNeutralIcon
+                          variant="contained"
+                          fontSize="large"
+                          style={{
+                            color: "blue"
+                          }}
+                        />
+                      </ListItemIcon>
+                      <ListItemText primary={"Tied Matches: " + robots[key].matches_tied} />
+                    </ListItem>
+                    <ListItem
+                      key={robots[key].matches_lost}
+                    >
+                      <ListItemIcon>
+                        <SentimentVeryDissatisfiedIcon
+                          variant="contained"
+                          fontSize="large"
+                          style={{
+                            color: "blue"
+                          }}
+                        />
+                      </ListItemIcon>
+                      <ListItemText primary={"Lost Matches: " + robots[key].matches_lost} />
+                    </ListItem>
+                  </List>
+                </Collapse>
+              </>
+            )}
+          />
+        ))
+        }
       </Box>
       <Button variant="contained" size="large" endIcon={<UndoIcon fontSize="large" />}
         onClick={goBack}
