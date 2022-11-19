@@ -6,12 +6,12 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import FileUploadIcon from '@mui/icons-material/FileUpload';
 import CreateIcon from '@mui/icons-material/Create';
-import GridOnIcon from '@mui/icons-material/GridOn';
 import SmartToyIcon from '@mui/icons-material/SmartToy';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
-
+import { Box } from '@mui/material';
 
 const Home = () => {
+
   const navigate = useNavigate();
 
   const goToMatchForm = async() => {
@@ -20,10 +20,6 @@ const Home = () => {
 
   const goToBotForm = async() => {
     navigate("/robots");
-  }
-
-  const seeBoard = async() => {
-    navigate("/board");
   }
 
   const goToSimForm = async() => {
@@ -39,22 +35,28 @@ const Home = () => {
   }
 
   return [
-    <AppBar position="static" sx={{ background: 'dark-blue' }} 
-        style={{
-          marginRight: "950px",
-            padding: "10px 36px"
-        }}>
-      <Toolbar >
-        <SmartToyIcon sx={{ fontSize: "80px" }} />
-        <Typography variant="h3" 
-          component="div" 
-          style={{fontWeight: "700",
-                  fontFamily: "Roboto",
-                  padding: "18px 36px"}}>
-          PyRobots
-        </Typography>
-      </Toolbar>
-    </AppBar>,
+    <AppBar position="fixed" sx={{ background: 'dark-blue' }} 
+        key = {0} >
+        <Toolbar style={{display:'fixed', justifyContent:"space-between", width:'100%'}}>
+        <Box display='flex' flexGrow={1}>
+          <SmartToyIcon sx={{ fontSize: "80px" }} />
+          <Typography variant="h3" 
+                      component="div" 
+                      style={{fontWeight: "700",
+                      fontFamily: "Roboto",
+                      padding: "18px 36px"}} 
+          >
+            PyRobots
+          </Typography>
+        </Box>  
+        </Toolbar>
+      </AppBar>,
+          <Box
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          key = {1}
+          >
     <Stack>
       <Typography variant="h4" 
                   component="div" 
@@ -118,20 +120,6 @@ const Home = () => {
             }}
             size="medium"
             variant="contained"  
-            endIcon={<GridOnIcon  sx={{ fontSize: "80px" }} /> }
-            sx={{  width: '340px' }}
-            onClick={seeBoard}>ver Tablero</Button>
-        </p>
-
-        <p>
-          <Button 
-          style={{
-              color: "#fff",
-              padding: "18px 36px",
-              fontSize: "22px"
-            }}
-            size="medium"
-            variant="contained"  
             endIcon={<FormatListBulletedIcon  sx={{ fontSize: "80px" }} /> }
             sx={{  width: '340px' }}
             onClick={goToListBots}>Listar robots</Button>
@@ -148,9 +136,10 @@ const Home = () => {
             variant="contained"  
             endIcon={<FormatListBulletedIcon  sx={{ fontSize: "80px" }} /> }
             sx={{  width: '340px' }}
-            onClick={goToMatchesList}>Partidas</Button>
+            onClick={goToMatchesList}>Listar partidas</Button>
         </p>
       </Stack>
+      </Box>  
   ];
 };
 

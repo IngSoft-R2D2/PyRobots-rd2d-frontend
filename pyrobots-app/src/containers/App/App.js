@@ -4,15 +4,16 @@ import { RequireToken } from './elements/Auth.js';
 import LogIn from "../LogIn/LogIn.js";
 import SignUp from "../SignUp/SignUp.js";
 import Match from "../Match/Match.js";
+import Lobby from "../Lobby/Loby.js"
 import Bot from "../Bot/Bot.js";
+import BotSelect from "../Bot/BotSelect.js"
 import Home from "../Navigate/Home.js"
 import Root from "../Navigate/Root.js"
 import Simulation from "../Simulation/Simulation.js"
 import Verification from "../Verification/Verification.js"
 import BotList from '../RobotList/BotList';
 import MatchesList from '../MatchesList/MatchesList.js';
-import MyMatches from '../MyMatches/MyMatches.js';
-import SimScreen from '../Board/SimScreen.js';
+
 
 function App() {
   return (
@@ -26,12 +27,11 @@ function App() {
           <Route path="/home" element={<RequireToken><Home /></RequireToken>}/>
           <Route path="/matches/" element={<RequireToken><Match /></RequireToken>}/>
           <Route path="/robots/" element={<RequireToken><Bot /></RequireToken>}/>
-          <Route path="/board/" element={<RequireToken><SimScreen /></RequireToken>}/>
+          <Route path="/listmatches/select" element={<RequireToken><BotSelect /></RequireToken>}/>
           <Route path="/simulation/" element={<RequireToken><Simulation /></RequireToken>}/>
           <Route path="/listrobots/" element={<RequireToken><BotList /></RequireToken>}/>
           <Route path="/listmatches/" element={<RequireToken><MatchesList /></RequireToken>}/>
-          <Route path="/mymatches/" element={<RequireToken><MyMatches/></RequireToken>}/>
-          
+          <Route path="/listmatches/lobby/:match_id" element={<RequireToken><Lobby /></RequireToken>}/>
         </Routes>
       </BrowserRouter>
     </div>
