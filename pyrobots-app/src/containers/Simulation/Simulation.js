@@ -68,12 +68,9 @@ const Simulation = () => {
         if(result.ok){
             setSimulation(data);
             setReady(true)
-            //console.log(simulation);
             changeValidForm(true);
             changeAlertForm("Simulacion creada exitosamente");
-            // setTimeout(() => {
-            // navigate('/Board') // en realidad a board
-            // }, 5000);
+
         }
         else{
             changeValidForm(false);
@@ -84,27 +81,27 @@ const Simulation = () => {
       catch(error) {
           alert(error);
       };
-      // no deberia hacer esto, deberia esperar la respuesta
+
     }
 
-    return( loading ?  
-        <Backdrop
-            sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
-            open={loading}
-            >
-            <CircularProgress color="inherit" />
-        </Backdrop> : 
-        ((simReady===true) ? 
-        <SimScreen json = {simulation}/>
-          :
-        ((Object.keys(robots).length === 0) ? 
-        <NoBotSimScreen/> :
-        <SimForm onSubmit = {onSubmit_newSim}
-                   inputs = {inputs}
-                   robots = {robots}
-                   validForm = {validForm}
-                   alertForm = {alertForm}
-                   setInputs = {setInputs}/>)
+    return( 
+      loading 
+      ? <Backdrop
+          sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+          open={loading}
+          >
+          <CircularProgress color="inherit" />
+        </Backdrop> 
+      : ((simReady===true) 
+      ? <SimScreen json = {simulation}/>
+      : ((Object.keys(robots).length === 0) 
+      ? <NoBotSimScreen/> 
+      :<SimForm onSubmit = {onSubmit_newSim}
+                 inputs = {inputs}
+                 robots = {robots}
+                 validForm = {validForm}
+                 alertForm = {alertForm}
+                 setInputs = {setInputs}/>)
         ))
 }
 export default Simulation;
