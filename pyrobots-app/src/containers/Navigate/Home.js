@@ -9,18 +9,10 @@ import CreateIcon from '@mui/icons-material/Create';
 import GridOnIcon from '@mui/icons-material/GridOn';
 import SmartToyIcon from '@mui/icons-material/SmartToy';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
-//import { makeStyles } from '@material-ui/core/styles';
 import { Box } from '@mui/material';
 
 const Home = () => {
 
-  // const useStyles = makeStyles(theme => ({
-  //   title: {
-  //     flexGrow: 1,
-  //     textAlign: 'center'
-  //   },
-  // }));
-  // const classes = useStyles();
   const navigate = useNavigate();
 
   const goToMatchForm = async() => {
@@ -56,10 +48,9 @@ const Home = () => {
           <Typography variant="h3" 
                       component="div" 
                       style={{fontWeight: "700",
-                        fontFamily: "Roboto",
-                        padding: "18px 36px"}} 
-                      // className={classes.title}
-                      >
+                      fontFamily: "Roboto",
+                      padding: "18px 36px"}} 
+          >
             PyRobots
           </Typography>
         </Box>  
