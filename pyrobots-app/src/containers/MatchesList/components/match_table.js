@@ -39,6 +39,41 @@ const MatchTable = ({matches}) => {
                              is_started: m.is_started}}); 
     }
 
+    const renderButtons = (m) => {
+        switch(true) {
+            case (m.user_is_creator===false && 
+                 m.user_is_already_joined===false &&
+                 m.is_available_to_join===true &&
+                 m.is_started===false):
+                return (<Button variant="contained" onClick={() => goToSelectBot(m)}>unirse</Button>)
+            case (m.is_available_to_join===false &&
+                m.user_is_creator===false &&
+                m.user_is_already_joined===false &&
+                m.is_started===false):
+                return (<Button variant="disabled">unirse</Button>)
+            case (m.is_available_to_join===false &&
+                m.user_is_creator===true &&
+                m.user_is_already_joined===true &&
+                m.is_started===false):
+                return (<Button variant="contained" onClick={() => goToLobby(m)}>Lobby</Button>)
+            case (m.is_available_to_join===false &&
+                m.user_is_creator===false &&
+                m.user_is_already_joined===true &&
+                m.is_started===false):
+                return (<Button variant="contained" onClick={() => goToLobby(m)}>Lobby</Button>)
+            case (m.is_available_to_join===false &&
+                m.user_is_already_joined===true &&
+                m.is_started===true &&
+                m.is_finished===false):
+                return (<Button variant="contained" onClick={() => goToLobby(m)}>Lobby</Button>)
+            case (m.user_is_already_joined===true &&
+                m.is_finished===true):
+                return (<Button variant="contained">Resultados</Button>)
+            default:
+                return ("caso por contemplar")
+        }
+    }
+
     const TableHead = withStyles(theme => ({
         root: {
           backgroundColor: "rgb(204, 254, 251 )"
@@ -60,7 +95,7 @@ const MatchTable = ({matches}) => {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {Object.keys(matches).map((match) => (
+                    {Object.keys(matches).map((match) => ( matches[match].is_finished ? null :
                         <TableRow key= {match}>
                         <TableCell component="th" scope="row" align="left">
                             {matches[match].name}
@@ -69,12 +104,7 @@ const MatchTable = ({matches}) => {
                             {Object.values(matches[match].players).length+"/"+matches[match].max_players}
                         </TableCell>
                         {/* aparece el boton join si: no es creador, no esta unido, hay lugar y no empezo*/}
-                        <TableCell align="left">{(matches[match].user_is_creator===false && 
-                                                   matches[match].user_is_already_joined===false &&
-                                                   matches[match].is_available_to_join===true &&
-                                                   matches[match].is_started===false) ? 
-                            <Button variant="contained" onClick={() => goToSelectBot(matches[match])}>unirse</Button>
-                            : <Button variant="contained" onClick={() => goToLobby(matches[match])}>Lobby</Button>}
+                        <TableCell align="left">{renderButtons(matches[match])}
                         </TableCell>
                         </TableRow>
                     ))}
@@ -88,3 +118,17 @@ const MatchTable = ({matches}) => {
 }
 
 export default MatchTable;
+
+
+
+// (matches[match].user_is_creator===false && 
+//     matches[match].user_is_already_joined===false &&
+//     matches[match].is_available_to_join===true &&
+//     matches[match].is_started===false) ? 
+// <Button variant="contained" onClick={() => goToSelectBot(matches[match])}>unirse</Button>
+// : (matches[match].is_available_to_join===false &&
+// matches[match].user_is_creator===false &&
+// matches[match].user_is_already_joined===false &&
+// matches[match].is_started===false)  ?
+// <Button variant="disabled">unirse</Button>
+// :<Button variant="contained" onClick={() => goToLobby(matches[match])}>Lobby</Button>
