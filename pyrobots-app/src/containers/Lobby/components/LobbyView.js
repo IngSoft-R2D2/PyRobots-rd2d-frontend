@@ -3,7 +3,6 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import SmartToyIcon from "@mui/icons-material/SmartToy";
-// import SentimentSatisfiedAltIcon from "@mui/icons-material/SentimentSatisfiedAlt";
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import AppBar from '@mui/material/AppBar';
@@ -21,6 +20,7 @@ import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import CreateIcon from '@mui/icons-material/Create';
 import HomeIcon from '@mui/icons-material/Home';
 import { makeStyles } from '@material-ui/core/styles';
+import Person4OutlinedIcon from '@mui/icons-material/Person4Outlined';
 
 const useStyles = makeStyles(theme => ({
   title: {
@@ -115,7 +115,7 @@ const LobbyView = (props) => {
           <Typography variant="h4" style={{fontWeight: "700",
             fontFamily: "Roboto",
             padding: "18px 0px"}}>
-              Información de partida
+              Información de partida {props.m_name}
           </Typography>
         </IconContainer>
         <Typography 
@@ -126,7 +126,26 @@ const LobbyView = (props) => {
           Jugadores 
         </Typography>
           <List sx={{ width: "100%", maxWidth: 360, bgcolor: "white" }}>
-            {props.users.map((value) => (
+          
+          { props.users.map((value) => (
+            //que el creador sea de color rojo
+            (props.users[0] === value )
+                ?
+                <Stack> 
+                <ListItem>
+                  <ListItemAvatar>
+                  <Avatar style={{ backgroundColor: "red" }}
+                  sx={{ height: '50px', width: '50px' }}>
+                    <Person4OutlinedIcon style={{ fontSize: 40 }}/>
+                  </Avatar>
+                  
+                  </ListItemAvatar>
+                  <ListItemText primary={`${value}`}
+                  primaryTypographyProps={{ style: { fontSize: '1.4rem', fontFamily: "Roboto" } }}/>
+                </ListItem>
+                <Divider variant="inset" component="li" />
+                </Stack> 
+                :
               <Stack> 
               <ListItem>
                 <ListItemAvatar>
@@ -134,22 +153,30 @@ const LobbyView = (props) => {
                 sx={{ height: '50px', width: '50px' }}>
                   <SmartToyIcon style={{ fontSize: 40 }}/>
                 </Avatar>
+                
                 </ListItemAvatar>
-                <ListItemText primary={`Jugador ${value}`}  
+                <ListItemText primary={`${value}`}
                 primaryTypographyProps={{ style: { fontSize: '1.4rem', fontFamily: "Roboto" } }}/>
               </ListItem>
               <Divider variant="inset" component="li" />
               </Stack> 
             ))}
-            {/* {props.robots.map((value) => (
-              <ListItem 
-              key = {value}>
-                <ListItemText primary={`bot ${value}`} />
-              </ListItem>
-            ))} */}
+
           </List>
         </Stack> 
-      </Box>
+        </Box>
+      ,
+      // <Box>
+      //     <List sx={{ width: "100%", maxWidth: 360, bgcolor: "white" }}>
+      //     {props.robots.map((value) => (
+      //         <ListItem 
+      //         key = {value}>
+      //           <ListItemText primary={`${value}`} 
+      //           />
+      //         </ListItem>
+      //       ))} 
+      //     </List>
+      //     </Box>
   ];
 };
 

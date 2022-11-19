@@ -24,6 +24,7 @@ const MatchTable = ({matches}) => {
     const goToLobby= async(m) => {
         navigate(`lobby/${m.id}`, 
                     {state: {players: m.players, 
+                             m_name: m.name,
                              id: m.user_id,
                              is_creator: m.user_is_creator,
                              is_started: m.is_started}});
@@ -32,6 +33,7 @@ const MatchTable = ({matches}) => {
     const goToSelectBot= async(m) => {
         navigate(`select`, 
                     {state: {m_id: m.id, 
+                             m_name: m.name,
                              players: m.players,
                              user_id: m.user_id,
                              is_creator: m.user_is_creator,
