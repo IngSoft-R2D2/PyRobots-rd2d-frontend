@@ -53,5 +53,3 @@ const ButtonLeave = (props) => {
         </ThemeProvider>
     )
 }
-
-export default ButtonLeave;

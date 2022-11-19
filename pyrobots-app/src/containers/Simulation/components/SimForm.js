@@ -37,7 +37,7 @@ const SimForm= (props) => {
           >
           <option value = {''}> seleccione un robot </option>
           {Object.keys(robots).map((key)=>
-          (<option key = {key} value={key}>{robots[key]}</option>))}
+          (<option key = {key} value={key}>{robots[key].name}</option>))}
         </select>
         </label></p>
 
@@ -51,7 +51,7 @@ const SimForm= (props) => {
           >
           <option value = {''}> seleccione un robot </option>
           {Object.keys(robots).map((key)=>
-          (<option key = {key} value={key}>{robots[key]}</option>))}
+          (<option key = {key} value={key}>{robots[key].name}</option>))}
         </select>
         </label></p>
 
@@ -64,7 +64,7 @@ const SimForm= (props) => {
           >
           <option value = {''}> seleccione un robot </option>
           {Object.keys(robots).map((key)=>
-          (<option key = {key} value={key}>{robots[key]}</option>))}
+          (<option key = {key} value={key}>{robots[key].name}</option>))}
         </select>
         </label></p>
 
@@ -77,7 +77,7 @@ const SimForm= (props) => {
           >
           <option value = {''}> seleccione un robot </option>
           {Object.keys(robots).map((key)=>
-          (<option key = {key} value={key}>{robots[key]}</option>))}
+          (<option key = {key} value={key}>{robots[key].name}</option>))}
         </select>
         </label></p>
         

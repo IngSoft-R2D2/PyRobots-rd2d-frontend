@@ -41,7 +41,7 @@ const RobotList = (props) => {
         >
         {Object.keys(robots).map((key) => (
                 <ListItem key={key}
-                name = {robots[key]}
+                name = {robots[key].name}
                 style={{
                     padding: "18px 36px",
                     background: "lightblue",
@@ -51,7 +51,7 @@ const RobotList = (props) => {
                       <SmartToyIcon  />
                     </Avatar>
                     </ListItemIcon>
-                     <ListItemText primary={robots[key]}
+                     <ListItemText primary={robots[key].name}
                      primaryTypographyProps={{fontSize: '35px'}} />
                 </ListItem>
             ))

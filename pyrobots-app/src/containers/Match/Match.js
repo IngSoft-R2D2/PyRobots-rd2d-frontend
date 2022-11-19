@@ -14,7 +14,7 @@ const Match = () => {
 
     const [inputs, setInputs] = useState({
         name: '',
-        robot_id:1,
+        robot_id:'',
         pwd: '',
         min: 2,
         max: 2,
