@@ -6,7 +6,6 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import FileUploadIcon from '@mui/icons-material/FileUpload';
 import CreateIcon from '@mui/icons-material/Create';
-import GridOnIcon from '@mui/icons-material/GridOn';
 import SmartToyIcon from '@mui/icons-material/SmartToy';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import { Box } from '@mui/material';
@@ -21,10 +20,6 @@ const Home = () => {
 
   const goToBotForm = async() => {
     navigate("/robots");
-  }
-
-  const seeBoard = async() => {
-    navigate("/board");
   }
 
   const goToSimForm = async() => {
@@ -116,20 +111,6 @@ const Home = () => {
           sx={{  width: '340px' }}
           onClick={goToSimForm}>crear Simulación</Button>
         </p>
-        <p>
-          <Button 
-          style={{
-              color: "#fff",
-              padding: "18px 36px",
-              fontSize: "22px"
-            }}
-            size="medium"
-            variant="contained"  
-            endIcon={<GridOnIcon  sx={{ fontSize: "80px" }} /> }
-            sx={{  width: '340px' }}
-            onClick={seeBoard}>ver Tablero</Button>
-        </p>
-
         <p>
           <Button 
           style={{

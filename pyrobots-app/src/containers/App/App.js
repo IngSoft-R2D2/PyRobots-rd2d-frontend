@@ -7,7 +7,6 @@ import Match from "../Match/Match.js";
 import Lobby from "../Lobby/Loby.js"
 import Bot from "../Bot/Bot.js";
 import BotSelect from "../Bot/BotSelect.js"
-import Board from "../Board/Board.js";
 import Home from "../Navigate/Home.js"
 import Root from "../Navigate/Root.js"
 import Simulation from "../Simulation/Simulation.js"
@@ -29,7 +28,6 @@ function App() {
           <Route path="/matches/" element={<RequireToken><Match /></RequireToken>}/>
           <Route path="/robots/" element={<RequireToken><Bot /></RequireToken>}/>
           <Route path="/listmatches/select" element={<RequireToken><BotSelect /></RequireToken>}/>
-          <Route path="/board/" element={<RequireToken><Board /></RequireToken>}/>
           <Route path="/simulation/" element={<RequireToken><Simulation /></RequireToken>}/>
           <Route path="/listrobots/" element={<RequireToken><BotList /></RequireToken>}/>
           <Route path="/listmatches/" element={<RequireToken><MatchesList /></RequireToken>}/>
