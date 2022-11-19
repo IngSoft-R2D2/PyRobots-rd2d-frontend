@@ -1,6 +1,5 @@
 
 const BotList = ({robots, robot, setRobot}) => {
-    console.log(robots)
     return (
         <div>
             <form>

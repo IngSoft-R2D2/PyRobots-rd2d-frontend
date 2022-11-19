@@ -13,7 +13,7 @@ import { useNavigate } from "react-router-dom";
 
 
 const MatchTable = ({matches}) => {
-    //console.log(matches)
+    console.log(matches)
     const navigate = useNavigate();
 
     const goBack= async() => {

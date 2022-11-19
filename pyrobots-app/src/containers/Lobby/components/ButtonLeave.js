@@ -32,9 +32,7 @@ const ButtonLeave = (props) => {
             const data = await response.json();
             if(response.ok){
                 alert("Partida abandonada exitosamente")
-                setTimeout(() => {
                 navigate('/home')
-                }, 4000);
             }
             else {
                 alert(data.detail)
