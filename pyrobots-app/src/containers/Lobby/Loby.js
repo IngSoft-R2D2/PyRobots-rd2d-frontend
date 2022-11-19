@@ -29,7 +29,6 @@ const Lobby = () => {
   useEffect(() => {
     if (results.started === false){
         const socket = new WebSocket(`ws://127.0.0.1:8000/match/${match_id}/user/${user_id}`);
-        //console.log(socket)
         ws.current = socket;
         ws.current.onopen = () => {
             console.log('WebSocket Client Connected');
