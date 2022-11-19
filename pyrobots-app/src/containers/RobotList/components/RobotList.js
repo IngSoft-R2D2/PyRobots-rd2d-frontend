@@ -2,7 +2,7 @@ import React from "react";
 import List from '@material-ui/core/List';
 import ListSubheader from '@mui/material/ListSubheader';
 import ListItemButton from '@mui/material/ListItemButton';
-import { ListItem, ListItemText } from '@mui/material';
+import { AppBar, ListItem, ListItemText, Toolbar } from '@mui/material';
 import SmartToyIcon from '@mui/icons-material/SmartToy';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import Divider from '@mui/material/Divider';
@@ -19,6 +19,7 @@ import ExpandMore from '@mui/icons-material/ExpandMore';
 import ExpandableItem from "./expandableItem";
 import SentimentSatisfiedAltIcon from '@mui/icons-material/SentimentSatisfiedAlt';
 import SentimentNeutralIcon from '@mui/icons-material/SentimentNeutral';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied';
 
 const RobotList = (props) => {
@@ -43,28 +44,26 @@ const RobotList = (props) => {
         alignItems: "center",
         height: "100%",
         width: "100%",
+        background: "#2e2e2e",
         top: 0,
         left: 0
       }}
     >
       <Box sx={{ flexGrow: 1, width: 1000 }}
-        border={4}
-        borderColor="black"
-        background="lightblue"
         style={{
           color: "#000",
           padding: "18px 36px",
           fontSize: "50px",
-          background: "lightblue",
           marginLeft: "5%"
         }}
       >
         <Typography sx={{ mt: 4, mb: 2 }} variant="h3" component="div"
           style={{
+            color: "white",
             fontFamily: "Roboto"
           }}
         >
-          Robots
+          Tus Robots
         </Typography>
         {Object.keys(robots).map((key) => (
           <ExpandableItem
@@ -77,20 +76,46 @@ const RobotList = (props) => {
                   name={robots[key].name}
                   alignItems="center"
                   style={{
-                    border:"5px solid blue",
+                    border: "5px solid #2e2e2e",
+                    borderRadius: "20px",
                     padding: "18px 36px",
-                    background: "lightblue",
+                    background: "blue",
                   }}
                 >
                   <ListItemIcon>
-                    <Avatar sx={{ bgcolor: 'blue' }}>
+                    <Avatar
+                      sx={{
+                        bgcolor: 'blue',
+                        border: '2px solid black'
+                      }}
+                    >
                       <SmartToyIcon />
                     </Avatar>
                   </ListItemIcon>
-                  <ListItemText primary={robots[key].name}
-                    primaryTypographyProps={{ fontSize: '35px' }} />
+                  <ListItemText
+                    primary={robots[key].name}
+                    primaryTypographyProps={{
+                      color: 'white',
+                      fontSize: '35px'
+                    }}
+                  />
+                  <ListItemIcon>
+                    <KeyboardArrowDownIcon
+                      variant="contained"
+                      fontSize="large"
+                      style={{
+                        color: "white"
+                      }}
+                    />
+                  </ListItemIcon>
                 </ListItem>
-                <Collapse in={xprops.open} timeout="auto" unmountOnExit>
+                <Divider></Divider>
+                <Collapse
+                  border='20px'
+                  in={xprops.open}
+                  timeout="auto"
+                  unmountOnExit
+                >
                   <List component="div" disablePadding>
                     <ListItem
                       key={robots[key].matches_won}
@@ -100,12 +125,19 @@ const RobotList = (props) => {
                           variant="contained"
                           fontSize="large"
                           style={{
-                            color: "blue"
+                            color: "white"
                           }}
                         />
                       </ListItemIcon>
-                      <ListItemText primary={"Won Matches: " + robots[key].matches_won} />
+                      <ListItemText
+                        primary={"Partidas ganadas: " + robots[key].matches_won}
+                        primaryTypographyProps={{
+                          fontSize: "20px",
+                          color: "white"
+                        }}
+                      />
                     </ListItem>
+                    <Divider />
                     <ListItem
                       key={robots[key].matches_tied}
                     >
@@ -114,12 +146,19 @@ const RobotList = (props) => {
                           variant="contained"
                           fontSize="large"
                           style={{
-                            color: "blue"
+                            color: "white"
                           }}
                         />
                       </ListItemIcon>
-                      <ListItemText primary={"Tied Matches: " + robots[key].matches_tied} />
+                      <ListItemText
+                        primary={"Partidas empatadas: " + robots[key].matches_tied}
+                        primaryTypographyProps={{
+                          fontSize: "20px",
+                          color: "white"
+                        }}
+                      />
                     </ListItem>
+                    <Divider />
                     <ListItem
                       key={robots[key].matches_lost}
                     >
@@ -128,11 +167,17 @@ const RobotList = (props) => {
                           variant="contained"
                           fontSize="large"
                           style={{
-                            color: "blue"
+                            color: "white"
                           }}
                         />
                       </ListItemIcon>
-                      <ListItemText primary={"Lost Matches: " + robots[key].matches_lost} />
+                      <ListItemText
+                        primary={"Partidas perdidas: " + robots[key].matches_lost}
+                        primaryTypographyProps={{
+                          fontSize: "20px",
+                          color: "white"
+                        }}
+                      />
                     </ListItem>
                   </List>
                 </Collapse>
@@ -142,9 +187,14 @@ const RobotList = (props) => {
         ))
         }
       </Box>
-      <Button variant="contained" size="large" endIcon={<UndoIcon fontSize="large" />}
+      <Button
+        variant="contained"
+        size="large"
+        endIcon={<UndoIcon fontSize="large" />}
         onClick={goBack}
         style={{
+          borderRadius: '20px',
+          background: "blue",
           height: "100px",
           marginRight: "5%",
           marginLeft: "5%"
