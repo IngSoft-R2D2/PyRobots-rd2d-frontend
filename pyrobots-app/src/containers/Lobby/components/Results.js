@@ -28,7 +28,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const Results = (props) => {
+const Results = ({results}) => {
   const navigate = useNavigate();
 
   const goToHome= async() => {
@@ -124,7 +124,7 @@ const Results = (props) => {
           {`Ganador/es `}
         </Typography>
         <List sx={{ width: "100%", maxWidth: 360, bgcolor: "white" }}>
-          {props.results.map((value) => (
+          {results.map((value) => (
             <Stack> 
               <ListItem>
               <ListItemAvatar>

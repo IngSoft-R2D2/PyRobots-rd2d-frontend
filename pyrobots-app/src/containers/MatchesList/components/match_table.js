@@ -10,10 +10,10 @@ import Button from '@mui/material/Button';
 import UndoIcon from '@mui/icons-material/Undo';
 import { Stack } from "@mui/system";
 import { useNavigate } from "react-router-dom";
-//import ButtonJoin from "./ButtonJoin.js"
+
 
 const MatchTable = ({matches}) => {
-    console.log(matches)
+    //console.log(matches)
     const navigate = useNavigate();
 
     const goBack= async() => {
@@ -23,15 +23,20 @@ const MatchTable = ({matches}) => {
 
     const goToLobby= async(m) => {
         navigate(`lobby/${m.id}`, 
-        {state: {players: m.players, id: m.user_id, is_creator: m.user_is_creator}});
-        //lista de users y robots
+                    {state: {players: m.players, 
+                             id: m.user_id,
+                             is_creator: m.user_is_creator,
+                             is_started: m.is_started}});
     }
 
     const goToSelectBot= async(m) => {
-        navigate(`select`, {state: {m_id: m.id, 
-                                    players: m.players,
-                                    id: m.user_id,
-                                    is_creator: m.user_is_creator}}); 
+        navigate(`select`, 
+                    {state: {m_id: m.id, 
+                             players: m.players,
+                             user_id: m.user_id,
+                             is_creator: m.user_is_creator,
+                             user_name: m.user_name,
+                             is_started: m.is_started}}); 
     }
 
 

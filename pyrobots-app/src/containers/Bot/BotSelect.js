@@ -17,6 +17,8 @@ const BotSelect = ()=> {
     const players = location.state.players;
     const user_id = location.state.user_id;
     const is_creator = location.state.user_is_creator;
+    const user_name = location.state.user_name;
+    const is_started = location.state.is_started;
 
     useEffect(() => { 
         const token = fetchToken();
@@ -52,7 +54,13 @@ const BotSelect = ()=> {
                 setRobot = {setRobot} 
                 robots = {robots}
                 />
-                <ButtonJoin match_id={match_id} robot_id={robot.robot_id} players={players} user_id={user_id} is_creator={is_creator} />
+                <ButtonJoin match_id={match_id} 
+                            robot_id={robot.robot_id} 
+                            players={players} 
+                            user_id={user_id} 
+                            is_creator={is_creator} 
+                            user_name = {user_name}
+                            is_started = {is_started}/>
             </div>
     )
 }

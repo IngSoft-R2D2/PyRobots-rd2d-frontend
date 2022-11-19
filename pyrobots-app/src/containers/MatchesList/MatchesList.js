@@ -19,7 +19,7 @@ export default function MatchesList() {
                             'Content-Type': 'application/json',
                             'Authorization': `Bearer ${token}`}})
             const content = await response.json();
-            console.log(content);
+            //console.log(content);
             setMatches(content);
         })();
     }, []);

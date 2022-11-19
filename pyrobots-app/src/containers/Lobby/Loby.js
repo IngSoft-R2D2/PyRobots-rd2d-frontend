@@ -6,36 +6,39 @@ import { useLocation } from 'react-router-dom'
 import ButtonStart from "./components/ButtonStart.js"
 import ButtonLeave from "./components/ButtonLeave.js"
 
-//importar los dos componentes de boton de abandonar y de iniciar
-// en return poner uno u otro según si es el creador o no
-
 const Lobby = () => {
   const location = useLocation();
   const { match_id } = useParams();
   const user_id = location.state.id;
+  const players = location.state.players;
+  const is_creator = location.state.is_creator;
+  const new_player = location.state.new_player;
+  const is_started = location.state.is_started;
 
   const ws = new WebSocket(`ws://127.0.0.1:8000/match/${match_id}/user/${user_id}`);
   const [users, setUsers] = useState([]);
   const [robots, setRobots] = useState([]);
-  const [results, setResults] = useState({ started: false, res:[]})
-  const players = location.state.players;
-  const is_creator = location.state.is_creator;
-  //agregar booleano
+  const [results, setResults] = useState({ started: is_started, res:[]})
 
   //warning
-  Object.keys(players).map((player) => 
+  Object.keys(players).forEach((player) => 
   {if (!users.includes(player)){
-    (users.push(player))
-  }})
+    const newuserList = users.concat(player);
+    setUsers(newuserList);
+  }});
 
   useEffect(() => {
+    if(new_player !== undefined && !users.includes(new_player)){
+        const newuserList = users.concat(new_player);
+        setUsers(newuserList);
+    }
+    console.log(results.started)
     if (results.started === false){
         ws.onopen = () => {
             console.log('WebSocket Client Connected');
         };
         ws.onmessage = (event) => {
         const json = JSON.parse(event.data);
-        console.log(`[message] Data received from server: ${json}`);
         const evType = json.event;
         if (evType === "Join") {
             //agregar usuario a lista de users y su robot a lista robots
@@ -61,13 +64,12 @@ const Lobby = () => {
         };
     }
     else {
-      ws.onclose = (event) => {
+      ws.onclose = () => {
           ws.close();
+          console.log('WebSocket Client Desconnected');
       };
   }
-},[users, robots, results]); //, [users, robots, results, ws]
-
-console.log(results.started)
+},[users, robots, results, new_player]);
 
   return (
     results.started
