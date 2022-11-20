@@ -26,6 +26,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@mui/material/Grid';
 
 const useStyles = makeStyles((theme) => ({
+  toolbar: theme.mixins.toolbar,
   table: {
     minWidth: 650,
   },
@@ -74,7 +75,7 @@ const Results = (props) => {
                       fontFamily: "Roboto",
                       padding: "18px 36px"}} 
           >
-            PyRobots
+          PyRobots
           </Typography>
         </Box>  
         <ButtonGroup variant="secondary" aria-label="outlined primary button group">
@@ -118,24 +119,17 @@ const Results = (props) => {
       display="flex"
       justifyContent="center"
       alignItems="left"
-      sx={{ m: 22 }}
-      key = {1}
-      >
-      <Stack direction="row" alignItems="center" gap={1} >
-        <CheckCircleIcon style={{ color: "#1C8E40"}}/>
-        <Typography variant="h5" style={{fontWeight: "700",
-        fontFamily: "Roboto"}}>Partida finalizada!</Typography>
-      </Stack>
-      </Box>,
-      <Box
-      display="flex"
-      justifyContent="center"
-      alignItems="left"
-      sx={{ m: 0 }}
+      minHeight="25vh"
       key = {2}
       >
-      <TableContainer component={Paper} className={classes.tableContainer}>
-      <Table className={classes.table} aria-label="simple table">
+         <Stack direction="row" alignItems="center" gap={1} >
+        <CheckCircleIcon style={{ color: "#1C8E40", marginTop: 120}}/>
+        <Typography variant="h5" style={{fontWeight: "700",
+        fontFamily: "Roboto", marginTop: 120, padding: "18px 10px"}}>Partida finalizada!</Typography>
+      </Stack>
+      </Box>,
+      <TableContainer style={{marginTop: 18}} component={Paper} className={classes.tableContainer}>
+      <Table sx={{ minWidth: 700 }} aria-label="simple table">
          <TableHead>
            <TableRow>
            <TableCell className={classes.tableHeaderCell}>Jugadores</TableCell>
@@ -159,7 +153,8 @@ const Results = (props) => {
          </TableBody>
        </Table>
     </TableContainer>
-    </Box>
+
+
   ];
 }
 
