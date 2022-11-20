@@ -6,10 +6,10 @@ import SmartToyIcon from '@mui/icons-material/SmartToy';
 import { Box } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { Stack } from "@mui/system";
-import StarsIcon from '@mui/icons-material/Stars';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
-import Avatar from '@mui/material/Avatar';
-import Divider from '@mui/material/Divider';
+// import StarsIcon from '@mui/icons-material/Stars';
+// import ListItemAvatar from '@mui/material/ListItemAvatar';
+// import Avatar from '@mui/material/Avatar';
+// import Divider from '@mui/material/Divider';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
@@ -17,12 +17,11 @@ import CreateIcon from '@mui/icons-material/Create';
 import HomeIcon from '@mui/icons-material/Home';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
-import TableCell, { tableCellClasses } from '@mui/material/TableCell';
+import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { styled } from '@mui/material/styles';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@mui/material/Grid';
 
@@ -41,42 +40,11 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: theme.palette.primary.dark,
       color: theme.palette.getContrastText(theme.palette.primary.dark)
   },
-  avatar: {
-      backgroundColor: theme.palette.primary.dark,
-      color: theme.palette.getContrastText(theme.palette.primary.dark)
-  },
   name: {
     fontWeight: 'bold',
     color: theme.palette.info.dark
 },
 }));
-
-//  const StyledTableCell = styled(TableCell)(({ theme }) => ({
-//    [`&.${tableCellClasses.head}`]: {
-//      backgroundColor: theme.palette.common.black,
-//      color: theme.palette.common.white,
-//   },
-//    [`&.${tableCellClasses.body}`]: {
-//      fontSize: 20,
-//    },
-//  }));
-
-// const StyledTableRow = styled(TableRow)(({ theme }) => ({
-//    '&:nth-of-type(odd)': {
-//      backgroundColor: theme.palette.action.hover,
-//   },
-//    // hide last border
-//   '&:last-child td, &:last-child th': {
-//      border: 0,
-//    },
-//  }));
-
-// const useStyles = makeStyles(theme => ({
-//   title: {
-//     flexGrow: 1,
-//     textAlign: 'left',
-//   },
-// }));
 
 const Results = (props) => {
   const navigate = useNavigate();
@@ -94,7 +62,6 @@ const Results = (props) => {
   }
   
   const classes = useStyles();
-
   return [
     <AppBar position="fixed" sx={{ background: 'dark-blue' }} 
       key = {0} >
@@ -151,7 +118,7 @@ const Results = (props) => {
       display="flex"
       justifyContent="center"
       alignItems="left"
-      minHeight="35vh"
+      sx={{ m: 22 }}
       key = {1}
       >
       <Stack direction="row" alignItems="center" gap={1} >
@@ -160,6 +127,13 @@ const Results = (props) => {
         fontFamily: "Roboto"}}>Partida finalizada!</Typography>
       </Stack>
       </Box>,
+      <Box
+      display="flex"
+      justifyContent="center"
+      alignItems="left"
+      sx={{ m: 0 }}
+      key = {2}
+      >
       <TableContainer component={Paper} className={classes.tableContainer}>
       <Table className={classes.table} aria-label="simple table">
          <TableHead>
@@ -170,7 +144,7 @@ const Results = (props) => {
           </TableRow>
          </TableHead>
          <TableBody>
-          {props.results.map((row) => (
+         {props.results && props.results.map((row) => (
              <TableRow key={row.user_name}>
               <TableCell scope="row">
               <Grid item lg={10}>
@@ -185,6 +159,7 @@ const Results = (props) => {
          </TableBody>
        </Table>
     </TableContainer>
+    </Box>
   ];
 }
 
