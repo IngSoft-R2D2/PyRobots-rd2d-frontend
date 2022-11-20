@@ -44,7 +44,7 @@ const RobotList = (props) => {
         alignItems: "center",
         height: "100%",
         width: "100%",
-        background: "#2e2e2e",
+        background: "white",
         top: 0,
         left: 0
       }}
@@ -59,7 +59,7 @@ const RobotList = (props) => {
       >
         <Typography sx={{ mt: 4, mb: 2 }} variant="h3" component="div"
           style={{
-            color: "white",
+            color: "black",
             fontFamily: "Roboto"
           }}
         >
@@ -76,16 +76,16 @@ const RobotList = (props) => {
                   name={robots[key].name}
                   alignItems="center"
                   style={{
-                    border: "5px solid #2e2e2e",
-                    borderRadius: "20px",
+                    border: "0px solid #2e2e2e",
+                    borderRadius: "4px",
                     padding: "18px 36px",
-                    background: "blue",
+                    background: "#1976d2",
                   }}
                 >
                   <ListItemIcon>
                     <Avatar
                       sx={{
-                        bgcolor: 'blue',
+                        bgcolor: 'black',
                         border: '2px solid black'
                       }}
                     >
@@ -133,7 +133,7 @@ const RobotList = (props) => {
                         primary={"Partidas ganadas: " + robots[key].matches_won}
                         primaryTypographyProps={{
                           fontSize: "20px",
-                          color: "white"
+                          color: "black"
                         }}
                       />
                     </ListItem>
@@ -154,7 +154,7 @@ const RobotList = (props) => {
                         primary={"Partidas empatadas: " + robots[key].matches_tied}
                         primaryTypographyProps={{
                           fontSize: "20px",
-                          color: "white"
+                          color: "black"
                         }}
                       />
                     </ListItem>
@@ -175,7 +175,7 @@ const RobotList = (props) => {
                         primary={"Partidas perdidas: " + robots[key].matches_lost}
                         primaryTypographyProps={{
                           fontSize: "20px",
-                          color: "white"
+                          color: "black"
                         }}
                       />
                     </ListItem>
@@ -193,8 +193,8 @@ const RobotList = (props) => {
         endIcon={<UndoIcon fontSize="large" />}
         onClick={goBack}
         style={{
-          borderRadius: '20px',
-          background: "blue",
+          borderRadius: '4px',
+          background: "#1976d2",
           height: "100px",
           marginRight: "5%",
           marginLeft: "5%"
