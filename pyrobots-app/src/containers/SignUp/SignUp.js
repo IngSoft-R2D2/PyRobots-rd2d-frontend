@@ -32,7 +32,7 @@ const SignUp = () => {
         changeAlertForm("Se ha enviado un link de verificación a tu email");
         setTimeout(() => {
           navigate('/home')
-        }, 7000);
+        }, 2000);
       }
       else{
         if (data.detail === "A user with this username already exists"){
