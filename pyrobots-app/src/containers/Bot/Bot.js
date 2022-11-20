@@ -5,6 +5,8 @@ import BotForm from './components/BotForm.js'
 
 const Bot = () => {
     const navigate = useNavigate();
+    const [validForm, changeValidForm] = useState({valid: null });
+    const [alertForm, changeAlertForm] = useState("");
 
     const [inputs, setInputs] = useState({
       name: "",
@@ -39,14 +41,22 @@ const Bot = () => {
             body: botCode
         })
         const data = await result.json();
-        console.log(result)
-        console.log(data)
         if(data.operation_result === "Successfully created."){
-            alert("robot creado con éxito")
-            navigate("/home");
+          changeValidForm(true);
+          changeAlertForm("Robot creado exitosamente");
+          setTimeout(() => {
+            navigate('/home')
+            }, 5000);
         }
         else {
-            alert(data.detail)
+          changeValidForm(false);
+            if (data.detail === "This user has a robot with this name already."){
+                changeAlertForm("Ya creaste un robot con este nombre!");
+            }
+            if (data.detail === "This user has a robot with this filename already."){
+                changeAlertForm("Ya creaste un robot con este archivo!");
+            }
+
         }
       }
       catch(error) {
@@ -58,7 +68,10 @@ const Bot = () => {
     return (
       <BotForm onSubmit = {onSubmit_newBot}
                inputs = {inputs}
-               setInputs = {setInputs}/>
+               setInputs = {setInputs}
+               validForm = {validForm}
+               alertForm = {alertForm}
+               />
     )
 }
 
