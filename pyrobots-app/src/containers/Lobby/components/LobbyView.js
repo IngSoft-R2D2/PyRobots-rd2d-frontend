@@ -108,14 +108,15 @@ const LobbyView = (props) => {
       justifyContent="center"
       alignItems="center"
       key = {1}
+      height = '500px'
       >
         <Stack> 
         <IconContainer> 
-          <SummarizeIcon sx={{ height: '60px', width: '60px' }} style={{ color: "#1C8E40",marginRight: "14px"}}/>
+          <SummarizeIcon sx={{ height: '80px', width: '60px' }} style={{ color: "#1C8E40",marginRight: "14px"}}/>
           <Typography variant="h4" style={{fontWeight: "700",
             fontFamily: "Roboto",
             padding: "18px 0px"}}>
-              Información de partida {props.m_name}
+              Información de partida: {props.name}
           </Typography>
         </IconContainer>
         <Typography 
@@ -123,7 +124,7 @@ const LobbyView = (props) => {
         fontFamily: "Roboto",
         padding: "18px 0px"}}
         variant="h4" gutterBottom>
-          Jugadores 
+          jugadores
         </Typography>
           <List sx={{ width: "100%", maxWidth: 360, bgcolor: "white" }}>
           
@@ -132,7 +133,7 @@ const LobbyView = (props) => {
             (props.users[0] === value )
                 ?
                 <Stack> 
-                <ListItem>
+                <ListItem key={value}>
                   <ListItemAvatar>
                   <Avatar style={{ backgroundColor: "red" }}
                   sx={{ height: '50px', width: '50px' }}>
@@ -147,7 +148,7 @@ const LobbyView = (props) => {
                 </Stack> 
                 :
               <Stack> 
-              <ListItem>
+              <ListItem key={value}>
                 <ListItemAvatar>
                 <Avatar style={{ backgroundColor: "blue" }}
                 sx={{ height: '50px', width: '50px' }}>
@@ -165,18 +166,6 @@ const LobbyView = (props) => {
           </List>
         </Stack> 
         </Box>
-      ,
-      // <Box>
-      //     <List sx={{ width: "100%", maxWidth: 360, bgcolor: "white" }}>
-      //     {props.robots.map((value) => (
-      //         <ListItem 
-      //         key = {value}>
-      //           <ListItemText primary={`${value}`} 
-      //           />
-      //         </ListItem>
-      //       ))} 
-      //     </List>
-      //     </Box>
   ];
 };
 

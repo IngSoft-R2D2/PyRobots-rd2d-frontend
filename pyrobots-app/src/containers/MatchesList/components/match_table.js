@@ -15,7 +15,6 @@ import { useNavigate } from "react-router-dom";
 
 const MatchTable = ({matches}) => {
     const navigate = useNavigate();
-
     const goBack= async() => {
         navigate("/home");
 
