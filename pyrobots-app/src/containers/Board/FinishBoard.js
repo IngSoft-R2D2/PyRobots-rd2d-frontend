@@ -17,7 +17,7 @@ const FinishBoard = (props) => {
     // como le saco el warning? 
     const cant_rob = Object.keys(ronda.Robots).filter((robot)=> ronda.Robots[robot].damage<100); 
     setCant(cant_rob)
-  },[])
+  },[ronda.Robots])
 
   //funcion que dibuja los robots y su status en el juego
   const draw_Bots = (robot) => {
