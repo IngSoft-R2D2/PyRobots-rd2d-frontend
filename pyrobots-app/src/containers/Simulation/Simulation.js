@@ -24,7 +24,6 @@ const Simulation = () => {
     const [validForm, changeValidForm] = useState({valid: null });
     const [alertForm, changeAlertForm] = useState({field: "" });
     const [simReady,setReady] = useState(false)
-    // const [simulation,setSimulation] = useState({simulation_json: "", operation_result: ""}); 
     const [simulation,setSimulation] = useState([]); 
 
     useEffect(() => { 
@@ -54,6 +53,7 @@ const Simulation = () => {
       const robots_clean = robots_fetch.filter( value => !Number.isNaN(value) );
       
       try {
+        setLoading(true);
         const result = await fetch('http://localhost:8000/simulation', {
           method: 'POST',
           headers: {'accept': 'application/json',
@@ -66,6 +66,7 @@ const Simulation = () => {
         })
         const data = await result.json()
         if(result.ok){
+            setLoading(false)
             setSimulation(data);
             setReady(true)
             changeValidForm(true);
