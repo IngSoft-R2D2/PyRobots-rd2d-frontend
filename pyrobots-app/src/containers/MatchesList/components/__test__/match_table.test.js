@@ -1,7 +1,7 @@
 import { render, screen, fireEvent, act, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { BrowserRouter as Router} from 'react-router-dom';
-import MatchesList from "../MatchesList.js";
+import MatchesList from "../../MatchesList.js";
 
 const unmockedFetch = global.fetch
 
