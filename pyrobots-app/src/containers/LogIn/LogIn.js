@@ -27,7 +27,7 @@ const LogIn = () => {
         changeValidForm(true);
         setTimeout(() => {
           navigate('/home')
-        }, 4000);
+        }, 2000);
       }
       else{
         if(data.detail === "This username does not exist"){
