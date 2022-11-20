@@ -28,6 +28,7 @@ const MatchForm= (props) => {
   return(
     <main>
       <h1 className= "title">Creación de partida</h1>
+
       <Form className="App" onSubmit={(event) => props.onSubmit(event)}>
         <Label>Nombre</Label>
         <Input 
@@ -93,7 +94,7 @@ const MatchForm= (props) => {
         />
 
         <ButtonContainer>
-          <Button type="submit">Enviar</Button>
+          <Button type="submit">Crear</Button>
         </ButtonContainer>
 
         {validForm === false && <ErrorMessage>
@@ -105,7 +106,7 @@ const MatchForm= (props) => {
           </ErrorMessage>}
         {validForm === true && <SuccessMessage>{alertForm}</SuccessMessage>}
       </Form>
-    </main>
+      </main>
   );
 };
 

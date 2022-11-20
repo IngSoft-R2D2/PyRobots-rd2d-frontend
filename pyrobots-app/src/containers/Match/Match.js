@@ -89,7 +89,6 @@ const Match = () => {
             if (data.detail === "Invalid number of games."){
                 changeAlertForm("Valor inválido de juegos");
             }
-            
         }
       }
       catch(error) {

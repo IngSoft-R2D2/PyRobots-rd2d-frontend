@@ -79,7 +79,7 @@ const BotForm = (props) => {
               onChange={handleChange}
             />
         <ButtonContainer>
-          <Button type="submit">Enviar</Button>
+          <Button type="submit">Crear</Button>
         </ButtonContainer>
 
         {validForm === false && <ErrorMessage>
