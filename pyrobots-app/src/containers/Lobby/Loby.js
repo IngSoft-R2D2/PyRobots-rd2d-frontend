@@ -5,30 +5,60 @@ import { useParams } from "react-router-dom"
 import { useLocation } from 'react-router-dom'
 import ButtonStart from "./components/ButtonStart.js"
 import ButtonLeave from "./components/ButtonLeave.js"
-// import Backdrop from '@mui/material/Backdrop';
-// import CircularProgress from '@mui/material/CircularProgress';
+import { fetchToken } from './elements/Auth.js';
+import Backdrop from '@mui/material/Backdrop';
+import CircularProgress from '@mui/material/CircularProgress';
 
 const Lobby = () => {
   const location = useLocation();
   const m = location.state;
   const { match_id } = useParams();
   const user_id = m.id;
-  const players = m.players;
+  //const players = m.players;
   const is_creator = m.is_creator;
   const new_player = m.new_player;
+  const new_player_bot = m.new_player_bot
   const is_started = m.is_started;
   //nombre de partida que viene de matcheslist
   const name = m.m_name;
   const ws = useRef(null);
   const [users, setUsers] = useState([]);
   const [robots, setRobots] = useState([]);
-  const [results, setResults] = useState({ started: is_started, res:[]})
+  const [results, setResults] = useState({ started: is_started, res:[]});
+  const [match, setMatch] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  Object.keys(players).forEach((player) => 
-  {if (!users.includes(player)){
-    const newuserList = users.concat(player);
-    setUsers(newuserList);
-  }});
+  useEffect(() => {
+    const token = fetchToken();
+    setTimeout(() => {
+      (async () => {
+          const response = await fetch("http://localhost:8000/matches", {
+              method: "GET",
+              headers: { 'accept': 'application/json',
+                          'Content-Type': 'application/json',
+                          'Authorization': `Bearer ${token}`}})
+          const content = await response.json();
+          const this_match = Object.values(content).filter(match => match.id === parseInt(match_id));
+          setMatch(this_match);
+      })();
+    }, 500);
+  }, [match_id]);
+
+  useEffect(() => {
+    //setear lista de player y robots
+    console.log(match)
+    if(match.length > 0){ //match.players !== undefined
+      Object.keys(match[0].players).forEach((player) => 
+      {if (!users.includes(player)){
+      const newuserList = users.concat(player);
+      const newBotList = users.concat(match[0].players[player].robot_name);
+      console.log(player)
+      setUsers(newuserList);
+      setRobots(newBotList);
+      setLoading(false);
+      }});
+    }
+  }, [match, users])
 
   useEffect(() => {
     if (results.started === false){
@@ -44,9 +74,8 @@ const Lobby = () => {
         };
     }
     return (() => {
-        if (ws.current !==null){ //cuando salgo del lobby si no terminó la partida?
+        if (ws.current !==null){ //cuando salgo del lobby si no terminó la partida
             ws.current.close();
-            console.log('WebSocket Client Desconnected return');
         }
     })
   },[results, match_id, user_id])
@@ -55,7 +84,9 @@ const Lobby = () => {
     if(ws.current !==null && results.started === false){
         if(new_player !== undefined && !users.includes(new_player)){
             const newuserList = users.concat(new_player);
+            const newBotList = users.concat(new_player_bot);
             setUsers(newuserList);
+            setRobots(newBotList);
         }
         ws.current.onmessage = (event) => {
             const json = JSON.parse(event.data);
@@ -84,37 +115,39 @@ const Lobby = () => {
             }
         };
     }
-},[users, robots, results, new_player]);
+},[users, robots, results, new_player, new_player_bot]);
 
   return (
     results.started
     ? 
-        <Results results = {results.res}/>
-    : 
-    // loading 
-    //     ?
-    //     <Backdrop
-    //         sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
-    //         open={loading}
-    //     >
-    //         <CircularProgress color="inherit" />
-    //     </Backdrop> 
-    //     :
-        is_creator
+      <Results results = {results.res}/>
+    : loading
+        ?
+          <Backdrop
+              sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+              open={loading}
+          >
+              <CircularProgress color="inherit" />
+          </Backdrop> 
+        : is_creator
             ?
-        <div>
-            <LobbyView users={users}
+            <div>
+                <LobbyView
+                    users={users}
                     robots={robots}
                     name={name}/>
-            <ButtonStart match_id={match_id} number_of_participants={users.length} />
-        </div>
+                <ButtonStart 
+                    match_id={match_id}
+                    number_of_participants={users.length} />
+            </div>
             :
-        <div>
-            <LobbyView users={users}
+            <div>
+                <LobbyView 
+                    users={users}
                     robots={robots}
                     name={name}/>
-            <ButtonLeave match_id={match_id}/>
-        </div>
+                <ButtonLeave match_id={match_id}/>
+            </div>
   );
 };
 

@@ -16,7 +16,7 @@ const theme = createTheme({
     },
   });
 
-const Join = ({match_id, robot_id, players, user_id, is_creator, user_name, is_started}) => {
+const Join = ({match_id, robot_id, robot_name, players, user_id, is_creator, user_name, is_started, name}) => {
     const navigate = useNavigate();
     const joinMatch = async() => {
         const token = fetchToken();
@@ -36,7 +36,9 @@ const Join = ({match_id, robot_id, players, user_id, is_creator, user_name, is_s
                                       id: user_id,
                                       is_creator: is_creator, 
                                       new_player: user_name,
-                                      is_started: is_started}}) 
+                                      is_started: is_started,
+                                      m_name: name,
+                                      new_player_bot: robot_name}}) 
             }
             else {
                 alert(data.detail)

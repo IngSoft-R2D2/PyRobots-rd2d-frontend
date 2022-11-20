@@ -8,7 +8,8 @@ const BotList = ({robots, robot, setRobot}) => {
                 type="number" 
                 name = "robot"
                 onChange={(e) => 
-                    setRobot({ ...robot, robot_id: e.target.value})}
+                    setRobot({ ...robot, robot_id: e.target.value,
+                                         robot_name: e.target.value.name})}
                 >
                 <option value = {''}> seleccione un robot </option>
                 {Object.keys(robots).map((key)=>

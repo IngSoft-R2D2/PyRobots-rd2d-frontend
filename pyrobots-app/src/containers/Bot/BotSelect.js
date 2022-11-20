@@ -10,7 +10,7 @@ import {useLocation} from 'react-router-dom'
 const BotSelect = ()=> {
     
     const [loading, setLoading] = useState(true)
-    const [robot, setRobot] = useState({robot_id:''})
+    const [robot, setRobot] = useState({robot_id:'', robot_name: ''})
     const [robots, setRobots] = useState([]);
     const location = useLocation();
     const match_id = location.state.m_id;
@@ -19,6 +19,7 @@ const BotSelect = ()=> {
     const is_creator = location.state.user_is_creator;
     const user_name = location.state.user_name;
     const is_started = location.state.is_started;
+    const name = location.state.name;
 
     useEffect(() => { 
         const token = fetchToken();
@@ -38,7 +39,10 @@ const BotSelect = ()=> {
          });
        }, []);
 
-       
+//--------------------------------------------------------------------------------
+    // console.log('render')
+    // console.log(robots)
+    //console.log(robot.robot_name)
 
     return (
         loading ?  
@@ -56,11 +60,15 @@ const BotSelect = ()=> {
                 />
                 <ButtonJoin match_id={match_id} 
                             robot_id={robot.robot_id} 
+//--------------------------------------------------------------------------------
+                            robot_name = {robot.robot_name}
+//--------------------------------------------------------------------------------
                             players={players} 
                             user_id={user_id} 
                             is_creator={is_creator} 
                             user_name = {user_name}
-                            is_started = {is_started}/>
+                            is_started = {is_started}
+                            name = {name}/>
             </div>
     )
 }

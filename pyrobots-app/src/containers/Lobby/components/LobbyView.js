@@ -33,7 +33,8 @@ const IconContainer = styled.div`
   display: flex;
 `;
 
-const LobbyView = (props) => {
+const LobbyView = ({users, name, robots}) => {
+  //console.log(robots)
   const navigate = useNavigate();
 
   const goToHome= async() => {
@@ -64,7 +65,6 @@ const LobbyView = (props) => {
                         padding: "18px 36px"}} 
                       className={classes.title}>
             PyRobots
-
           </Typography>
           <ButtonGroup variant="secondary" aria-label="outlined primary button group">
           <Button 
@@ -116,7 +116,7 @@ const LobbyView = (props) => {
           <Typography variant="h4" style={{fontWeight: "700",
             fontFamily: "Roboto",
             padding: "18px 0px"}}>
-              Información de partida: {props.name}
+              Información de partida: {name}
           </Typography>
         </IconContainer>
         <Typography 
@@ -127,42 +127,39 @@ const LobbyView = (props) => {
           jugadores
         </Typography>
           <List sx={{ width: "100%", maxWidth: 360, bgcolor: "white" }}>
-          
-          { props.users.map((value) => (
-            //que el creador sea de color rojo
-            (props.users[0] === value )
-                ?
-                <Stack> 
-                <ListItem key={value}>
-                  <ListItemAvatar>
-                  <Avatar style={{ backgroundColor: "red" }}
-                  sx={{ height: '50px', width: '50px' }}>
-                    <Person4OutlinedIcon style={{ fontSize: 40 }}/>
-                  </Avatar>
-                  
-                  </ListItemAvatar>
-                  <ListItemText primary={`${value}`}
-                  primaryTypographyProps={{ style: { fontSize: '1.4rem', fontFamily: "Roboto" } }}/>
-                </ListItem>
-                <Divider variant="inset" component="li" />
-                </Stack> 
-                :
+          { users.map((value) => (
               <Stack> 
               <ListItem key={value}>
                 <ListItemAvatar>
-                <Avatar style={{ backgroundColor: "blue" }}
-                sx={{ height: '50px', width: '50px' }}>
-                  <SmartToyIcon style={{ fontSize: 40 }}/>
+                  {/* el creador es rojo y tiene un icono diferente */}
+                <Avatar style={{ backgroundColor: users[0] === value ? "red" : "blue", fontSize: 40}}
+                        sx={{ height: '50px', width: '50px' }}>
+                  {users[0] === value 
+                  ?
+                  <Person4OutlinedIcon />
+                  :
+                  <SmartToyIcon />}
                 </Avatar>
                 
                 </ListItemAvatar>
                 <ListItemText primary={`${value}`}
-                primaryTypographyProps={{ style: { fontSize: '1.4rem', fontFamily: "Roboto" } }}/>
+                              primaryTypographyProps={
+                                  { style: { fontSize: '1.4rem', fontFamily: "Roboto" } }}
+                />
+              </ListItem>
+              </Stack> 
+          ))}
+          { robots.map((value) => (
+              <Stack> 
+              <ListItem key={value}>
+                <ListItemText secondary={`${value}`}
+                              secondaryTypographyProps={
+                                  { style: { fontSize: '1.1rem', fontFamily: "Roboto" } }}
+                />
               </ListItem>
               <Divider variant="inset" component="li" />
               </Stack> 
-            ))}
-
+          ))}
           </List>
         </Stack> 
         </Box>
