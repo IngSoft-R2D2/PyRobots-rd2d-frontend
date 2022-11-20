@@ -51,7 +51,7 @@ const MatchTable = ({matches}) => {
                 m.user_is_creator===false &&
                 m.user_is_already_joined===false &&
                 (m.is_started===false || (m.is_started && m.is_finished===false))):
-                return (<Button variant="disabled">unirse</Button>)
+                return (<Button variant="contained" disabled={true}>unirse</Button>)
             case (m.is_available_to_join===false &&
                 m.user_is_creator===true &&
                 m.user_is_already_joined===true &&

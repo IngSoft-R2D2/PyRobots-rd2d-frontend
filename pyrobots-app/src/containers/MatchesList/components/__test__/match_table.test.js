@@ -1,5 +1,4 @@
-import { render, screen, fireEvent, act, waitFor } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import { render, screen, fireEvent, act, waitFor, within, toBeDisabled } from "@testing-library/react";
 import { BrowserRouter as Router} from 'react-router-dom';
 import MatchesList from "../../MatchesList.js";
 
@@ -9,35 +8,35 @@ beforeAll(() => {
     global.fetch = () =>
         Promise.resolve({
             json: () => Promise.resolve({
-                "match_1": {
-                  "id": 1,
-                  "name": "m1",
-                  "min_players": 2,
-                  "max_players": 2,
-                  "number_of_games": 200,
-                  "number_of_rounds": 3330,
-                  "is_secured": true,
-                  "is_started": false,
-                  "is_finished": false,
-                  "creator": 1,
-                  "user_id": 1,
-                  "user_name": "angelescch",
-                  "players": {
-                    "angelescch": {
-                      "robot_id": "1",
-                      "robot_name": "random"
-                    },
-                    "angeles": {
-                      "robot_id": "5",
-                      "robot_name": "spin"
-                    }
+              "match_1": {
+                "id": 1,
+                "name": "m1",
+                "min_players": 2,
+                "max_players": 2,
+                "number_of_games": 200,
+                "number_of_rounds": 333,
+                "is_secured": false,
+                "is_started": true,
+                "is_finished": true,
+                "creator": 1,
+                "user_id": 1,
+                "user_name": "angelescch",
+                "players": {
+                  "angelescch": {
+                    "robot_id": "1",
+                    "robot_name": "random"
                   },
-                  "user_is_creator": true,
-                  "is_available_to_join": false,
-                  "is_available_to_leave": false,
-                  "is_ready_to_start": true,
-                  "user_is_already_joined": true
+                  "angelescc": {
+                    "robot_id": "124",
+                    "robot_name": "randoom"
+                  }
                 },
+                "user_is_creator": true,
+                "is_available_to_join": false,
+                "is_available_to_leave": false,
+                "is_ready_to_start": false,
+                "user_is_already_joined": true
+              },
                 "match_2": {
                   "id": 2,
                   "name": "m2",
@@ -61,64 +60,6 @@ beforeAll(() => {
                   "is_available_to_join": false,
                   "is_available_to_leave": false,
                   "is_ready_to_start": false,
-                  "user_is_already_joined": true
-                },
-                "match_3": {
-                  "id": 3,
-                  "name": "m3",
-                  "min_players": 2,
-                  "max_players": 2,
-                  "number_of_games": 200,
-                  "number_of_rounds": 333,
-                  "is_secured": true,
-                  "is_started": true,
-                  "is_finished": true,
-                  "creator": 1,
-                  "user_id": 1,
-                  "user_name": "angelescch",
-                  "players": {
-                    "angelescch": {
-                      "robot_id": "1",
-                      "robot_name": "random"
-                    },
-                    "angeles": {
-                      "robot_id": "5",
-                      "robot_name": "spin"
-                    }
-                  },
-                  "user_is_creator": true,
-                  "is_available_to_join": false,
-                  "is_available_to_leave": false,
-                  "is_ready_to_start": false,
-                  "user_is_already_joined": true
-                },
-                "match_4": {
-                  "id": 4,
-                  "name": "m4",
-                  "min_players": 2,
-                  "max_players": 4,
-                  "number_of_games": 200,
-                  "number_of_rounds": 330,
-                  "is_secured": true,
-                  "is_started": false,
-                  "is_finished": false,
-                  "creator": 2,
-                  "user_id": 1,
-                  "user_name": "angelescch",
-                  "players": {
-                    "angelescch": {
-                      "robot_id": "1",
-                      "robot_name": "random"
-                    },
-                    "angeles": {
-                      "robot_id": "5",
-                      "robot_name": "spin"
-                    }
-                  },
-                  "user_is_creator": false,
-                  "is_available_to_join": false,
-                  "is_available_to_leave": true,
-                  "is_ready_to_start": true,
                   "user_is_already_joined": true
                 },
                 "match_5": {
@@ -150,15 +91,15 @@ beforeAll(() => {
                   "id": 6,
                   "name": "m6",
                   "min_players": 2,
-                  "max_players": 4,
+                  "max_players": 2,
                   "number_of_games": 200,
                   "number_of_rounds": 330,
                   "is_secured": true,
-                  "is_started": true,
-                  "is_finished": true,
-                  "creator": 2,
-                  "user_id": 1,
-                  "user_name": "angelescch",
+                  "is_started": false,
+                  "is_finished": false,
+                  "creator": 1,
+                  "user_id": 5,
+                  "user_name": "fuster",
                   "players": {
                     "angelescch": {
                       "robot_id": "1",
@@ -172,8 +113,8 @@ beforeAll(() => {
                   "user_is_creator": false,
                   "is_available_to_join": false,
                   "is_available_to_leave": false,
-                  "is_ready_to_start": false,
-                  "user_is_already_joined": true
+                  "is_ready_to_start": true,
+                  "user_is_already_joined": false
                 }
               }),
         })
@@ -184,26 +125,50 @@ afterAll(() => {
     global.fetch = unmockedFetch
 })
 
-describe ("componentes formulario", () => {
+describe ("Partidas", () => {
+    test('Partida propia ', async () => {
+        await act( async () => {render(<Router> <MatchesList/> </Router>)})
+        const row = screen.getByRole('row', {
+          name: "m2 1/2 Lobby"
+        });
+        expect(row).toBeInTheDocument()
+    });
+    test('Partida para unirse', async () => {
+      await act( async () => {render(<Router> <MatchesList/> </Router>)})
+      const row = screen.getByRole('row', {
+        name: "m5 1/4 unirse"
+      });
+      expect(row).toBeInTheDocument()
+    });
+    test('Partida para unirse debe tener botón disponible', async () => {
+      await act( async () => {render(<Router> <MatchesList/> </Router>)})
+      const row = screen.getByRole('row', {
+        name: "m5 1/4 unirse"
+      });
+      const button = within(row).getByText('unirse').closest("button");
+      expect(button).toBeEnabled();
+    });
+    test('Partida llena', async () => {
+      await act( async () => {render(<Router> <MatchesList/> </Router>)})
+      const row = screen.getByRole('row', {
+        name: "m6 2/2 unirse"
+      });
+      expect(row).toBeInTheDocument()
+    });
+    test('Partida llena debe mostrar boton desactivado', async () => {
+      await act( async () => {render(<Router> <MatchesList/> </Router>)})
+      const row = screen.getByRole('row', {
+        name: "m6 2/2 unirse"
+      });
+      const button = within(row).getByText('unirse').closest("button");
+      expect(button).toBeDisabled();
+    });
+    test('Partida terminada no se muestra', async () => {
+      await act( async () => {render(<Router> <MatchesList/> </Router>)})
+      const match=screen.queryByRole('rowheader', {
+        name: /m1/i
+      })
+      expect(match).toBeNull();
+    });
 
-    test('Listar partidas: 1 ', async () => {
-        await act( async () => {render(<Router> <MatchesList/> </Router>)})
-        const match_1 = screen.getByText(/m1/)
-        expect(match_1).toBeInTheDocument()
-    });
-    test('Listar partidas: 2 ', async () => {
-        await act( async () => {render(<Router> <MatchesList/> </Router>)})
-        const mega = screen.getByText(/m2/i)
-        expect(mega).toBeInTheDocument()
-    });
-    test('Listar partidas: 3 ', async () => {
-        await act( async () => {render(<Router> <MatchesList/> </Router>)})
-        const bot3 = screen.getByText(/m3/i)
-        expect(bot3).toBeInTheDocument()
-    });
-    test('Listar partidas: 4, robot presente ', async () => {
-        await act( async () => {render(<Router> <MatchesList/> </Router>)})
-        const bot4 = screen.getByText(/m4/i)
-        expect(bot4).toBeInTheDocument()
-    });
 });
