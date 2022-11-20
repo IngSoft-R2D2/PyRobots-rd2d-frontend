@@ -22,7 +22,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@mui/material/Grid';
 
 const useStyles = makeStyles((theme) => ({
-    toolbar: theme.mixins.toolbar,
     table: {
         minWidth: 650,
     },
