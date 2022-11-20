@@ -11,6 +11,7 @@ import SimScreen from '../Board/SimScreen.js';
 
 const Simulation = () => {
 
+
     const [inputs, setInputs] = useState({
         robot_id1:'',
         robot_id2:'',
