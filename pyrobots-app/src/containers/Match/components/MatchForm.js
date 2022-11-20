@@ -4,96 +4,104 @@ import {
   ButtonContainer,
   Button,
   SuccessMessage,
-  ErrorMessage
+  ErrorMessage,
+  Label,
+  Select
 } from "../elements/Forms.js";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
+import Input from "../elements/Input.js";
 
 const MatchForm= (props) => {
-
-    const inputs = props.inputs;
-    const setInputs = props.setInputs; 
+    const name = props.name;
+    const changeName = props.changeName;
+    const minPlayers = props.minPlayers;
+    const changeMinPlayers = props.changeMinPlayers;
+    const maxPlayers = props.maxPlayers;
+    const changeMaxPlayers = props.changeMaxPlayers;
+    const games = props.games;
+    const changeGames = props.changeGames;
+    const rounds = props.rounds;
+    const changeRounds = props.changeRounds;
+    const robotID = props.robot_id;
+    const changeRobotID = props.changeRobotID;
+    const password = props.password;
+    const changePassword = props.changePassword;
     const robots = props.robots;  
     const validForm = props.validForm;
     const alertForm = props.alertForm;
-
-    const handleChange = (event) => {
-      const name = event.target.name;
-      const value = event.target.value;
-      setInputs(values => ({...values, [name]: value}))
-    }
 
   return(
     <main>
       <Form className="App" onSubmit={(event) => props.onSubmit(event)}>
         <h1>Crear partida</h1>
-        <p><label>nombre:
-        <input 
-          required
+        <Input
+          state={name}
+          changeState={changeName}
           type="text"
+          label="Nombre"
+          placeholder="Partida"
           name="name"
-          value={inputs.name}
-          onChange={handleChange}
+          obligatory="true"
         />
-        </label></p>
-        <p><label>contraseña: (opcional)
-        <input 
-          type="password" 
+         <Input
+          state={password}
+          changeState={changePassword}
+          type="password"
+          label="Contraseña (opcional)"
           name="pwd"
-          value={inputs.pwd}
-          onChange={handleChange}
-        />
-        </label></p>
-        <p><label>Seleccione un robot:
-        <select 
+          obligatory="false"
+        /> 
+        <Label>Robot</Label>
+        <Select 
           required
           type="number" 
           name = "robot"
           onChange={(e) => 
-            setInputs({ ...inputs, robot_id: e.target.value})}
+            changeRobotID({ ...robotID, robotID: e.target.value})}
           >
-          <option value = {''}> seleccione un robot </option>
+          <option value = {''}> Seleccione un robot </option>
 
           {Object.keys(robots).map((key)=>
           (<option key = {key} value={key}>{robots[key].name}</option>))}
-        </select>
-        </label></p>
-        <p><label>mínimo jugadores:
-        <input 
+        </Select>
+        <Input 
           required min="2" max="4"
+          state={minPlayers}
+          changeState={changeMinPlayers}
           type="number"
+          label="Mínima cantidad de jugadores"
           name="min"
-          value={inputs.min}
-          onChange={handleChange}
+          obligatory="true"
         />
-        </label></p>
-        <p><label>máximo jugadores:
-        <input 
-          required min={inputs.min} max="4"
+        <Input
+          min={maxPlayers} 
+          max="4"
+          state={maxPlayers}
+          changeState={changeMaxPlayers}
           type="number"
+          label="Máxima cantidad de jugadores"
           name="max"
-          value={inputs.max}
-          onChange={handleChange}
+          obligatory="true"
         />
-        </label></p>
-        <p><label>juegos:
-        <input 
-          required min="1" max="200"
+        <Input
+          min="1" max="200"
+          state={games}
+          changeState={changeGames}
           type="number"
+          label="Cantidad de juegos"
           name="games"
-          value={inputs.games}
-          onChange={handleChange}
+          obligatory="true"
         />
-        </label></p>
-        <p><label>rondas:
-        <input 
-          required min="1" max="10000"
-          type="number" 
+        <Input
+          min="1" max="10000"
+          state={rounds}
+          changeState={changeRounds}
+          type="number"
+          label="Cantidad de rondas"
           name="rounds"
-          value={inputs.rounds}
-          onChange={handleChange}
+          obligatory="true"
         />
-        </label></p>
         
         {validForm === false && <ErrorMessage>
 					<p>

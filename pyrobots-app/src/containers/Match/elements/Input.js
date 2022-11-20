@@ -12,6 +12,8 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 const InputComponent = ({
+  min,
+  max,
   state,
   changeState,
   type,
@@ -51,6 +53,9 @@ const InputComponent = ({
       </Label>
       <InputGroup>
         <Input
+        required
+        min={min}
+        max={max}
           type={type}
           placeholder={placeholder}
           id={name}
