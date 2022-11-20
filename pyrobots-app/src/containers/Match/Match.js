@@ -9,13 +9,15 @@ import CircularProgress from '@mui/material/CircularProgress';
 
 const Match = () => {
     const navigate = useNavigate();
-    const [name, changeName] = useState({ field: "", valid: null });
-    const [pwd, changePassword] = useState({ field: "", valid: null });
-    const [robot_id, changeRobotID] = useState({ field: "", valid: null });
-    const [min, changeMin] = useState({ field: "", valid: null });
-    const [max, changeMax] = useState({ field: "", valid: null });
-    const [games, changeGames] = useState({ field: "", valid: null });
-    const [rounds, changeRounds] = useState({ field: "", valid: null });
+    const [inputs, setInputs] = useState({
+        name: '',
+        robot_id:'',
+        pwd: '',
+        min: 2,
+        max: 2,
+        games: 1,
+        rounds: 1
+    });
     const [robots, setRobots] = useState([]);
     const [loading, setLoading] = useState(true);
     const [validForm, changeValidForm] = useState({valid: null });
@@ -50,13 +52,13 @@ const Match = () => {
                         'Content-Type': 'application/json',
                         'Authorization': `Bearer ${token}` },
             body: JSON.stringify({
-                name: name,
-                robot_id: parseInt(robot_id),
-                max_players: max,
-                min_players: min,
-                number_of_games: games,
-                number_of_rounds: rounds,
-                password: pwd,
+                name: inputs.name,
+                robot_id: parseInt(inputs.robot_id),
+                max_players: inputs.max,
+                min_players: inputs.min,
+                number_of_games: inputs.games,
+                number_of_rounds: inputs.rounds,
+                password: inputs.pwd,
             })
         })
         const data = await result.json();
@@ -70,7 +72,7 @@ const Match = () => {
         }
         else{
             changeValidForm(false);
-            changeAlertForm("error");
+            changeAlertForm(data.detail);
         }
       }
       catch(error) {
@@ -90,21 +92,9 @@ const Match = () => {
         ((Object.keys(robots).length === 0) ? 
         <NoBotScreen/> :
         <MatchForm onSubmit = {onSubmit_newMatch}
-                name = {name}
-                changeName = {changeName}
-                password = {pwd}
-                changePassword = {changePassword}
-                minPlayers = {min}
-                changeMinPlayers = {changeMin}
-                maxPlayers = {max}
-                changeMaxPlayers = {changeMax}
-                games = {games}
-                changeGames = {changeGames}
-                rounds = {rounds}
-                changeRounds= {changeRounds}
+                inputs = {inputs}
+                setInputs = {setInputs}
                 robots = {robots}
-                robot_id = {robot_id}
-                changeRobotID = {changeRobotID}
                 validForm = {validForm}
                 alertForm = {alertForm}
         />)
