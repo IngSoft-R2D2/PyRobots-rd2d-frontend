@@ -9,22 +9,21 @@ beforeAll(() => {
         Promise.resolve({
             json: () => Promise.resolve(
             [
-                   {
-                        'user_name': 'Lucas', 
-                        'robot_name': 'Robot3000',
-                        'won_games': '45',
-                                    'lost_games': '15'
-                    },
-                   {
-                        'user_name': 'mati', 
-                        'robot_name': 'Megatron',
-                        'won_games': '40',
-                        'lost_games': '20'
-                    }
-            
-                ]
-            ),
-        })
+                {
+                    'user_name': 'Lucas', 
+                    'robot_name': 'Robot3000',
+                    'won_games': '45',
+                    'lost_games': '15'
+                },
+                {
+                    'user_name': 'mati', 
+                    'robot_name': 'Megatron',
+                    'won_games': '40',
+                    'lost_games': '20'
+                }
+            ]
+        ),
+    })
 })
 
 afterAll(() => {
