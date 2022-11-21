@@ -34,6 +34,10 @@ const Home = () => {
     navigate("/listmatches");
   }
 
+  const goToMatchesHistory = async() => {
+    navigate("/history");
+  }
+
   return [
     <AppBar position="fixed" sx={{ background: 'dark-blue' }} 
         key = {0} >
@@ -137,6 +141,20 @@ const Home = () => {
             endIcon={<FormatListBulletedIcon  sx={{ fontSize: "80px" }} /> }
             sx={{  width: '340px' }}
             onClick={goToMatchesList}>Listar partidas</Button>
+        </p>
+
+        <p>
+          <Button 
+          style={{
+              color: "#fff",
+              padding: "18px 36px",
+              fontSize: "22px"
+            }}
+            size="medium"
+            variant="contained"  
+            endIcon={<FormatListBulletedIcon  sx={{ fontSize: "80px" }} /> }
+            sx={{  width: '340px' }}
+            onClick={goToMatchesHistory}>Historial</Button>
         </p>
       </Stack>
       </Box>  
