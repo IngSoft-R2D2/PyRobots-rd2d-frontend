@@ -90,22 +90,22 @@ const BotSelect = () => {
               padding: "18px 36px"
             }}
             key={0} >
-            <Toolbar sx={{ justifyContent: "space-between" }}>
+            <Toolbar >
               <SmartToyIcon sx={{ fontSize: "80px" }} />
               <Typography variant="h3"
                 component="div"
                 style={{
                   fontWeight: "500",
                   fontFamily: "Roboto",
-                  padding: "18px 36px"
+                  padding: "10px 36px"
                 }}>
                 Selección de Robots
               </Typography>
               <Button
                 style={{
                   color: "#fff",
-                  padding: "18px 36px",
-                  fontSize: "22px"
+                  padding: "10px 36px",
+                  fontSize: "20px"
                 }}
                 variant="secondary"
                 endIcon={<UndoIcon sx={{ fontSize: "large" }} />}
