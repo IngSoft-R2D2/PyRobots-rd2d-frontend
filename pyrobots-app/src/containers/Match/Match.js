@@ -15,8 +15,8 @@ const Match = () => {
         pwd: '',
         min: 2,
         max: 2,
-        games: 1,
-        rounds: 1
+        games: 100,
+        rounds: 10000
     });
     const [robots, setRobots] = useState([]);
     const [loading, setLoading] = useState(true);

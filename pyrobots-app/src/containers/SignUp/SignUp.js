@@ -30,9 +30,6 @@ const SignUp = () => {
       if(data.operation_result === "Verification code successfully sent to your email"){
         changeValidForm(true);
         changeAlertForm("Se ha enviado un link de verificación a tu email");
-        setTimeout(() => {
-          navigate('/home')
-        }, 2000);
       }
       else{
         if (data.detail === "A user with this username already exists"){
