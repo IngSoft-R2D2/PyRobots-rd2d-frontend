@@ -51,7 +51,7 @@ const BotSelect = ()=> {
                             robot_id={robot.robot_id}
                             user_id= {location.state.user_id}
                             user_is_creator= {location.state.user_is_creator}
-                            match_name= {location.state.name}
+                            match_name= {location.state.match_name}
                 />
             </div>
     )

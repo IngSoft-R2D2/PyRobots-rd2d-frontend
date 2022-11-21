@@ -13,7 +13,6 @@ import { Stack } from "@mui/system";
 import SummarizeIcon from '@mui/icons-material/Summarize';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
-import Divider from '@mui/material/Divider';
 import styled from "styled-components";
 import ButtonGroup from '@mui/material/ButtonGroup';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
@@ -25,7 +24,7 @@ import Person4OutlinedIcon from '@mui/icons-material/Person4Outlined';
 const useStyles = makeStyles(theme => ({
   title: {
     flexGrow: 1,
-    textAlign: 'left',
+    textAlign: 'center',
   },
 }));
 
@@ -33,8 +32,8 @@ const IconContainer = styled.div`
   display: flex;
 `;
 
-const LobbyView = ({users, name, robots}) => {
-  //console.log(robots)
+const LobbyView = ({users, robots, name}) => {
+
   const navigate = useNavigate();
 
   const goToHome= async() => {
@@ -77,32 +76,32 @@ const LobbyView = ({users, name, robots}) => {
             startIcon={<CreateIcon  sx={{ fontSize: "large" }} /> }
             onClick={goToMatchForm}>
               crear partida
-            </Button>
-            <Button 
-              style={{
-                  color: "#fff",
-                  fontSize: "22px"
-                }}
-                size="medium"
-                variant="secondary"   
-                startIcon={<FormatListBulletedIcon  sx={{ fontSize: "large" }} /> }
-                onClick={goToMatchesList}>
-              Ver partidas
-              </Button>
-              <Button 
-                style={{
-                  color: "#fff",
-                  fontSize: "22px"
-                }}
-                variant="secondary" 
-                startIcon={<HomeIcon  sx={{ fontSize: "large" }} /> } 
-                onClick={goToHome} 
-                sx={{ marginLeft: "auto"}}>
-                Menú
-            </Button>
+          </Button>
+          <Button 
+            style={{
+                color: "#fff",
+                fontSize: "22px"
+              }}
+              size="medium"
+              variant="secondary"   
+              startIcon={<FormatListBulletedIcon  sx={{ fontSize: "large" }} /> }
+              onClick={goToMatchesList}>
+            Ver partidas
+          </Button>
+          <Button 
+            style={{
+              color: "#fff",
+              fontSize: "22px"
+            }}
+            variant="secondary" 
+            startIcon={<HomeIcon  sx={{ fontSize: "large" }} /> } 
+            onClick={goToHome} 
+            sx={{ marginLeft: "auto"}}>
+            Menú
+          </Button>
           </ButtonGroup>
         </Toolbar>
-      </AppBar>,
+    </AppBar>,
       <Box
       display="flex"
       justifyContent="center"
@@ -116,25 +115,17 @@ const LobbyView = ({users, name, robots}) => {
           <Typography variant="h4" style={{fontWeight: "700",
             fontFamily: "Roboto",
             padding: "18px 0px"}}>
-              Información de partida: {name}
+              Partida "{name}"
           </Typography>
         </IconContainer>
-        <Typography 
-        style={{fontWeight: "500",
-        fontFamily: "Roboto",
-        padding: "18px 0px"}}
-        variant="h4" gutterBottom>
-          jugadores
-        </Typography>
           <List sx={{ width: "100%", maxWidth: 360, bgcolor: "white" }}>
-          { users.map((value) => (
-              <Stack> 
-              <ListItem key={value}>
+          { users.map((user, index) => (
+              <ListItem key = {user}>
+                {/* el creador es rojo y tiene un ícono diferente */}
                 <ListItemAvatar>
-                  {/* el creador es rojo y tiene un icono diferente */}
-                <Avatar style={{ backgroundColor: users[0] === value ? "red" : "blue", fontSize: 40}}
+                <Avatar style={{ backgroundColor: users[0] === user ? "red" : "blue", fontSize: 40}}
                         sx={{ height: '50px', width: '50px' }}>
-                  {users[0] === value 
+                  {users[0] === user 
                   ?
                   <Person4OutlinedIcon />
                   :
@@ -142,23 +133,15 @@ const LobbyView = ({users, name, robots}) => {
                 </Avatar>
                 
                 </ListItemAvatar>
-                <ListItemText primary={`${value}`}
+                <ListItemText primary={`${user}`}
                               primaryTypographyProps={
                                   { style: { fontSize: '1.4rem', fontFamily: "Roboto" } }}
                 />
-              </ListItem>
-              </Stack> 
-          ))}
-          { robots.map((value) => (
-              <Stack> 
-              <ListItem key={value}>
-                <ListItemText secondary={`${value}`}
+                <ListItemText secondary={`${robots[index]}`}
                               secondaryTypographyProps={
                                   { style: { fontSize: '1.1rem', fontFamily: "Roboto" } }}
                 />
               </ListItem>
-              <Divider variant="inset" component="li" />
-              </Stack> 
           ))}
           </List>
         </Stack> 

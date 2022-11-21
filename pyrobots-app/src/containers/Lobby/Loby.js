@@ -23,6 +23,7 @@ const Lobby = () => {
   const [results, setResults] = useState({ started: false, res:[]});
   const [loading, setLoading] = useState(true);
 
+  //obtener la partida correspondiente de la lista de partidas
   useEffect(() => {
     const token = fetchToken();
     (async () => {
@@ -37,8 +38,8 @@ const Lobby = () => {
     })();
   }, [match_id]);
 
+  //setear lista de users y robots
   useEffect(() => {
-    //setear lista de player y robots
     if(match.length > 0){
       Object.keys(match[0].players).forEach((player) => 
       {if (!users.includes(player)){
