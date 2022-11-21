@@ -134,7 +134,7 @@ const SignUpForm = (props) => {
         <ButtonContainer>
           <StyledButton type="submit">Enviar</StyledButton>
         </ButtonContainer>
-        {validForm === true && <SuccessMessage>Usuario registrado! {alertForm}</SuccessMessage>}
+        {validForm === true && <SuccessMessage>{alertForm}</SuccessMessage>}
          
       </Form>
     </main>
