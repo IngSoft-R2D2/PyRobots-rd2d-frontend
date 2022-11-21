@@ -67,102 +67,85 @@ const Home = () => {
           </Box>
         </Toolbar>
       </AppBar>
-      <Box
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        key={1}
+      <Stack
+        spacing={"20px"}
       >
-        <Stack>
-          <Typography variant="h4"
-            component="div"
-            style={{
-              fontWeight: "700",
-              fontFamily: "Roboto",
-              padding: "25px 36px"
-            }}>
-            Bienvenide
-          </Typography>
-          <p>
-            <Button
-              style={{
-                color: "#fff",
-                padding: "18px 36px",
-                fontSize: "22px"
-              }}
-              size="medium"
-              variant="contained"
-              endIcon={<CreateIcon sx={{ fontSize: "80px" }} />}
-              sx={{ width: '340px' }}
-              onClick={goToMatchForm}>crear partida</Button>
-          </p>
-          <p>
-            <Button
-              style={{
-                color: "#fff",
-                padding: "18px 36px",
-                fontSize: "22px"
-              }}
-              size="medium"
-              variant="contained"
-              endIcon={<FileUploadIcon sx={{ fontSize: "80px" }} />}
-              sx={{ width: '340px' }}
-              onClick={goToBotForm}>crear Robot</Button>
-          </p>
-          <p>
-            <Button
-              style={{
-                color: "#fff",
-                padding: "18px 36px",
-                fontSize: "22px"
-              }}
-              size="medium"
-              variant="contained"
-              endIcon={<CreateIcon sx={{ fontSize: "80px" }} />}
-              sx={{ width: '340px' }}
-              onClick={goToSimForm}>crear Simulación</Button>
-          </p>
-          <p>
-            <Button
-              style={{
-                color: "#fff",
-                padding: "18px 36px",
-                fontSize: "22px"
-              }}
-              size="medium"
-              variant="contained"
-              endIcon={<FormatListBulletedIcon sx={{ fontSize: "80px" }} />}
-              sx={{ width: '340px' }}
-              onClick={goToListBots}>Listar robots</Button>
-          </p>
-          <p>
-            <Button
-              style={{
-                color: "#fff",
-                padding: "18px 36px",
-                fontSize: "22px"
-              }}
-              size="medium"
-              variant="contained"
-              endIcon={<FormatListBulletedIcon sx={{ fontSize: "80px" }} />}
-              sx={{ width: '340px' }}
-              onClick={goToMatchesList}>Listar partidas</Button>
-          </p>
-          <p>
-            <Button
-              style={{
-                color: "#fff",
-                padding: "18px 36px",
-                fontSize: "22px"
-              }}
-              size="medium"
-              variant="contained"
-              endIcon={<FormatListBulletedIcon sx={{ fontSize: "80px" }} />}
-              sx={{ width: '340px' }}
-              onClick={goToMatchesHistory}>Historial</Button>
-          </p>
-        </Stack>
-      </Box>
+        <Typography variant="h4"
+          component="div"
+          style={{
+            fontWeight: "700",
+            fontFamily: "Roboto",
+            padding: "25px 36px"
+          }}>
+          Bienvenide
+        </Typography>
+        <Button
+          style={{
+            color: "#fff",
+            padding: "18px 36px",
+            fontSize: "22px"
+          }}
+          size="medium"
+          variant="contained"
+          endIcon={<CreateIcon sx={{ fontSize: "80px" }} />}
+          sx={{ width: '340px' }}
+          onClick={goToMatchForm}>crear partida</Button>
+        <Button
+          style={{
+            color: "#fff",
+            padding: "18px 36px",
+            fontSize: "22px"
+          }}
+          size="medium"
+          variant="contained"
+          endIcon={<FileUploadIcon sx={{ fontSize: "80px" }} />}
+          sx={{ width: '340px' }}
+          onClick={goToBotForm}>crear Robot</Button>
+        <Button
+          style={{
+            color: "#fff",
+            padding: "18px 36px",
+            fontSize: "22px"
+          }}
+          size="medium"
+          variant="contained"
+          endIcon={<CreateIcon sx={{ fontSize: "80px" }} />}
+          sx={{ width: '340px' }}
+          onClick={goToSimForm}>crear Simulación</Button>
+        <Button
+          style={{
+            color: "#fff",
+            padding: "18px 36px",
+            fontSize: "22px"
+          }}
+          size="medium"
+          variant="contained"
+          endIcon={<FormatListBulletedIcon sx={{ fontSize: "80px" }} />}
+          sx={{ width: '340px' }}
+          onClick={goToListBots}>Listar robots</Button>
+        <Button
+          style={{
+            color: "#fff",
+            padding: "18px 36px",
+            fontSize: "22px"
+          }}
+          size="medium"
+          variant="contained"
+          endIcon={<FormatListBulletedIcon sx={{ fontSize: "80px" }} />}
+          sx={{ width: '340px' }}
+          onClick={goToMatchesList}>Listar partidas</Button>
+        <Button
+          style={{
+            color: "#fff",
+            padding: "18px 36px",
+            fontSize: "22px"
+          }}
+          size="medium"
+          variant="contained"
+          endIcon={<FormatListBulletedIcon sx={{ fontSize: "80px" }} />}
+          sx={{ width: '340px' }}
+          onClick={goToMatchesHistory}>Historial</Button>
+      </Stack>
     </div>
   );
 };
