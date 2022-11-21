@@ -3,12 +3,12 @@ import StartIcon from '@mui/icons-material/Start';
 import Button from '@mui/material/Button';
 import { useNavigate } from 'react-router-dom';
 import { fetchToken } from '../elements/Auth.js';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-const Join = ({ match_id, robot_id, players, user_id, is_creator, user_name, is_started }) => {
+const Join = ({ match_id, password, robot_id, players, user_id, is_creator, user_name, is_started }) => {
   const navigate = useNavigate();
   const joinMatch = async () => {
     const token = fetchToken();
+    const body = (password===null) ? {} : {"password": password}
     try {
       const response = await fetch(`http://localhost:8000/matches/join/${match_id}/robot/${robot_id}`, {
         method: "PUT",
@@ -17,7 +17,7 @@ const Join = ({ match_id, robot_id, players, user_id, is_creator, user_name, is_
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`
         },
-        body: JSON.stringify({})
+        body: JSON.stringify(body)
       })
       const data = await response.json();
       if (response.ok) {

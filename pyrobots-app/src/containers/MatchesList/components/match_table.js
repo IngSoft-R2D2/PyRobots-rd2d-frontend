@@ -32,7 +32,8 @@ const MatchTable = ({matches}) => {
 
     const goToSelectBot= async(m) => {
         navigate(`select`, 
-                    {state: {m_id: m.id, 
+                    {state: {m_id: m.id,
+                             is_secured: m.is_secured,
                              players: m.players,
                              user_id: m.user_id,
                              is_creator: m.user_is_creator,

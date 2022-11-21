@@ -14,26 +14,33 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import SmartToyIcon from '@mui/icons-material/SmartToy';
 import UndoIcon from '@mui/icons-material/Undo';
-import { Button } from "@mui/material";
+import { Button, TextField } from "@mui/material";
 import { useNavigate } from 'react-router-dom';
+import InputLabel from '@mui/material/InputLabel';
 
 
 const BotSelect = () => {
-
   const [loading, setLoading] = useState(true)
   const [robot, setRobot] = useState({ robot_id: '' })
   const [robots, setRobots] = useState([]);
+  const [password, setPassword] = useState(null)
   const location = useLocation();
   const match_id = location.state.m_id;
+  const is_secured = location.state.is_secured;
   const players = location.state.players;
   const user_id = location.state.user_id;
   const is_creator = location.state.user_is_creator;
   const user_name = location.state.user_name;
   const is_started = location.state.is_started;
+
   const navigate = useNavigate();
   const goBack = async () => {
-    navigate("/home");
+    navigate("/listmatches");
   }
+
+  const handlePasswordInput = (event) => {
+    setPassword(event.target.value);
+  };
 
   useEffect(() => {
     const token = fetchToken();
@@ -115,21 +122,34 @@ const BotSelect = () => {
               padding: "10px 36px"
             }}
           >
-            <BotList
-              robot={robot}
-              setRobot={setRobot}
-              robots={robots}
-            />
-            
-              <ButtonJoin match_id={match_id}
-                robot_id={robot.robot_id}
-                players={players}
-                user_id={user_id}
-                is_creator={is_creator}
-                user_name={user_name}
-                is_started={is_started}
+            <Stack
+              spacing={5}
+            >
+              <BotList
+                robot={robot}
+                setRobot={setRobot}
+                robots={robots}
               />
-            
+              <Box>
+                <InputLabel
+                  id="robot-label">Contraseña</InputLabel>
+                <TextField
+                  disabled={!is_secured}
+                  id="password-field"
+                  onChange={handlePasswordInput}
+                />
+              </Box>
+            </Stack>
+            <ButtonJoin
+              match_id={match_id}
+              password={password}
+              robot_id={robot.robot_id}
+              players={players}
+              user_id={user_id}
+              is_creator={is_creator}
+              user_name={user_name}
+              is_started={is_started}
+            />
           </Stack>
         </div>
       </div>
