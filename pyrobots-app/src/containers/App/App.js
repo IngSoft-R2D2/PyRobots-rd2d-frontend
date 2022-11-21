@@ -13,6 +13,8 @@ import Simulation from "../Simulation/Simulation.js"
 import Verification from "../Verification/Verification.js"
 import BotList from '../RobotList/BotList';
 import MatchesList from '../MatchesList/MatchesList.js';
+import MatchesHistory from '../MatchesHistory/MatchesHistory.js';
+
 
 
 function App() {
@@ -32,6 +34,7 @@ function App() {
           <Route path="/listrobots/" element={<RequireToken><BotList /></RequireToken>}/>
           <Route path="/listmatches/" element={<RequireToken><MatchesList /></RequireToken>}/>
           <Route path="/listmatches/lobby/:match_id" element={<RequireToken><Lobby /></RequireToken>}/>
+          <Route path="/history/" element={<RequireToken><MatchesHistory /></RequireToken>}/>
         </Routes>
       </BrowserRouter>
     </div>
