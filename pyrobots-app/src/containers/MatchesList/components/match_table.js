@@ -11,7 +11,8 @@ import Button from '@mui/material/Button';
 import UndoIcon from '@mui/icons-material/Undo';
 import { Stack } from "@mui/system";
 import { useNavigate } from "react-router-dom";
-
+import RefreshIcon from '@mui/icons-material/Refresh';
+import Box from '@mui/material/Box';
 
 const MatchTable = ({matches}) => {
     const navigate = useNavigate();
@@ -39,6 +40,41 @@ const MatchTable = ({matches}) => {
                              is_started: m.is_started}}); 
     }
 
+    const renderButtons = (m) => {
+        switch(true) {
+            case (m.user_is_creator===false && 
+                 m.user_is_already_joined===false &&
+                 m.is_available_to_join===true &&
+                 m.is_started===false):
+                return (<Button variant="contained" onClick={() => goToSelectBot(m)}>unirse</Button>)
+            case (m.is_available_to_join===false &&
+                m.user_is_creator===false &&
+                m.user_is_already_joined===false &&
+                (m.is_started===false || (m.is_started && m.is_finished===false))):
+                return (<Button variant="contained" disabled={true}>unirse</Button>)
+            case (m.is_available_to_join===false &&
+                m.user_is_creator===true &&
+                m.user_is_already_joined===true &&
+                (m.is_started===false || (m.is_started && m.is_finished===false))):
+                return (<Button variant="contained" onClick={() => goToLobby(m)}>Lobby</Button>)
+            case (m.is_available_to_join===false &&
+                m.user_is_creator===false &&
+                m.user_is_already_joined===true &&
+                (m.is_started===false || (m.is_started && m.is_finished===false))):
+                return (<Button variant="contained" onClick={() => goToLobby(m)}>Lobby</Button>)
+            case (m.is_available_to_join===false &&
+                m.user_is_already_joined===true &&
+                m.is_started===true &&
+                m.is_finished===false):
+                return (<Button variant="contained" onClick={() => goToLobby(m)}>Lobby</Button>)
+            case (m.user_is_already_joined===true &&
+                m.is_finished===true):
+                return (<Button variant="contained">Resultados</Button>)
+            default:
+                return ("caso por contemplar")
+        }
+    }
+
     const TableHead = withStyles(theme => ({
         root: {
           backgroundColor: "rgb(204, 254, 251 )"
@@ -50,6 +86,19 @@ const MatchTable = ({matches}) => {
         <Stack
         spacing={2}
         >
+        <Box
+            component="span"
+            m={1}
+            display="flex"
+            justifyContent="space-between"
+            alignItems="center"
+            >
+            <Button variant="contained" size="large" endIcon={<UndoIcon fontSize="large"/> } 
+                onClick={goBack} >
+            </Button>
+            <Button variant="contained" size="large" endIcon={<RefreshIcon fontSize="large"/> } 
+            onClick={() => window.location.reload(false)}></Button>
+            </Box>
         <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 500 }} aria-label="simple table">
                 <TableHead>
@@ -60,7 +109,7 @@ const MatchTable = ({matches}) => {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {Object.keys(matches).map((match) => (
+                    {Object.keys(matches).map((match) => ( matches[match].is_finished ? null :
                         <TableRow key= {match}>
                         <TableCell component="th" scope="row" align="left">
                             {matches[match].name}
@@ -68,22 +117,13 @@ const MatchTable = ({matches}) => {
                         <TableCell align="left">   
                             {Object.values(matches[match].players).length+"/"+matches[match].max_players}
                         </TableCell>
-                        {/* aparece el boton join si: no es creador, no esta unido, hay lugar y no empezo*/}
-                        <TableCell align="left">{(matches[match].user_is_creator===false && 
-                                                   matches[match].user_is_already_joined===false &&
-                                                   matches[match].is_available_to_join===true &&
-                                                   matches[match].is_started===false) ? 
-                            <Button variant="contained" onClick={() => goToSelectBot(matches[match])}>unirse</Button>
-                            : <Button variant="contained" onClick={() => goToLobby(matches[match])}>Lobby</Button>}
+                        <TableCell align="left">{renderButtons(matches[match])}
                         </TableCell>
                         </TableRow>
                     ))}
                 </TableBody>
                 </Table>
             </TableContainer>
-            <Button variant="contained" size="large" endIcon={<UndoIcon fontSize="large"/> } 
-                onClick={goBack} > Volver atras 
-            </Button>
         </Stack>)
 }
 

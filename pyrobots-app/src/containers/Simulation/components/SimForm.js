@@ -1,5 +1,8 @@
 import {
   Form,
+  Input,
+  Label,
+  Select,
   ButtonContainer,
   Button,
   SuccessMessage,
@@ -23,12 +26,12 @@ const SimForm= (props) => {
     }
 
   return(
-    <main>
+    <main> 
+      <h1 className= "title">Crear simulación</h1>
+      <h2 className= "subtitle"> Seleccionar en orden</h2>
       <Form className="App" onSubmit={(event) => props.onSubmit(event)}>
-        <h1>Crear simulación</h1>
-        <h4> seleccionar en orden</h4>
-        <p><label> robot 1:
-        <select 
+        <Label> Robot 1</Label>
+        <Select 
           required
           type="number" 
           name = "robot"
@@ -38,11 +41,10 @@ const SimForm= (props) => {
           <option value = {''}> seleccione un robot </option>
           {Object.keys(robots).map((key)=>
           (<option key = {key} value={key}>{robots[key].name}</option>))}
-        </select>
-        </label></p>
-
-        <p><label> robot 2:
-        <select 
+        </Select>
+        
+        <Label> Robot 2 </Label>
+        <Select 
           required
           type="number" 
           name = "robot"
@@ -52,11 +54,10 @@ const SimForm= (props) => {
           <option value = {''}> seleccione un robot </option>
           {Object.keys(robots).map((key)=>
           (<option key = {key} value={key}>{robots[key].name}</option>))}
-        </select>
-        </label></p>
+        </Select>
 
-        <p><label> robot 3 (opcional):
-        <select 
+        <Label> Robot 3 (opcional)</Label>
+        <Select 
           type="number" 
           name = "robot"
           onChange={(e) => 
@@ -65,11 +66,10 @@ const SimForm= (props) => {
           <option value = {''}> seleccione un robot </option>
           {Object.keys(robots).map((key)=>
           (<option key = {key} value={key}>{robots[key].name}</option>))}
-        </select>
-        </label></p>
+        </Select>
 
-        <p><label> robot 4 (opcional):
-        <select 
+        <Label> Robot 4 (opcional)</Label>
+        <Select 
           type="number" 
           name = "robot"
           onChange={(e) => 
@@ -78,18 +78,16 @@ const SimForm= (props) => {
           <option value = {''}> seleccione un robot </option>
           {Object.keys(robots).map((key)=>
           (<option key = {key} value={key}>{robots[key].name}</option>))}
-        </select>
-        </label></p>
+        </Select>
         
-        <p><label>cantidad de rondas:
-        <input 
+        <Label> Cantidad de rondas</Label>
+        <Input 
           required min="1" max="10000"
           type="number" 
           name="rounds"
           value={inputs.rounds}
           onChange={handleChange}
         />
-        </label></p>
 
         {validForm === false && <ErrorMessage>
 					<p>

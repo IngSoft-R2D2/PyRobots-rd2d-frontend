@@ -7,10 +7,7 @@ import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 import SimScreen from '../Board/SimScreen.js';
 
-
-
 const Simulation = () => {
-
 
     const [inputs, setInputs] = useState({
         robot_id1:'',
@@ -49,7 +46,7 @@ const Simulation = () => {
       event.preventDefault();
       const token = fetchToken();
       const robots_fetch = [parseInt(inputs.robot_id1),parseInt(inputs.robot_id2),
-        parseInt(inputs.robot_id3),parseInt(inputs.robot_id4)]
+      parseInt(inputs.robot_id3),parseInt(inputs.robot_id4)]
       
       const robots_clean = robots_fetch.filter( value => !Number.isNaN(value) );
       
@@ -72,18 +69,15 @@ const Simulation = () => {
             setReady(true)
             changeValidForm(true);
             changeAlertForm("Simulacion creada exitosamente");
-
         }
         else{
             changeValidForm(false);
             changeAlertForm("error");
         }
       }
-      
       catch(error) {
           alert(error);
       };
-
     }
 
     return( 
