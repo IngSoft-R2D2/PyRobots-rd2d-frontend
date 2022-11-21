@@ -50,7 +50,7 @@ const BotForm = (props) => {
 
   return (
     <div>
-      <h1 className= "title">Crear Robot</h1>
+      <h1 className= "title">Creá un robot</h1>
       <Form onSubmit={(event) => props.onSubmit(event)}>
         <Label>Nombre</Label>
           <Input

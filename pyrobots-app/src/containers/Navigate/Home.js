@@ -70,7 +70,7 @@ const Home = () => {
                   style={{fontWeight: "700",
                           fontFamily: "Roboto",
                           padding: "10px 36px"}}>
-      Estas son las acciones que puedes elegir
+      Estas son las acciones que podés realizar
       </Typography>
         <p>
           <Button 

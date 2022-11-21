@@ -27,7 +27,7 @@ const MatchForm= (props) => {
 
   return(
     <main>
-      <h1 className= "title">Creación de partida</h1>
+      <h1 className= "title">Creá una partida</h1>
 
       <Form className="App" onSubmit={(event) => props.onSubmit(event)}>
         <Label>Nombre</Label>
