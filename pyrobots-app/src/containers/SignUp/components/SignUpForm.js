@@ -2,10 +2,11 @@ import React from "react";
 import {
   Form,
   ButtonContainer,
-  Button,
+  StyledButton,
   SuccessMessage,
   ErrorMessage
 } from "../../Commons/Forms.js";
+import PyRobotsAppbar from "./Appbar.js";
 import Input from "../../Commons/Input.js";
 import InputFile from "../../Commons/InputFile.js";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -131,7 +132,7 @@ const SignUpForm = (props) => {
 					</p>
           </ErrorMessage>}
         <ButtonContainer>
-          <Button type="submit">Enviar</Button>
+          <StyledButton type="submit">Enviar</StyledButton>
         </ButtonContainer>
         {validForm === true && <SuccessMessage>Usuario registrado! {alertForm}</SuccessMessage>}
          

@@ -3,12 +3,12 @@ import '../LogIn.css';
 import {
     Form,
     ButtonContainer,
-    Button,
+    StyledButton,
     SuccessMessage,
     ErrorMessage
   } from "../../Commons/Forms.js";
+import PyRobotsAppbar from "./Appbar.js";
 import Input from "../../Commons/Input.js";
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 
@@ -76,7 +76,7 @@ const LogInForm = (props) => {
            </ErrorMessage>}
     
             <ButtonContainer>
-              <Button type="submit">Enviar</Button>
+              <StyledButton type="submit">Enviar</StyledButton>
             </ButtonContainer>
 
             {validForm === true && <SuccessMessage> 
