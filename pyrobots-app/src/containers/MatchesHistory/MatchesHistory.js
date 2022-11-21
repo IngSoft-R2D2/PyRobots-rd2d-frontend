@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Stack } from "@mui/system";
 import { useEffect, useState } from "react";
-import { fetchToken } from './elements/Auth.js';
+import { fetchToken } from '../Commons/Auth.js';
 import HistoryTable from './components/history_table.js';
 
 export default function MatchesHistory() {

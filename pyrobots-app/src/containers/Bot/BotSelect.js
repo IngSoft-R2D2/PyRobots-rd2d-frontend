@@ -1,6 +1,6 @@
 // import React from "react";
 import { useState, useEffect } from 'react';
-import { fetchToken } from './elements/Auth.js'
+import { fetchToken } from '../Commons/Auth.js'
 import BotList from "./components/BotList.js";
 import ButtonJoin from "../MatchesList/components/ButtonJoin.js"
 import Backdrop from '@mui/material/Backdrop';

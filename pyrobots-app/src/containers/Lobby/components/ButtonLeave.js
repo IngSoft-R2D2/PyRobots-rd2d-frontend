@@ -1,7 +1,7 @@
 import * as React from 'react';
 import DangerousIcon from '@mui/icons-material/Dangerous';
 import { useNavigate } from 'react-router-dom';
-import { fetchToken } from '../../Bot/elements/Auth.js';
+import { fetchToken } from '../../Commons/Auth.js';
 import Button from '@mui/material/Button';
 
 import { createTheme, ThemeProvider} from '@mui/material/styles';
