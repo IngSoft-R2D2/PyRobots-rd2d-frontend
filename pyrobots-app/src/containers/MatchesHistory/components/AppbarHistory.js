@@ -4,31 +4,24 @@ import SmartToyIcon from '@mui/icons-material/SmartToy';
 import { Box } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import ButtonGroup from '@mui/material/ButtonGroup';
-import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import HomeIcon from '@mui/icons-material/Home';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import CreateIcon from '@mui/icons-material/Create';
 
-const PyRobotsAppbar= (props) => {
+const PyRobotsAppbar = () => {
 
     const navigate = useNavigate();
 
-    const goToRoot= async() => {
-        navigate("/");
+    const goToHome= async() => {
+        navigate("/home");
+    }
+    
+    const goToMatchForm = async() => {
+        navigate("/matches");
     }
   
   return(
-
-    <div style={{
-      display: "flex",
-      position: "absolute",
-      justifyContent: "center",
-      alignItems: "center",
-      height: "100%",
-      width: "100%",
-      top: 0,
-      left: 0
-    }}>
     <AppBar position="fixed" sx={{ background: 'dark-blue' }} 
         key = {0} >
             <Toolbar style={{display:'flex', justifyContent:"space-between", width:'100%'}}>    
@@ -42,6 +35,18 @@ const PyRobotsAppbar= (props) => {
                     PyRobots
                     </Typography>
                 </Box>  
+                <ButtonGroup variant="secondary" aria-label="outlined primary button group">
+                    <Button 
+                        style={{
+                            color: "#fff",
+                            fontSize: "22px"
+                        }}
+                        size="medium"
+                        variant="secondary"  
+                        startIcon={<CreateIcon  sx={{ fontSize: "large" }} /> }
+                        onClick={goToMatchForm}>
+                        crear partida
+                    </Button>
                     <Button 
                         style={{
                             color: "#fff",
@@ -49,13 +54,13 @@ const PyRobotsAppbar= (props) => {
                         }}
                         variant="secondary" 
                         startIcon={<HomeIcon  sx={{ fontSize: "large" }} /> } 
-                        onClick={goToRoot} 
+                        onClick={goToHome} 
                         sx={{ marginLeft: "auto"}}>
-                        Inicio
+                        Menú
                     </Button>
+                </ButtonGroup>
             </Toolbar>
         </AppBar>
-        </div>
     );
 };
 

@@ -1,5 +1,4 @@
 import React from "react";
-import '../SignUp.css';
 import {
   Form,
   ButtonContainer,
@@ -8,7 +7,7 @@ import {
   ErrorMessage
 } from "../elements/Forms.js";
 import Input from "../elements/Input.js";
-import PyRobotsAppbar from "../elements/Appbar.js";
+import PyRobotsAppbar from "./Appbar.js";
 import InputFile from "../elements/InputFile.js";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
@@ -54,7 +53,7 @@ const SignUpForm = (props) => {
     }
   };
 
-    return [
+    return (
       <div style={{
         display: "flex",
         position: "absolute",
@@ -65,7 +64,7 @@ const SignUpForm = (props) => {
         top: 0,
         left: 0
       }}>
-      <PyRobotsAppbar></PyRobotsAppbar>,
+      <PyRobotsAppbar></PyRobotsAppbar>
       <main>
       <h1 style={{fontFamily: "Roboto", marginTop: 120, marginRight: 18 }}>Hola!</h1>
       <h2 style={{fontFamily: "Roboto", marginRight: 18 }}>Registrate en PyRobots</h2>
@@ -140,7 +139,7 @@ const SignUpForm = (props) => {
       </Form>
     </main>
     </div>
-  ];    
+  );    
 };  
   
 export default SignUpForm;

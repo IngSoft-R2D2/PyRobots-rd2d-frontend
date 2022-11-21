@@ -1,23 +1,11 @@
-import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import SmartToyIcon from '@mui/icons-material/SmartToy';
-import LoginIcon from '@mui/icons-material/Login';
-import Button from '@mui/material/Button';
-import {useNavigate} from "react-router-dom";
 import { Alert,
-        AlertTitle,
-        Box } from '@mui/material';
+  AlertTitle,
+  Box } from '@mui/material';
+import PyRobotsAppbar from "./components/Appbar.js";
 
 const Verification = () => {
 
-  const navigate = useNavigate();
-  const goToLogin= async() => {
-      navigate("/login");
-  }
-
-  return [
+  return (
     <div style={{
       display: "flex",
       position: "absolute",
@@ -28,34 +16,7 @@ const Verification = () => {
       top: 0,
       left: 0
     }}>
-      <AppBar position="fixed" sx={{ background: 'dark-blue' }} 
-        key = {0} >
-        <Toolbar style={{display:'flex', justifyContent:"space-between", width:'100%'}}>
-        <Box display='flex' flexGrow={1}>
-                    <SmartToyIcon sx={{ fontSize: "80px" }} />
-                    <Typography variant="h3" 
-                                component="div" 
-                                style={{fontWeight: "700",
-                                fontFamily: "Roboto",
-                                padding: "18px 36px"}} >
-                    PyRobots
-                    </Typography>
-                </Box>  
-          <Button 
-              style={{
-                color: "#fff",
-                padding: "18px 36px",
-                fontSize: "22px"
-              }}
-              variant="secondary" 
-              endIcon={<LoginIcon  sx={{ fontSize: "800px" }} /> } 
-              onClick={goToLogin} 
-              sx={{ marginLeft: "auto" }}>
-              LogIn
-          </Button>
-        </Toolbar>
-      </AppBar>,
-
+      <PyRobotsAppbar></PyRobotsAppbar>
         <Box
         display="flex"
         justifyContent="center"
@@ -73,7 +34,7 @@ const Verification = () => {
           </Alert>
         </Box>
         </div>
-  ];
+  );
 }
 
 export default Verification;

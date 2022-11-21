@@ -1,14 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import { Stack } from "@mui/system";
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import FileUploadIcon from '@mui/icons-material/FileUpload';
 import CreateIcon from '@mui/icons-material/Create';
-import SmartToyIcon from '@mui/icons-material/SmartToy';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
-import { Box } from '@mui/material';
+import PyRobotsAppbar from "./Appbar.js";
 
 const Home = () => {
 
@@ -49,24 +46,7 @@ const Home = () => {
       top: 0,
       left: 0
     }}>
-      <AppBar position="fixed" sx={{ background: 'dark-blue' }}
-        key={0} >
-        <Toolbar style={{ display: 'fixed', justifyContent: "space-between", width: '100%' }}>
-          <Box display='flex' flexGrow={1}>
-            <SmartToyIcon sx={{ fontSize: "80px" }} />
-            <Typography variant="h3"
-              component="div"
-              style={{
-                fontWeight: "700",
-                fontFamily: "Roboto",
-                padding: "18px 36px"
-              }}
-            >
-              PyRobots
-            </Typography>
-          </Box>
-        </Toolbar>
-      </AppBar>
+     <PyRobotsAppbar></PyRobotsAppbar>
       <Stack
         spacing={"20px"}
       >
