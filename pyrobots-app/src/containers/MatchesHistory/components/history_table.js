@@ -25,6 +25,7 @@ const HistoryTable = ({ matches }) => {
     setResultsVar(res);
   };
 
+
   const TableHead = withStyles((theme) => ({
     root: {
       backgroundColor: "rgb(204, 254, 251 )",
