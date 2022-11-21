@@ -21,7 +21,6 @@ const Join = ({ match_id, password, robot_id, players, user_id, is_creator, user
       })
       const data = await response.json();
       if (response.ok) {
-        alert("Unido a la partida exitosamente")
         navigate(`/listmatches/lobby/${match_id}`,
           {
             state: {

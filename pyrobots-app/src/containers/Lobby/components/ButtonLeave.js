@@ -31,8 +31,7 @@ const ButtonLeave = (props) => {
                 })
             const data = await response.json();
             if(response.ok){
-                alert("Partida abandonada exitosamente")
-                navigate('/home')
+                navigate('/listmatches')
             }
             else {
                 alert(data.detail)

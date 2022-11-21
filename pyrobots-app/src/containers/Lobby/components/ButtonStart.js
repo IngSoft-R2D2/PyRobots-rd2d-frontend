@@ -30,7 +30,7 @@ const ButtonStart = (props) => {
                 })
             const data = await response.json();
             if(response.ok){
-                alert("Partida iniciada exitosamente")
+                //pass
             }
             else {
                 alert(data.detail)
