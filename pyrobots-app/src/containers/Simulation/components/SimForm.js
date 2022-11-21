@@ -4,12 +4,22 @@ import {
   Label,
   Select,
   ButtonContainer,
-  Button,
+  StyledButton,
   SuccessMessage,
   ErrorMessage
 } from "../elements/Forms.js";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import SmartToyIcon from '@mui/icons-material/SmartToy';
+import { Box } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+import ButtonGroup from '@mui/material/ButtonGroup';
+import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
+import HomeIcon from '@mui/icons-material/Home';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
 
 const SimForm= (props) => {
 
@@ -25,10 +35,52 @@ const SimForm= (props) => {
       setInputs(values => ({...values, [name]: value}))
     }
 
-  return(
+    const navigate = useNavigate();
+
+    const goToHome= async() => {
+        navigate("/home");
+    }
+  return[
+
+    <div style={{
+      display: "flex",
+      position: "absolute",
+      justifyContent: "center",
+      alignItems: "center",
+      height: "100%",
+      width: "100%",
+      top: 0,
+      left: 0
+    }}>
+    <AppBar position="fixed" sx={{ background: 'dark-blue' }} 
+        key = {0} >
+            <Toolbar style={{display:'flex', justifyContent:"space-between", width:'100%'}}>    
+                <Box display='flex' flexGrow={1}>
+                    <SmartToyIcon sx={{ fontSize: "80px" }} />
+                    <Typography variant="h3" 
+                                component="div" 
+                                style={{fontWeight: "700",
+                                fontFamily: "Roboto",
+                                padding: "18px 36px"}} >
+                    PyRobots
+                    </Typography>
+                </Box>  
+                    <Button 
+                        style={{
+                            color: "#fff",
+                            fontSize: "22px"
+                        }}
+                        variant="secondary" 
+                        startIcon={<HomeIcon  sx={{ fontSize: "large" }} /> } 
+                        onClick={goToHome} 
+                        sx={{ marginLeft: "auto"}}>
+                        Menú
+                    </Button>
+            </Toolbar>
+        </AppBar>,
     <main> 
-      <h1 className= "title">Crear simulación</h1>
-      <h2 className= "subtitle"> Seleccionar en orden</h2>
+      <h1 style={{fontFamily: "Roboto", marginTop: 120,  marginRight: 18 }}>Creá una simulación</h1>
+      <h2 style={{fontFamily: "Roboto",  marginRight: 18 }}> Por favor, seleccioná en orden</h2>
       <Form className="App" onSubmit={(event) => props.onSubmit(event)}>
         <Label> Robot 1</Label>
         <Select 
@@ -97,13 +149,14 @@ const SimForm= (props) => {
 					</p>
           </ErrorMessage>}
           <ButtonContainer>
-          <Button type="submit">Crear</Button>
+          <StyledButton type="submit">Crear</StyledButton>
         </ButtonContainer>
 
         {validForm === true && <SuccessMessage>{alertForm}</SuccessMessage>}
       </Form>
     </main>
-  );
+    </div>
+  ];
 };
 
 export default SimForm;

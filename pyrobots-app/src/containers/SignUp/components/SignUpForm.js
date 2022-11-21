@@ -8,6 +8,7 @@ import {
   ErrorMessage
 } from "../elements/Forms.js";
 import Input from "../elements/Input.js";
+import PyRobotsAppbar from "../elements/Appbar.js";
 import InputFile from "../elements/InputFile.js";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
@@ -53,10 +54,21 @@ const SignUpForm = (props) => {
     }
   };
 
-    return (
+    return [
+      <div style={{
+        display: "flex",
+        position: "absolute",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "100%",
+        width: "100%",
+        top: 0,
+        left: 0
+      }}>
+      <PyRobotsAppbar></PyRobotsAppbar>,
       <main>
-      <h1 className= "title">Hola!</h1>
-      <h2 className="subtitle">Registrate en PyRobots</h2>
+      <h1 style={{fontFamily: "Roboto", marginTop: 120, marginRight: 18 }}>Hola!</h1>
+      <h2 style={{fontFamily: "Roboto", marginRight: 18 }}>Registrate en PyRobots</h2>
       <Form action="" onSubmit={(event) => props.onSubmit(event)}>
         <Input
           state={user}
@@ -127,8 +139,8 @@ const SignUpForm = (props) => {
          
       </Form>
     </main>
-    
-  );     
+    </div>
+  ];    
 };  
   
 export default SignUpForm;

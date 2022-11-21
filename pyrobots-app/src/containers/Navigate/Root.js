@@ -7,6 +7,7 @@ import PersonIcon from '@mui/icons-material/Person';
 import LoginIcon from '@mui/icons-material/Login';
 import SmartToyIcon from '@mui/icons-material/SmartToy';
 import Typography from '@mui/material/Typography';
+import { Box } from '@mui/material';
 
 const Root = () => {
 
@@ -31,23 +32,18 @@ const Root = () => {
         top: 0,
         left: 0
     }}>
-      <AppBar position="fixed" sx={{ background: 'dark-blue' }}
-        style={{
-          marginRight: "0px",
-          padding: "10px 36px"
-        }}
-      >
+      <AppBar position="fixed" sx={{ background: 'dark-blue' }}>
         <Toolbar >
-          <SmartToyIcon sx={{ fontSize: "80px" }} />
-          <Typography variant="h3"
-            component="div"
-            style={{
-              fontWeight: "700",
-              fontFamily: "Roboto",
-              padding: "18px 36px"
-            }}>
-            PyRobots
-          </Typography>
+        <Box display='flex' flexGrow={1}>
+                    <SmartToyIcon sx={{ fontSize: "80px" }} />
+                    <Typography variant="h3" 
+                                component="div" 
+                                style={{fontWeight: "700",
+                                fontFamily: "Roboto",
+                                padding: "18px 36px"}} >
+                    PyRobots
+                    </Typography>
+                </Box>  
         </Toolbar>
       </AppBar>
       <div>
@@ -67,7 +63,6 @@ const Root = () => {
             }}>
             Bienvenide
           </Typography>
-          <p>
             <Button
               style={{
                 color: "#fff",
@@ -79,8 +74,6 @@ const Root = () => {
               endIcon={<PersonIcon sx={{ fontSize: "large" }} />}
               sx={{ width: '300px' }}
               onClick={goToSignUp}>Registrarme</Button>
-          </p>
-          <p>
             <Button
               style={{
                 color: "#fff",
@@ -92,7 +85,6 @@ const Root = () => {
               endIcon={<LoginIcon sx={{ fontSize: "large" }} />}
               sx={{ width: '300px' }}
               onClick={goToLogin}>Loguearme</Button>
-          </p>
         </Stack>
       </div>
     </div>

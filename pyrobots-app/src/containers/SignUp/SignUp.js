@@ -1,9 +1,7 @@
 import React, { useState } from "react";
-import {useNavigate} from "react-router-dom";
 import SignUpForm from './components/SignUpForm.js' 
 
 const SignUp = () => {
-  const navigate = useNavigate();
   const [user, changeUser] = useState({ field: "", valid: null });
   const [password, changePassword] = useState({ field: "", valid: null });
   const [password2, changePassword2] = useState({ field: "", valid: null });
@@ -30,9 +28,6 @@ const SignUp = () => {
       if(data.operation_result === "Verification code successfully sent to your email"){
         changeValidForm(true);
         changeAlertForm("Se ha enviado un link de verificación a tu email");
-        setTimeout(() => {
-          navigate('/home')
-        }, 2000);
       }
       else{
         if (data.detail === "A user with this username already exists"){
