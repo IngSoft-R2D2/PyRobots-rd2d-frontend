@@ -69,13 +69,6 @@ const Home = () => {
                     padding: "25px 36px"}}>
       Bienvenide
       </Typography>
-      <Typography variant="h5" 
-                  component="div" 
-                  style={{fontWeight: "700",
-                          fontFamily: "Roboto",
-                          padding: "10px 36px"}}>
-      Estas son las acciones que puedes elegir
-      </Typography>
         <p>
           <Button 
           style={{
