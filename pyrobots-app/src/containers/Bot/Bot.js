@@ -46,7 +46,7 @@ const Bot = () => {
           changeAlertForm("Robot creado exitosamente");
           setTimeout(() => {
             navigate('/home')
-            }, 5000);
+            }, 2000);
         }
         else {
           changeValidForm(false);
