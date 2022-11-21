@@ -5,8 +5,6 @@ import Toolbar from '@mui/material/Toolbar';
 import SmartToyIcon from '@mui/icons-material/SmartToy';
 import { Box } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import { Stack } from "@mui/system";
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import CreateIcon from '@mui/icons-material/Create';

@@ -15,30 +15,27 @@ import RefreshIcon from '@mui/icons-material/Refresh';
 import Box from '@mui/material/Box';
 
 const MatchTable = ({matches}) => {
-    const navigate = useNavigate();
 
+    const navigate = useNavigate();
     const goBack= async() => {
         navigate("/home");
 
     }
 
     const goToLobby= async(m) => {
-        navigate(`lobby/${m.id}`, 
-                    {state: {players: m.players, 
-                             id: m.user_id,
-                             is_creator: m.user_is_creator,
-                             is_started: m.is_started}});
+        navigate(`lobby/${m.id}` , 
+                    {state: {user_id: m.user_id,
+                            user_is_creator: m.user_is_creator,
+                            match_name: m.name}});
     }
 
     const goToSelectBot= async(m) => {
         navigate(`select`, 
                     {state: {m_id: m.id,
-                             is_secured: m.is_secured,
-                             players: m.players,
-                             user_id: m.user_id,
-                             is_creator: m.user_is_creator,
-                             user_name: m.user_name,
-                             is_started: m.is_started}}); 
+                            user_id: m.user_id,
+                            user_is_creator: m.user_is_creator,
+                            match_name: m.name,
+                            is_secured: m.is_secured}});
     }
 
     const renderButtons = (m) => {

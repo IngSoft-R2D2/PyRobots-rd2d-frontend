@@ -4,6 +4,9 @@ import PlayCircleFilledWhiteIcon from
 import Button from '@mui/material/Button';
 import { fetchToken } from '../../Commons/Auth.js';
 import { createTheme, ThemeProvider} from '@mui/material/styles';
+import { Alert,
+    Box } from '@mui/material';
+import { Stack } from "@mui/system";
 
 const theme = createTheme({
     palette: {
@@ -52,17 +55,24 @@ const ButtonStart = (props) => {
             </Button>
         </ThemeProvider>
         :
-        <ThemeProvider theme={theme}>
+        <Stack spacing={2}>
+        <ThemeProvider theme={theme} >
+        <Box textAlign='center'>
         <Button 
             disabled
             color="start" 
             variant="outlined" size="medium"
             endIcon={<PlayCircleFilledWhiteIcon sx={{ fontSize: "large" }} /> }
-            onClick={startMatch} > 
+            onClick={startMatch} 
+            style={{marginTop: '40px',maxWidth: '100px', maxHeight: '50px', minWidth: '30px', minHeight: '30px'}}> 
             Iniciar
         </Button>
+        </Box>
+        <Alert variant="filled" severity="warning">
+            Esperá a que se una un jugador más para poder iniciar la partida
+        </Alert>
     </ThemeProvider>
-
+    </Stack>
     )
 }
 
