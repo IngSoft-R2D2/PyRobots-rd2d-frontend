@@ -100,9 +100,6 @@ const MatchTable = ({matches}) => {
             justifyContent="space-between"
             alignItems="center"
             >
-                <IconButton onClick={() => window.location.reload(false)} color="primary">
-                <RefreshIcon />
-                </IconButton>
             </Box>
         <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 500 }} aria-label="simple table">
@@ -110,7 +107,9 @@ const MatchTable = ({matches}) => {
                     <TableRow>
                     <TableCell align="left">Nombre</TableCell>
                     <TableCell align="left">Jugadores</TableCell>
-                    <TableCell align="left"> </TableCell>
+                    <TableCell align="right"><IconButton onClick={() => window.location.reload(false)} color="primary">
+                <RefreshIcon />
+                </IconButton> </TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -122,7 +121,7 @@ const MatchTable = ({matches}) => {
                         <TableCell align="left">   
                             {Object.values(matches[match].players).length+"/"+matches[match].max_players}
                         </TableCell>
-                        <TableCell align="left">{renderButtons(matches[match])}
+                        <TableCell align="right">{renderButtons(matches[match])}
                         </TableCell>
                         </TableRow>
                     ))}
