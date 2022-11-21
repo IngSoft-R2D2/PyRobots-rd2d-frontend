@@ -43,7 +43,7 @@ const SimForm= (props) => {
           (<option key = {key} value={key}>{robots[key].name}</option>))}
         </Select>
         
-        <Label> Robot 2 (opcional)</Label>
+        <Label> Robot 2 </Label>
         <Select 
           required
           type="number" 
@@ -68,7 +68,7 @@ const SimForm= (props) => {
           (<option key = {key} value={key}>{robots[key].name}</option>))}
         </Select>
 
-        <Label> Robot 4</Label>
+        <Label> Robot 4 (opcional)</Label>
         <Select 
           type="number" 
           name = "robot"
