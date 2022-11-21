@@ -14,7 +14,7 @@ const Simulation = () => {
         robot_id2:'',
         robot_id3:'',
         robot_id4:'',
-        rounds: 1
+        rounds: 10000
     });
 
     const [robots, setRobots] = useState([]);
