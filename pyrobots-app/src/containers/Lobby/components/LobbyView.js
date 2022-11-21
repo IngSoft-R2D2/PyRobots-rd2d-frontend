@@ -3,7 +3,6 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import SmartToyIcon from "@mui/icons-material/SmartToy";
-// import SentimentSatisfiedAltIcon from "@mui/icons-material/SentimentSatisfiedAlt";
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import AppBar from '@mui/material/AppBar';
@@ -14,18 +13,18 @@ import { Stack } from "@mui/system";
 import SummarizeIcon from '@mui/icons-material/Summarize';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
-import Divider from '@mui/material/Divider';
 import styled from "styled-components";
 import ButtonGroup from '@mui/material/ButtonGroup';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import CreateIcon from '@mui/icons-material/Create';
 import HomeIcon from '@mui/icons-material/Home';
 import { makeStyles } from '@material-ui/core/styles';
+import Person4OutlinedIcon from '@mui/icons-material/Person4Outlined';
 
 const useStyles = makeStyles(theme => ({
   title: {
     flexGrow: 1,
-    textAlign: 'left',
+    textAlign: 'center',
   },
 }));
 
@@ -33,7 +32,8 @@ const IconContainer = styled.div`
   display: flex;
 `;
 
-const LobbyView = (props) => {
+const LobbyView = ({users, robots, name}) => {
+
   const navigate = useNavigate();
 
   const goToHome= async() => {
@@ -64,7 +64,6 @@ const LobbyView = (props) => {
                         padding: "18px 36px"}} 
                       className={classes.title}>
             PyRobots
-
           </Typography>
           <ButtonGroup variant="secondary" aria-label="outlined primary button group">
           <Button 
@@ -77,79 +76,76 @@ const LobbyView = (props) => {
             startIcon={<CreateIcon  sx={{ fontSize: "large" }} /> }
             onClick={goToMatchForm}>
               crear partida
-            </Button>
-            <Button 
-              style={{
-                  color: "#fff",
-                  fontSize: "22px"
-                }}
-                size="medium"
-                variant="secondary"   
-                startIcon={<FormatListBulletedIcon  sx={{ fontSize: "large" }} /> }
-                onClick={goToMatchesList}>
-              Ver partidas
-              </Button>
-              <Button 
-                style={{
-                  color: "#fff",
-                  fontSize: "22px"
-                }}
-                variant="secondary" 
-                startIcon={<HomeIcon  sx={{ fontSize: "large" }} /> } 
-                onClick={goToHome} 
-                sx={{ marginLeft: "auto"}}>
-                Menú
-            </Button>
+          </Button>
+          <Button 
+            style={{
+                color: "#fff",
+                fontSize: "22px"
+              }}
+              size="medium"
+              variant="secondary"   
+              startIcon={<FormatListBulletedIcon  sx={{ fontSize: "large" }} /> }
+              onClick={goToMatchesList}>
+            Ver partidas
+          </Button>
+          <Button 
+            style={{
+              color: "#fff",
+              fontSize: "22px"
+            }}
+            variant="secondary" 
+            startIcon={<HomeIcon  sx={{ fontSize: "large" }} /> } 
+            onClick={goToHome} 
+            sx={{ marginLeft: "auto"}}>
+            Menú
+          </Button>
           </ButtonGroup>
         </Toolbar>
-      </AppBar>,
+    </AppBar>,
       <Box
       display="flex"
       justifyContent="center"
       alignItems="center"
       key = {1}
+      height = '500px'
       >
         <Stack> 
         <IconContainer> 
-          <SummarizeIcon sx={{ height: '60px', width: '60px' }} style={{ color: "#1C8E40",marginRight: "14px"}}/>
+          <SummarizeIcon sx={{ height: '80px', width: '60px' }} style={{ color: "#1C8E40",marginRight: "14px"}}/>
           <Typography variant="h4" style={{fontWeight: "700",
             fontFamily: "Roboto",
             padding: "18px 0px"}}>
-              Información de partida
+              Partida "{name}"
           </Typography>
         </IconContainer>
-        <Typography 
-        style={{fontWeight: "500",
-        fontFamily: "Roboto",
-        padding: "18px 0px"}}
-        variant="h4" gutterBottom>
-          Jugadores 
-        </Typography>
           <List sx={{ width: "100%", maxWidth: 360, bgcolor: "white" }}>
-            {props.users.map((value) => (
-              <Stack> 
-              <ListItem>
+          { users.map((user, index) => (
+              <ListItem key = {user}>
+                {/* el creador es rojo y tiene un ícono diferente */}
                 <ListItemAvatar>
-                <Avatar style={{ backgroundColor: "blue" }}
-                sx={{ height: '50px', width: '50px' }}>
-                  <SmartToyIcon style={{ fontSize: 40 }}/>
+                <Avatar style={{ backgroundColor: users[0] === user ? "red" : "blue", fontSize: 40}}
+                        sx={{ height: '50px', width: '50px' }}>
+                  {users[0] === user 
+                  ?
+                  <Person4OutlinedIcon />
+                  :
+                  <SmartToyIcon />}
                 </Avatar>
+                
                 </ListItemAvatar>
-                <ListItemText primary={`Jugador ${value}`}  
-                primaryTypographyProps={{ style: { fontSize: '1.4rem', fontFamily: "Roboto" } }}/>
+                <ListItemText primary={`${user}`}
+                              primaryTypographyProps={
+                                  { style: { fontSize: '1.4rem', fontFamily: "Roboto" } }}
+                />
+                <ListItemText secondary={`${robots[index]}`}
+                              secondaryTypographyProps={
+                                  { style: { fontSize: '1.1rem', fontFamily: "Roboto" } }}
+                />
               </ListItem>
-              <Divider variant="inset" component="li" />
-              </Stack> 
-            ))}
-            {/* {props.robots.map((value) => (
-              <ListItem 
-              key = {value}>
-                <ListItemText primary={`bot ${value}`} />
-              </ListItem>
-            ))} */}
+          ))}
           </List>
         </Stack> 
-      </Box>
+        </Box>
   ];
 };
 

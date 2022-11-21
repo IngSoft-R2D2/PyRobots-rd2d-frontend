@@ -7,7 +7,6 @@ import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 import { useLocation } from 'react-router-dom'
 import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
 import AppBar from '@mui/material/AppBar';
 import { Stack } from "@mui/system";
 import Toolbar from '@mui/material/Toolbar';
@@ -19,20 +18,15 @@ import { useNavigate } from 'react-router-dom';
 import InputLabel from '@mui/material/InputLabel';
 import NoBotScreenJoin from './components/NoBotScreenJoin.js';
 
-
-const BotSelect = () => {
-  const [loading, setLoading] = useState(true)
-  const [robot, setRobot] = useState({ robot_id: '' })
-  const [robots, setRobots] = useState([]);
-  const [password, setPassword] = useState(null)
-  const location = useLocation();
-  const match_id = location.state.m_id;
-  const is_secured = location.state.is_secured;
-  const players = location.state.players;
-  const user_id = location.state.user_id;
-  const is_creator = location.state.user_is_creator;
-  const user_name = location.state.user_name;
-  const is_started = location.state.is_started;
+const BotSelect = ()=> {
+    
+    const [loading, setLoading] = useState(true)
+    const [robot, setRobot] = useState({robot_id:''})
+    const [robots, setRobots] = useState([]);
+    const [password, setPassword] = useState(null)
+    const location = useLocation();
+    const match_id = location.state.m_id;
+    const is_secured = location.state.is_secured;
 
   const navigate = useNavigate();
   const goBack = async () => {
@@ -143,20 +137,18 @@ const BotSelect = () => {
                   />
                 </Box>
               </Stack>
-              <ButtonJoin
-                match_id={match_id}
-                password={password}
-                robot_id={robot.robot_id}
-                players={players}
-                user_id={user_id}
-                is_creator={is_creator}
-                user_name={user_name}
-                is_started={is_started}
-              />
-            </Stack>
+            <ButtonJoin
+              match_id={match_id} 
+              robot_id={robot.robot_id}
+              user_id= {location.state.user_id}
+              user_is_creator= {location.state.user_is_creator}
+              match_name= {location.state.match_name}
+              password={password}
+            />
+          </Stack>
           </div>
         </div>)
-  )
+    )
 }
 
 export default BotSelect;
