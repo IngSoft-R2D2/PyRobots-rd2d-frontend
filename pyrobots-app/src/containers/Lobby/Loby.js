@@ -45,7 +45,8 @@ const Lobby = () => {
       {if (!users.includes(player)){
       users.push(player)
       robots.push(match[0].players[player].robot_name);
-
+      setResults({started: match[0].is_started, 
+                  res: match[0].results.participants})
       setLoading(false);
       }});
     }
