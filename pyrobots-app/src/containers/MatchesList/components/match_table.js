@@ -16,6 +16,7 @@ import PyRobotsAppbar from "./Appbar.js";
 import IconButton from '@mui/material/IconButton';
 
 const MatchTable = ({matches}) => {
+    const navigate = useNavigate();
 
     const goToLobby= async(m) => {
         navigate(`lobby/${m.id}` , 

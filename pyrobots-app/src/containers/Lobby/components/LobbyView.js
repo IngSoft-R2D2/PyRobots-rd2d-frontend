@@ -11,6 +11,7 @@ import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 import styled from "styled-components";
 import PyRobotsAppbar from "./Appbar.js";
+import Person4OutlinedIcon from '@mui/icons-material/Person4Outlined';
 
 
 const IconContainer = styled.div`
@@ -19,6 +20,8 @@ const IconContainer = styled.div`
 
 
 const LobbyView = ({users, robots, name}) => {
+  return [
+    <PyRobotsAppbar></PyRobotsAppbar>,
       <Box
       display="flex"
       justifyContent="center"
