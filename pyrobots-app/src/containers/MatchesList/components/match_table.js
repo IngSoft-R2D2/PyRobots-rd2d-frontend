@@ -8,19 +8,14 @@ import { withStyles } from "@material-ui/core/styles";
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
-import UndoIcon from '@mui/icons-material/Undo';
 import { Stack } from "@mui/system";
 import { useNavigate } from "react-router-dom";
 import RefreshIcon from '@mui/icons-material/Refresh';
 import Box from '@mui/material/Box';
+import PyRobotsAppbar from "./Appbar.js";
+import IconButton from '@mui/material/IconButton';
 
 const MatchTable = ({matches}) => {
-
-    const navigate = useNavigate();
-    const goBack= async() => {
-        navigate("/home");
-
-    }
 
     const goToLobby= async(m) => {
         navigate(`lobby/${m.id}` , 
@@ -80,7 +75,17 @@ const MatchTable = ({matches}) => {
       }))(MuiTableHead);
 
 
-    return(
+    return(<div style={{
+        display: "flex",
+        position: "absolute",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "100%",
+        width: "100%",
+        top: 0,
+        left: 0
+      }}>
+      <PyRobotsAppbar></PyRobotsAppbar>
         <Stack
         spacing={2}
         >
@@ -91,11 +96,6 @@ const MatchTable = ({matches}) => {
             justifyContent="space-between"
             alignItems="center"
             >
-            <Button variant="contained" size="large" endIcon={<UndoIcon fontSize="large"/> } 
-                onClick={goBack} >
-            </Button>
-            <Button variant="contained" size="large" endIcon={<RefreshIcon fontSize="large"/> } 
-            onClick={() => window.location.reload(false)}></Button>
             </Box>
         <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 500 }} aria-label="simple table">
@@ -103,7 +103,9 @@ const MatchTable = ({matches}) => {
                     <TableRow>
                     <TableCell align="left">Nombre</TableCell>
                     <TableCell align="left">Jugadores</TableCell>
-                    <TableCell align="left"> </TableCell>
+                    <TableCell align="right"><IconButton onClick={() => window.location.reload(false)} color="primary">
+                <RefreshIcon />
+                </IconButton> </TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -115,14 +117,17 @@ const MatchTable = ({matches}) => {
                         <TableCell align="left">   
                             {Object.values(matches[match].players).length+"/"+matches[match].max_players}
                         </TableCell>
-                        <TableCell align="left">{renderButtons(matches[match])}
+                        <TableCell align="right">{renderButtons(matches[match])}
                         </TableCell>
                         </TableRow>
                     ))}
                 </TableBody>
                 </Table>
             </TableContainer>
-        </Stack>)
+        </Stack>        
+        </div>
+    );        
+
 }
 
 export default MatchTable;

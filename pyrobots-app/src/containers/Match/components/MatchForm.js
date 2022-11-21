@@ -2,7 +2,7 @@ import "../Match.css";
 import {
   Form,
   ButtonContainer,
-  Button,
+  StyledButton,
   SuccessMessage,
   ErrorMessage,
   Label,
@@ -11,6 +11,7 @@ import {
 } from "../../Commons/Forms.js";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
+import PyRobotsAppbar from "../elements/Appbar.js";
 
 const MatchForm= (props) => {
     const inputs = props.inputs;
@@ -26,8 +27,22 @@ const MatchForm= (props) => {
     }
 
   return(
+
+    <div style={{
+      display: "flex",
+      position: "absolute",
+      justifyContent: "center",
+      alignItems: "center",
+      height: "100%",
+      width: "100%",
+      top: 0,
+      left: 0
+    }}>
+    <PyRobotsAppbar></PyRobotsAppbar>
     <main>
-      <h1 className= "title">Creación de partida</h1>
+      <h1 style={{fontFamily: "Roboto", marginTop: 120, marginRight: 20 }}>
+        Creá una partida
+      </h1>
 
       <Form className="App" onSubmit={(event) => props.onSubmit(event)}>
         <Label>Nombre</Label>
@@ -94,7 +109,7 @@ const MatchForm= (props) => {
         />
 
         <ButtonContainer>
-          <Button type="submit">Crear</Button>
+          <StyledButton type="submit">Crear</StyledButton>
         </ButtonContainer>
 
         {validForm === false && <ErrorMessage>
@@ -102,12 +117,13 @@ const MatchForm= (props) => {
           <FontAwesomeIcon icon={faExclamationTriangle}/>
             <b>Error: </b>
             {alertForm}
-			</p>
+			  </p>
           </ErrorMessage>}
         {validForm === true && <SuccessMessage>{alertForm}</SuccessMessage>}
       </Form>
       </main>
-  );
+      </div>
+    );
 };
 
 export default MatchForm;

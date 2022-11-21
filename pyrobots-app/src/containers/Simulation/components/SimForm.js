@@ -4,12 +4,13 @@ import {
   Label,
   Select,
   ButtonContainer,
-  Button,
+  StyledButton,
   SuccessMessage,
   ErrorMessage
 } from "../../Commons/Forms.js";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
+import PyRobotsAppbar from "./Appbar.js";
 
 const SimForm= (props) => {
 
@@ -26,9 +27,21 @@ const SimForm= (props) => {
     }
 
   return(
+
+    <div style={{
+      display: "flex",
+      position: "absolute",
+      justifyContent: "center",
+      alignItems: "center",
+      height: "100%",
+      width: "100%",
+      top: 0,
+      left: 0
+    }}>
+    <PyRobotsAppbar></PyRobotsAppbar>
     <main> 
-      <h1 className= "title">Crear simulación</h1>
-      <h2 className= "subtitle"> Seleccionar en orden</h2>
+      <h1 style={{fontFamily: "Roboto", marginTop: 120,  marginRight: 18 }}>Creá una simulación</h1>
+      <h2 style={{fontFamily: "Roboto",  marginRight: 18 }}> Por favor, seleccioná en orden</h2>
       <Form className="App" onSubmit={(event) => props.onSubmit(event)}>
         <Label> Robot 1</Label>
         <Select 
@@ -97,12 +110,13 @@ const SimForm= (props) => {
 					</p>
           </ErrorMessage>}
           <ButtonContainer>
-          <Button type="submit">Crear</Button>
+          <StyledButton type="submit">Crear</StyledButton>
         </ButtonContainer>
 
         {validForm === true && <SuccessMessage>{alertForm}</SuccessMessage>}
       </Form>
     </main>
+    </div>
   );
 };
 
