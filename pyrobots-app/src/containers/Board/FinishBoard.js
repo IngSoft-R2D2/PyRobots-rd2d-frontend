@@ -73,8 +73,8 @@ const FinishBoard = (props) => {
                 y={50} 
                 fontSize={40} 
                 text = {"Simulacion terminada!"
-                +"\n\ncantidad de rondas jugadas: "+(cant+1)
-                +"\n\nrobots ganadores: "} />  
+                +"\n\nCantidad de Rondas Jugadas: "+(cant+1)
+                +"\n\nRobots Ganadores: "} />  
         </Layer>
     </Stage>);
 }
