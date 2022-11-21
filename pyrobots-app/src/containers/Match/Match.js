@@ -1,17 +1,14 @@
 import React from "react";
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { fetchToken } from './elements/Auth.js';
+import { fetchToken } from '../Commons/Auth.js';
 import MatchForm from './components/MatchForm.js';
 import NoBotScreen from './components/NoBotScreen.js';
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 
-
 const Match = () => {
-
     const navigate = useNavigate();
-
     const [inputs, setInputs] = useState({
         name: '',
         robot_id:'',
@@ -24,7 +21,7 @@ const Match = () => {
     const [robots, setRobots] = useState([]);
     const [loading, setLoading] = useState(true);
     const [validForm, changeValidForm] = useState({valid: null });
-    const [alertForm, changeAlertForm] = useState({field: "" });
+    const [alertForm, changeAlertForm] = useState("");
 
     useEffect(() => { 
         const token = fetchToken();
@@ -65,17 +62,33 @@ const Match = () => {
             })
         })
         const data = await result.json();
-        console.log(data)
         if(result.ok){
             changeValidForm(true);
             changeAlertForm("Partida creada exitosamente");
             setTimeout(() => {
             navigate('/home')
-            }, 5000);
+            }, 2000);
         }
         else{
             changeValidForm(false);
-            changeAlertForm("error");
+            if (data.detail === "This user has a match with this name already."){
+                changeAlertForm("Ya creaste una partida con este nombre!");
+            }
+            if (data.detail === "Invalid maximum number of players."){
+                changeAlertForm("Inválido valor máximo de jugadores");
+            }
+            if (data.detail === "Invalid minimum number of players."){
+                changeAlertForm("Inválido valor mínimo de jugadores");
+            }
+            if (data.detail === "Minimum number of players must not be greater than the maximun number of players."){
+                changeAlertForm("Mínima cantidad de jugadores no puede ser mayor que la máxima cantidad de jugadores");
+            }
+            if (data.detail === "Invalid number of rounds."){
+                changeAlertForm("Valor inválido de rondas");
+            }
+            if (data.detail === "Invalid number of games."){
+                changeAlertForm("Valor inválido de juegos");
+            }
         }
       }
       catch(error) {
@@ -96,8 +109,8 @@ const Match = () => {
         <NoBotScreen/> :
         <MatchForm onSubmit = {onSubmit_newMatch}
                 inputs = {inputs}
-                robots = {robots}
                 setInputs = {setInputs}
+                robots = {robots}
                 validForm = {validForm}
                 alertForm = {alertForm}
         />)

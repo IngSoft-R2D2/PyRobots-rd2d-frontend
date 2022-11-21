@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import {useNavigate} from "react-router-dom";
 import LogInForm from './components/LogInForm.js' 
-import {setToken} from './elements/Auth.js'
+import {setToken} from '../Commons/Auth.js'
 
 const LogIn = () => {
   const navigate = useNavigate();
@@ -27,7 +27,7 @@ const LogIn = () => {
         changeValidForm(true);
         setTimeout(() => {
           navigate('/home')
-        }, 4000);
+        }, 2000);
       }
       else{
         if(data.detail === "This username does not exist"){

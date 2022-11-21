@@ -2,9 +2,9 @@ import * as React from 'react';
 import { Stack } from "@mui/system";
 import { useEffect, useState } from "react";
 import { fetchToken } from '../Commons/Auth.js';
-import MatchTable from './components/match_table.js';
+import HistoryTable from './components/history_table.js';
 
-export default function MatchesList() {
+export default function MatchesHistory() {
     const [data, setMatches] = useState([]);
 
     useEffect(() => {
@@ -23,7 +23,7 @@ export default function MatchesList() {
     return (
         <Stack
         spacing={2}> 
-          <MatchTable matches={data}/>
+          <HistoryTable matches={data}/>
         </Stack>
     )
   }

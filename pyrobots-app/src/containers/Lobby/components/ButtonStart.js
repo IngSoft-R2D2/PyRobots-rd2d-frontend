@@ -2,7 +2,7 @@ import * as React from 'react';
 import PlayCircleFilledWhiteIcon from 
 '@mui/icons-material/PlayCircleFilledWhite';
 import Button from '@mui/material/Button';
-import { fetchToken } from '../../Bot/elements/Auth.js';
+import { fetchToken } from '../../Commons/Auth.js';
 import { createTheme, ThemeProvider} from '@mui/material/styles';
 import { Alert,
     Box } from '@mui/material';

@@ -1,9 +1,22 @@
 import "../Bot.css";
+import {
+  Form,
+  ButtonContainer,
+  Button,
+  SuccessMessage,
+  ErrorMessage,
+  Label,
+  Input
+} from "../../Commons/Forms.js";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 
 const BotForm = (props) => {
   
   const inputs = props.inputs;
   const setInputs = props.setInputs; 
+  const validForm = props.validForm;
+  const alertForm = props.alertForm;
 
   const convertToBase64 = (file) => {
     return new Promise((resolve, reject) => {
@@ -37,24 +50,18 @@ const BotForm = (props) => {
 
   return (
     <div>
-      <form onSubmit={(event) => props.onSubmit(event)}>
-        <h1>Crear Robot</h1>
-        <p>
-          <label>
-            nombre:
-            <input
-              required
-              type="text"
-              name="name"
-              value={inputs.name}
-              onChange={handleChange}
-            />
-          </label>
-        </p>
-        <p>
-          <label>
-            avatar:
-            <input
+      <h1 className= "title">Crear Robot</h1>
+      <Form onSubmit={(event) => props.onSubmit(event)}>
+        <Label>Nombre</Label>
+          <Input
+            required
+            type="text"
+            name="name"
+            value={inputs.name}
+            onChange={handleChange}
+          />
+        <Label>Avatar</Label>
+            <Input
               type="file"
               name="avatar"
               id="file"
@@ -62,12 +69,8 @@ const BotForm = (props) => {
               accept = {[".jpg", ".jpeg", ".png", ".gif"]}
               onChange={handleChange}
             />
-          </label>
-        </p>
-        <p>
-          <label>
-            código: (.py)
-            <input
+        <Label>Código (.py)</Label>
+            <Input
               required
               type="file"
               name="code"
@@ -75,12 +78,19 @@ const BotForm = (props) => {
               accept = ".py"
               onChange={handleChange}
             />
-          </label>
-        </p>
-        <p>
-          <input type="submit"></input>
-        </p>
-      </form>
+        <ButtonContainer>
+          <Button type="submit">Crear</Button>
+        </ButtonContainer>
+
+        {validForm === false && <ErrorMessage>
+		    <p>
+          <FontAwesomeIcon icon={faExclamationTriangle}/>
+            <b>Error: </b>
+            {alertForm}
+			  </p>
+          </ErrorMessage>}
+        {validForm === true && <SuccessMessage>{alertForm}</SuccessMessage>}
+      </Form>
     </div>
   );
 };

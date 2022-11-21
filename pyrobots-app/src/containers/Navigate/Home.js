@@ -14,133 +14,140 @@ const Home = () => {
 
   const navigate = useNavigate();
 
-  const goToMatchForm = async() => {
+  const goToMatchForm = async () => {
     navigate("/matches");
   }
 
-  const goToBotForm = async() => {
+  const goToBotForm = async () => {
     navigate("/robots");
   }
 
-  const goToSimForm = async() => {
+  const goToSimForm = async () => {
     navigate("/simulation");
   }
 
-  const goToListBots = async() => {
+  const goToListBots = async () => {
     navigate("/listrobots");
   }
 
-  const goToMatchesList = async() => {
+  const goToMatchesList = async () => {
     navigate("/listmatches");
   }
 
-  return [
-    <AppBar position="fixed" sx={{ background: 'dark-blue' }} 
-        key = {0} >
-        <Toolbar style={{display:'fixed', justifyContent:"space-between", width:'100%'}}>
-        <Box display='flex' flexGrow={1}>
-          <SmartToyIcon sx={{ fontSize: "80px" }} />
-          <Typography variant="h3" 
-                      component="div" 
-                      style={{fontWeight: "700",
-                      fontFamily: "Roboto",
-                      padding: "18px 36px"}} 
-          >
-            PyRobots
-          </Typography>
-        </Box>  
-        </Toolbar>
-      </AppBar>,
-          <Box
-          display="flex"
-          justifyContent="center"
-          alignItems="center"
-          key = {1}
-          >
-    <Stack>
-      <Typography variant="h4" 
-                  component="div" 
-                  style={{fontWeight: "700",
-                    fontFamily: "Roboto",
-                    padding: "25px 36px"}}>
-      Bienvenide
-      </Typography>
-      <Typography variant="h5" 
-                  component="div" 
-                  style={{fontWeight: "700",
-                          fontFamily: "Roboto",
-                          padding: "10px 36px"}}>
-      Estas son las acciones que puedes elegir
-      </Typography>
-        <p>
-          <Button 
-          style={{
-            color: "#fff",
-            padding: "18px 36px",
-            fontSize: "22px"
-          }}
-          size="medium"
-          variant="contained"  
-          endIcon={<CreateIcon  sx={{ fontSize: "80px" }} /> }
-          sx={{  width: '340px' }}
-          onClick={goToMatchForm}>crear partida</Button>
-        </p>
-        <p>
-          <Button 
-          style={{
-            color: "#fff",
-            padding: "18px 36px",
-            fontSize: "22px"
-          }}
-          size="medium"
-          variant="contained"  
-          endIcon={<FileUploadIcon  sx={{ fontSize: "80px" }} /> }
-          sx={{  width: '340px' }}
-          onClick={goToBotForm}>crear Robot</Button>
-        </p>
-        <p>
-          <Button 
-          style={{
-            color: "#fff",
-            padding: "18px 36px",
-            fontSize: "22px"
-          }}
-          size="medium"
-          variant="contained"  
-          endIcon={<CreateIcon sx={{ fontSize: "80px" }} /> }
-          sx={{  width: '340px' }}
-          onClick={goToSimForm}>crear Simulación</Button>
-        </p>
-        <p>
-          <Button 
-          style={{
-              color: "#fff",
-              padding: "18px 36px",
-              fontSize: "22px"
-            }}
-            size="medium"
-            variant="contained"  
-            endIcon={<FormatListBulletedIcon  sx={{ fontSize: "80px" }} /> }
-            sx={{  width: '340px' }}
-            onClick={goToListBots}>Listar robots</Button>
-        </p>
+  const goToMatchesHistory = async () => {
+    navigate("/history");
+  }
 
-        <p>
-          <Button 
+  return (
+    <div style={{
+      display: "flex",
+      position: "absolute",
+      justifyContent: "center",
+      alignItems: "center",
+      height: "100%",
+      width: "100%",
+      top: 0,
+      left: 0
+    }}>
+      <AppBar position="fixed" sx={{ background: 'dark-blue' }}
+        key={0} >
+        <Toolbar style={{ display: 'fixed', justifyContent: "space-between", width: '100%' }}>
+          <Box display='flex' flexGrow={1}>
+            <SmartToyIcon sx={{ fontSize: "80px" }} />
+            <Typography variant="h3"
+              component="div"
+              style={{
+                fontWeight: "700",
+                fontFamily: "Roboto",
+                padding: "18px 36px"
+              }}
+            >
+              PyRobots
+            </Typography>
+          </Box>
+        </Toolbar>
+      </AppBar>
+      <Stack
+        spacing={"20px"}
+      >
+        <Typography variant="h4"
+          component="div"
           style={{
-              color: "#fff",
-              padding: "18px 36px",
-              fontSize: "22px"
-            }}
-            size="medium"
-            variant="contained"  
-            endIcon={<FormatListBulletedIcon  sx={{ fontSize: "80px" }} /> }
-            sx={{  width: '340px' }}
-            onClick={goToMatchesList}>Listar partidas</Button>
-        </p>
+            fontWeight: "700",
+            fontFamily: "Roboto",
+            padding: "25px 36px"
+          }}>
+          Bienvenide
+        </Typography>
+        <Button
+          style={{
+            color: "#fff",
+            padding: "18px 36px",
+            fontSize: "22px"
+          }}
+          size="medium"
+          variant="contained"
+          endIcon={<CreateIcon sx={{ fontSize: "80px" }} />}
+          sx={{ width: '340px' }}
+          onClick={goToMatchForm}>crear partida</Button>
+        <Button
+          style={{
+            color: "#fff",
+            padding: "18px 36px",
+            fontSize: "22px"
+          }}
+          size="medium"
+          variant="contained"
+          endIcon={<FileUploadIcon sx={{ fontSize: "80px" }} />}
+          sx={{ width: '340px' }}
+          onClick={goToBotForm}>crear Robot</Button>
+        <Button
+          style={{
+            color: "#fff",
+            padding: "18px 36px",
+            fontSize: "22px"
+          }}
+          size="medium"
+          variant="contained"
+          endIcon={<CreateIcon sx={{ fontSize: "80px" }} />}
+          sx={{ width: '340px' }}
+          onClick={goToSimForm}>crear Simulación</Button>
+        <Button
+          style={{
+            color: "#fff",
+            padding: "18px 36px",
+            fontSize: "22px"
+          }}
+          size="medium"
+          variant="contained"
+          endIcon={<FormatListBulletedIcon sx={{ fontSize: "80px" }} />}
+          sx={{ width: '340px' }}
+          onClick={goToListBots}>Listar robots</Button>
+        <Button
+          style={{
+            color: "#fff",
+            padding: "18px 36px",
+            fontSize: "22px"
+          }}
+          size="medium"
+          variant="contained"
+          endIcon={<FormatListBulletedIcon sx={{ fontSize: "80px" }} />}
+          sx={{ width: '340px' }}
+          onClick={goToMatchesList}>Listar partidas</Button>
+        <Button
+          style={{
+            color: "#fff",
+            padding: "18px 36px",
+            fontSize: "22px"
+          }}
+          size="medium"
+          variant="contained"
+          endIcon={<FormatListBulletedIcon sx={{ fontSize: "80px" }} />}
+          sx={{ width: '340px' }}
+          onClick={goToMatchesHistory}>Historial</Button>
       </Stack>
-      </Box>  
-  ];
+    </div>
+  );
 };
 
 export default Home;

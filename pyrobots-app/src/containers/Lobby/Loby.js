@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom"
 import { useLocation } from 'react-router-dom'
 import ButtonStart from "./components/ButtonStart.js"
 import ButtonLeave from "./components/ButtonLeave.js"
-import { fetchToken } from './elements/Auth.js';
+import { fetchToken } from "../Commons/Auth.js";
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 
