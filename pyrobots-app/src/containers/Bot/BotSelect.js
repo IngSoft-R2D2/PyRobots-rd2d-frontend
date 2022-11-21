@@ -1,6 +1,6 @@
 // import React from "react";
 import { useState, useEffect } from 'react';
-import { fetchToken } from './elements/Auth.js'
+import { fetchToken } from '../Commons/Auth.js'
 import BotList from "./components/BotList.js";
 import ButtonJoin from "../MatchesList/components/ButtonJoin.js"
 import Backdrop from '@mui/material/Backdrop';
@@ -17,6 +17,7 @@ import UndoIcon from '@mui/icons-material/Undo';
 import { Button, TextField } from "@mui/material";
 import { useNavigate } from 'react-router-dom';
 import InputLabel from '@mui/material/InputLabel';
+import NoBotScreenJoin from './components/NoBotScreenJoin.js';
 
 
 const BotSelect = () => {
@@ -71,88 +72,90 @@ const BotSelect = () => {
       >
         <CircularProgress color="inherit" />
       </Backdrop> :
-      <div style={{
-        display: "flex",
-        position: "absolute",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "100%",
-        width: "100%",
-        top: 0,
-        left: 0
-      }}>
-        <AppBar position="fixed" sx={{ background: 'dark-blue' }}
-          style={{
-            marginRight: '0px',
-            padding: "18px 36px"
-          }}
-          key={0} >
-          <Toolbar sx={{ justifyContent: "space-between" }}>
-            <SmartToyIcon sx={{ fontSize: "80px" }} />
-            <Typography variant="h3"
-              component="div"
-              style={{
-                fontWeight: "500",
-                fontFamily: "Roboto",
-                padding: "18px 36px"
-              }}>
-              Selección de Robots
-            </Typography>
-            <Button
-              style={{
-                color: "#fff",
-                padding: "18px 36px",
-                fontSize: "22px"
-              }}
-              variant="secondary"
-              endIcon={<UndoIcon sx={{ fontSize: "large" }} />}
-              onClick={goBack}
-              sx={{ marginLeft: "auto" }}>
-              Volver atrás
-            </Button>
-          </Toolbar>
-        </AppBar>
-        <div>
-          <Stack
-            spacing={20}
-            direction='row'
+      (Object.keys(robots).length === 0) ?
+        <NoBotScreenJoin /> :
+        (<div style={{
+          display: "flex",
+          position: "absolute",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100%",
+          width: "100%",
+          top: 0,
+          left: 0
+        }}>
+          <AppBar position="fixed" sx={{ background: 'dark-blue' }}
             style={{
-              height: "100%",
-              width: "100%",
-              padding: "10px 36px"
+              marginRight: '0px',
+              padding: "18px 36px"
             }}
-          >
+            key={0} >
+            <Toolbar sx={{ justifyContent: "space-between" }}>
+              <SmartToyIcon sx={{ fontSize: "80px" }} />
+              <Typography variant="h3"
+                component="div"
+                style={{
+                  fontWeight: "500",
+                  fontFamily: "Roboto",
+                  padding: "18px 36px"
+                }}>
+                Selección de Robots
+              </Typography>
+              <Button
+                style={{
+                  color: "#fff",
+                  padding: "18px 36px",
+                  fontSize: "22px"
+                }}
+                variant="secondary"
+                endIcon={<UndoIcon sx={{ fontSize: "large" }} />}
+                onClick={goBack}
+                sx={{ marginLeft: "auto" }}>
+                Volver atrás
+              </Button>
+            </Toolbar>
+          </AppBar>
+          <div>
             <Stack
-              spacing={5}
+              spacing={20}
+              direction='row'
+              style={{
+                height: "100%",
+                width: "100%",
+                padding: "10px 36px"
+              }}
             >
-              <BotList
-                robot={robot}
-                setRobot={setRobot}
-                robots={robots}
-              />
-              <Box>
-                <InputLabel
-                  id="robot-label">Contraseña</InputLabel>
-                <TextField
-                  disabled={!is_secured}
-                  id="password-field"
-                  onChange={handlePasswordInput}
+              <Stack
+                spacing={5}
+              >
+                <BotList
+                  robot={robot}
+                  setRobot={setRobot}
+                  robots={robots}
                 />
-              </Box>
+                <Box>
+                  <InputLabel
+                    id="robot-label">Contraseña</InputLabel>
+                  <TextField
+                    disabled={!is_secured}
+                    id="password-field"
+                    onChange={handlePasswordInput}
+                  />
+                </Box>
+              </Stack>
+              <ButtonJoin
+                match_id={match_id}
+                password={password}
+                robot_id={robot.robot_id}
+                players={players}
+                user_id={user_id}
+                is_creator={is_creator}
+                user_name={user_name}
+                is_started={is_started}
+              />
             </Stack>
-            <ButtonJoin
-              match_id={match_id}
-              password={password}
-              robot_id={robot.robot_id}
-              players={players}
-              user_id={user_id}
-              is_creator={is_creator}
-              user_name={user_name}
-              is_started={is_started}
-            />
-          </Stack>
-        </div>
-      </div>
+          </div>
+        </div>)
   )
 }
 

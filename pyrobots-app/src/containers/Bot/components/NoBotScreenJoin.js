@@ -6,10 +6,10 @@ import { Stack } from "@mui/system";
 import { useNavigate } from 'react-router-dom';
 
 
-const NoBotScreen = () => {
+const NoBotScreenJoin = () => {
   const navigate = useNavigate();
   const goBack = async () => {
-    navigate("/home");
+    navigate("/listmatches");
   }
   const goToRobot = async () => {
     navigate("/robots");
@@ -30,12 +30,16 @@ const NoBotScreen = () => {
         left: 0
       }}
     >
-      <Alert severity="error"
+      <Alert 
+        severity="error"
+        color='info'
+        variant='filled'
         style={{
+          width:'385px',
           padding: "18px 36px",
         }}>
-        <AlertTitle>No se pueden listar tus robots</AlertTitle>
-        Para listarlos debes tener al menos un robot
+        <AlertTitle>No te puedes unir a una partida</AlertTitle>
+        Para unirte debes tener al menos un robot
       </Alert>
       <Stack
         direction='row'
@@ -51,4 +55,4 @@ const NoBotScreen = () => {
     </Stack>
   )
 };
-export default NoBotScreen;
+export default NoBotScreenJoin;

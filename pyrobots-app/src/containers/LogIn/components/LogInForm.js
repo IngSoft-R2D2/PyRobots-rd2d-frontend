@@ -6,9 +6,8 @@ import {
     Button,
     SuccessMessage,
     ErrorMessage
-  } from "../elements/Forms.js";
-import Input from "../elements/Input.js";
-import PyRobotsAppbar from "./Appbar.js";
+  } from "../../Commons/Forms.js";
+import Input from "../../Commons/Input.js";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';

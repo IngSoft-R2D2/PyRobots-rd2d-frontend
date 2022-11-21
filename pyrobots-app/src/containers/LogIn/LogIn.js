@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import {useNavigate} from "react-router-dom";
 import LogInForm from './components/LogInForm.js' 
-import {setToken} from './elements/Auth.js'
+import {setToken} from '../Commons/Auth.js'
 
 const LogIn = () => {
   const navigate = useNavigate();
