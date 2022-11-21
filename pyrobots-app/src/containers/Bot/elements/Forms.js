@@ -153,7 +153,7 @@ const SuccessMessage = styled.p`
   b {
     margin-left: 10px;
   }
-	font-size: 14px;
+	font-size: 20px;
 	color: #fff;
 `;
 

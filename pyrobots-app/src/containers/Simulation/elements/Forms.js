@@ -44,6 +44,7 @@ const Input = styled.input`
   width: 100%;
   background: #fff;
   border-radius: 3px solid;
+  font-size: 20px;
   color: #000;
   height: 45px;
   line-height: 45px;
@@ -157,6 +158,7 @@ const SuccessMessage = styled.p`
 `;
 
 const ErrorMessage = styled.div`
+  width: 20%,
 	height: 45px;
 	line-height: 45px;
 	background: #F66060;
@@ -171,6 +173,34 @@ const ErrorMessage = styled.div`
 	}
 `;
 
+const Select = styled.select`
+    width: 100%;
+    background: #fff;
+    border-radius: 3px solid;
+    color: black;
+    height: 45px;
+    line-height: 45px;
+    padding: 0 40px 0 10px;
+    transition: 0.3s ease all;
+    font-size: 20px;
+    border: 3px solid #000;
+    &:focus {
+        border: 2px solid #000;
+        outline: none;
+        box-shadow: 3px 0px 30px rgba(163, 163, 163, 0.4);
+    }
+    option {
+        font-family: Roboto, sans-serif;
+        color: black;
+        background: white;
+        display: flex;
+        white-space: pre;
+        min-height: 20px;
+        padding: 0 40px 0 10px;
+        position: relative;
+    }
+`;
+
 export {
   Form,
   Label,
@@ -181,5 +211,6 @@ export {
   Button,
   ValidationIcon,
   SuccessMessage,
-  ErrorMessage
+  ErrorMessage,
+  Select
 };

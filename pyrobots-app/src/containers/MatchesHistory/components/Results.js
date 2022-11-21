@@ -49,8 +49,8 @@ const Results = (props) => {
         navigate("/home");
     }
     
-    const goToMatchesList = async() => {
-        navigate("/listmatches");
+    const goToMatchesHistory = async() => {
+        window.location.reload();
     }
     
     const goToMatchForm = async() => {
@@ -92,8 +92,8 @@ const Results = (props) => {
                         size="medium"
                         variant="secondary"   
                         startIcon={<FormatListBulletedIcon  sx={{ fontSize: "large" }} /> }
-                        onClick={goToMatchesList}>
-                        Ver partidas
+                        onClick={goToMatchesHistory}>
+                        Historial
                     </Button>
                     <Button 
                         style={{
@@ -115,13 +115,6 @@ const Results = (props) => {
         alignItems="left"
         minHeight="25vh"
         key = {2}>
-            <Stack direction="row" alignItems="center" gap={1} >
-                <CheckCircleIcon style={{ color: "#1C8E40", marginTop: 120}}/>
-                <Typography variant="h5" style={{fontWeight: "700",
-                fontFamily: "Roboto", marginTop: 120, padding: "18px 10px"}}>
-                    Partida finalizada!
-                </Typography>
-            </Stack>
         </Box>,
         <TableContainer style={{marginTop: 18}} component={Paper} className={classes.tableContainer}>
         <Table sx={{ minWidth: 700 }} aria-label="simple table">
@@ -137,7 +130,7 @@ const Results = (props) => {
                 </TableRow>
             </TableHead>
                 <TableBody>
-                {props.results && props.results.map((row) => (
+                {props.results && props.results.participants.map((row) => (
                     <TableRow key={row.user_name}>
                         <TableCell scope="row">
                             <Grid item lg={10}>
