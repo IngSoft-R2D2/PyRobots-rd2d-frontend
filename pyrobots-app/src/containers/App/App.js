@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes, } from 'react-router-dom';
 import './App.css';
-import { RequireToken } from './elements/Auth.js';
+import { RequireToken } from '../Commons/Auth.js';
 import LogIn from "../LogIn/LogIn.js";
 import SignUp from "../SignUp/SignUp.js";
 import Match from "../Match/Match.js";
