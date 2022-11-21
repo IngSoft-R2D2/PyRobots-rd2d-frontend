@@ -10,55 +10,46 @@ import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 
 const Lobby = () => {
+  const { match_id } = useParams();
   const location = useLocation();
   const m = location.state;
-  const { match_id } = useParams();
-  const user_id = m.id;
-  //const players = m.players;
-  const is_creator = m.is_creator;
-  const new_player = m.new_player;
-  const new_player_bot = m.new_player_bot
-  const is_started = m.is_started;
-  //nombre de partida que viene de matcheslist
-  const name = m.m_name;
+  const user_id = m.user_id;
+  const user_is_creator = m.user_is_creator;
+  const match_name = m.match_name;
   const ws = useRef(null);
+  const [match, setMatch] = useState([]);
   const [users, setUsers] = useState([]);
   const [robots, setRobots] = useState([]);
-  const [results, setResults] = useState({ started: is_started, res:[]});
-  const [match, setMatch] = useState([]);
+  const [results, setResults] = useState({ started: false, res:[]});
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const token = fetchToken();
-    setTimeout(() => {
-      (async () => {
-          const response = await fetch("http://localhost:8000/matches", {
-              method: "GET",
-              headers: { 'accept': 'application/json',
-                          'Content-Type': 'application/json',
-                          'Authorization': `Bearer ${token}`}})
-          const content = await response.json();
-          const this_match = Object.values(content).filter(match => match.id === parseInt(match_id));
-          setMatch(this_match);
-      })();
-    }, 500);
+    (async () => {
+        const response = await fetch("http://localhost:8000/matches", {
+            method: "GET",
+            headers: { 'accept': 'application/json',
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`}})
+        const content = await response.json();
+        const this_match = Object.values(content).filter(match => match.id === parseInt(match_id));
+        setMatch(this_match);
+    })();
   }, [match_id]);
 
   useEffect(() => {
     //setear lista de player y robots
-    console.log(match)
-    if(match.length > 0){ //match.players !== undefined
+    if(match.length > 0){
       Object.keys(match[0].players).forEach((player) => 
       {if (!users.includes(player)){
-      const newuserList = users.concat(player);
-      const newBotList = users.concat(match[0].players[player].robot_name);
-      console.log(player)
-      setUsers(newuserList);
-      setRobots(newBotList);
+      users.push(player)
+      robots.push(match[0].players[player].robot_name);
+
       setLoading(false);
       }});
     }
-  }, [match, users])
+    // eslint-disable-next-line
+  }, [match])
 
   useEffect(() => {
     if (results.started === false){
@@ -76,18 +67,13 @@ const Lobby = () => {
     return (() => {
         if (ws.current !==null){ //cuando salgo del lobby si no terminó la partida
             ws.current.close();
+            console.log('WebSocket Client Desconnected return');
         }
     })
   },[results, match_id, user_id])
 
   useEffect(() => {
     if(ws.current !==null && results.started === false){
-        if(new_player !== undefined && !users.includes(new_player)){
-            const newuserList = users.concat(new_player);
-            const newBotList = users.concat(new_player_bot);
-            setUsers(newuserList);
-            setRobots(newBotList);
-        }
         ws.current.onmessage = (event) => {
             const json = JSON.parse(event.data);
             console.log(`message: ${json.event}`);
@@ -115,7 +101,7 @@ const Lobby = () => {
             }
         };
     }
-},[users, robots, results, new_player, new_player_bot]);
+},[users, robots, results]);
 
   return (
     results.started
@@ -129,13 +115,13 @@ const Lobby = () => {
           >
               <CircularProgress color="inherit" />
           </Backdrop> 
-        : is_creator
+        : user_is_creator
             ?
             <div>
                 <LobbyView
                     users={users}
                     robots={robots}
-                    name={name}/>
+                    name={match_name}/>
                 <ButtonStart 
                     match_id={match_id}
                     number_of_participants={users.length} />
@@ -145,7 +131,7 @@ const Lobby = () => {
                 <LobbyView 
                     users={users}
                     robots={robots}
-                    name={name}/>
+                    name={match_name}/>
                 <ButtonLeave match_id={match_id}/>
             </div>
   );

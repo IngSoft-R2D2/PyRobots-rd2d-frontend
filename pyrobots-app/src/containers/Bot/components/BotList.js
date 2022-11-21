@@ -5,11 +5,10 @@ const BotList = ({robots, robot, setRobot}) => {
             <form>
                 <select 
                 required
-                type="number" 
+                type="number"
                 name = "robot"
                 onChange={(e) => 
-                    setRobot({ ...robot, robot_id: e.target.value,
-                                         robot_name: e.target.value.name})}
+                    setRobot({ ...robot, robot_id: e.target.value})}
                 >
                 <option value = {''}> seleccione un robot </option>
                 {Object.keys(robots).map((key)=>

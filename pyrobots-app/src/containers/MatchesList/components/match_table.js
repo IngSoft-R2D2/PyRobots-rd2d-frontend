@@ -14,6 +14,7 @@ import { useNavigate } from "react-router-dom";
 
 
 const MatchTable = ({matches}) => {
+
     const navigate = useNavigate();
     const goBack= async() => {
         navigate("/home");
@@ -21,23 +22,18 @@ const MatchTable = ({matches}) => {
     }
 
     const goToLobby= async(m) => {
-        navigate(`lobby/${m.id}`, 
-                    {state: {players: m.players, 
-                             m_name: m.name,
-                             id: m.user_id,
-                             is_creator: m.user_is_creator,
-                             is_started: m.is_started}});
+        navigate(`lobby/${m.id}` , 
+                    {state: {user_id: m.user_id,
+                            user_is_creator: m.user_is_creator,
+                            match_name: m.name}});
     }
 
     const goToSelectBot= async(m) => {
         navigate(`select`, 
-                    {state: {m_id: m.id, 
-                             name: m.name,
-                             players: m.players,
-                             user_id: m.user_id,
-                             is_creator: m.user_is_creator,
-                             user_name: m.user_name,
-                             is_started: m.is_started}}); 
+                    {state: {m_id: m.id,
+                            user_id: m.user_id,
+                            user_is_creator: m.user_is_creator,
+                            match_name: m.name}}); 
     }
 
     const TableHead = withStyles(theme => ({
