@@ -30,7 +30,7 @@ const SimForm= (props) => {
       <h1 className= "title">Crear simulación</h1>
       <h2 className= "subtitle"> Seleccionar en orden</h2>
       <Form className="App" onSubmit={(event) => props.onSubmit(event)}>
-        <Label> Robot 1:</Label>
+        <Label> Robot 1</Label>
         <Select 
           required
           type="number" 
@@ -43,7 +43,7 @@ const SimForm= (props) => {
           (<option key = {key} value={key}>{robots[key].name}</option>))}
         </Select>
         
-        <Label> Robot 2:</Label>
+        <Label> Robot 2 (opcional)</Label>
         <Select 
           required
           type="number" 
@@ -56,7 +56,7 @@ const SimForm= (props) => {
           (<option key = {key} value={key}>{robots[key].name}</option>))}
         </Select>
 
-        <Label> Robot 3:</Label>
+        <Label> Robot 3 (opcional)</Label>
         <Select 
           type="number" 
           name = "robot"
@@ -68,7 +68,7 @@ const SimForm= (props) => {
           (<option key = {key} value={key}>{robots[key].name}</option>))}
         </Select>
 
-        <Label> Robot 4:</Label>
+        <Label> Robot 4</Label>
         <Select 
           type="number" 
           name = "robot"
@@ -80,7 +80,7 @@ const SimForm= (props) => {
           (<option key = {key} value={key}>{robots[key].name}</option>))}
         </Select>
         
-        <Label> Cantidad de rondas:</Label>
+        <Label> Cantidad de rondas</Label>
         <Input 
           required min="1" max="10000"
           type="number" 
