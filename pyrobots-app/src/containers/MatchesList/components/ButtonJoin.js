@@ -2,7 +2,7 @@ import * as React from 'react';
 import StartIcon from '@mui/icons-material/Start';
 import Button from '@mui/material/Button';
 import { useNavigate } from 'react-router-dom';
-import { fetchToken } from '../elements/Auth.js';
+import { fetchToken } from '../../Commons/Auth.js';
 
 const Join = ({ match_id, password, robot_id, players, user_id, is_creator, user_name, is_started }) => {
   const navigate = useNavigate();

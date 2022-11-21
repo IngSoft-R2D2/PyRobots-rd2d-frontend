@@ -9,37 +9,20 @@ import { withStyles } from "@material-ui/core/styles";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
-import UndoIcon from "@mui/icons-material/Undo";
 import { Stack } from "@mui/system";
-import { useNavigate } from "react-router-dom";
 import RefreshIcon from "@mui/icons-material/Refresh";
 import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
 import Results from "./Results";
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import SmartToyIcon from '@mui/icons-material/SmartToy';
-import ButtonGroup from '@mui/material/ButtonGroup';
-import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
-import CreateIcon from '@mui/icons-material/Create';
-import HomeIcon from '@mui/icons-material/Home';
-import PyRobotsAppbar from "../elements/Appbar.js";
+import PyRobotsAppbar from "./AppbarHistory.js";
 import IconButton from '@mui/material/IconButton';
 
-
-
 const HistoryTable = ({ matches }) => {
-  const navigate = useNavigate();
   const [isShown, setIsShown] = useState(false);
   const [results_var, setResultsVar] = useState(false);
 
   const showResults = (res) => {
     setIsShown(true);
     setResultsVar(res);
-  };
-
-  const goToResults = async (m) => {
-    return(<Results results = {m.results}/>)
   };
 
   const TableHead = withStyles((theme) => ({

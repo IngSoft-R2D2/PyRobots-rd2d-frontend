@@ -3,14 +3,20 @@ import {
   Input,
   Label,
   InputGroup,
-  ErrorText
+  ErrorText,
+  ValidationIcon
 } from "./Forms";
+import {
+  faCheckCircle,
+  faTimesCircle
+} from "@fortawesome/free-solid-svg-icons";
 
-const InputFileComponent = ({
+const InputComponent = ({
   state,
   changeState,
   type,
   label,
+  placeholder,
   name,
   errorText,
   regularExpression,
@@ -18,20 +24,12 @@ const InputFileComponent = ({
   obligatory
 }) => {
 
-  function convertBase64(file){
-		return new Promise((resolve, reject) => {
-			const fileReader = new FileReader();
-			fileReader.readAsDataURL(file)
-			fileReader.onload = () => {
-				resolve(fileReader.result);
-			}
-			fileReader.onerror = (error) => {
-				reject(error);
-			}
-		})
-	};
+  const onChange = (e) => {
+    changeState({ ...state, field: e.target.value });
 
-	const validation = () => {
+  };  
+
+  const validation = () => {
     if (regularExpression) {
       if (regularExpression.test(state.field)) {
         changeState({ ...state, valid: "true" });
@@ -45,29 +43,27 @@ const InputFileComponent = ({
     }
   };
 
-  const handleFileRead = async(event) => {
-		changeState(previousInputs => ({ ...previousInputs, field: event.target.value}))
-		const file = event.target.files[0]
-		var base64 = await convertBase64(file)
-    changeState(previousInputs => ({ ...previousInputs, myFile: base64 }))
-		console.log(base64)
-  };
-
   return (
     <div>
       <Label htmlFor={name} valid={state.valid}>
         {label}
+        {obligatory === "true" && <abbr title="requiered">*</abbr>}
       </Label>
       <InputGroup>
         <Input
           type={type}
+          placeholder={placeholder}
           id={name}
           value={state.field}
-          onChange={handleFileRead}
+          onChange={onChange}
           onKeyUp={validation}
           onBlur={validation}
           valid={state.valid}
           obligatory={obligatory}
+        />
+        <ValidationIcon
+          icon={state.valid === "true" ? faCheckCircle : faTimesCircle}
+          valid={state.valid}
         />
       </InputGroup>
       <ErrorText valid={state.valid}>{errorText}</ErrorText>
@@ -75,4 +71,4 @@ const InputFileComponent = ({
   );
 };
 
-export default InputFileComponent;
+export default InputComponent;

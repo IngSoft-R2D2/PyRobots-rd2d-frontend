@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { fetchToken } from './elements/Auth.js';
+import { fetchToken } from '../Commons/Auth.js';
 import BotForm from './components/BotForm.js'
 
 const Bot = () => {

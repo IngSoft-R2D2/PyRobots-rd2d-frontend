@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from 'react';
-import { fetchToken } from './elements/Auth.js';
+import { fetchToken } from '../Commons/Auth.js';
 import RobotList from './components/RobotList.js';
 import NoBotScreen from './components/NoBotScreen.js';
 import Backdrop from '@mui/material/Backdrop';
