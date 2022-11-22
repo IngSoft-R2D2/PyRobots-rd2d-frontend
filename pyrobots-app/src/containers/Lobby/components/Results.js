@@ -1,16 +1,6 @@
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import SmartToyIcon from '@mui/icons-material/SmartToy';
-import { Box } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
 import { Stack } from "@mui/system";
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import ButtonGroup from '@mui/material/ButtonGroup';
-import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
-import CreateIcon from '@mui/icons-material/Create';
-import HomeIcon from '@mui/icons-material/Home';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -20,6 +10,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@mui/material/Grid';
+import PyRobotsAppbar from "./Appbar.js";
 
 const useStyles = makeStyles((theme) => ({
     table: {
@@ -43,78 +34,22 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Results = (props) => {
-    const navigate = useNavigate();
 
-    const goToHome= async() => {
-        navigate("/home");
-    }
-    
-    const goToMatchesList = async() => {
-        navigate("/listmatches");
-    }
-    
-    const goToMatchForm = async() => {
-        navigate("/matches");
-    }
-  
   const classes = useStyles();
-    return [
-        <AppBar position="fixed" sx={{ background: 'dark-blue' }} 
-        key = {0} >
-            <Toolbar style={{display:'flex', justifyContent:"space-between", width:'100%'}}>    
-                <Box display='flex' flexGrow={1}>
-                    <SmartToyIcon sx={{ fontSize: "80px" }} />
-                    <Typography variant="h3" 
-                                component="div" 
-                                style={{fontWeight: "700",
-                                fontFamily: "Roboto",
-                                padding: "18px 36px"}} >
-                    PyRobots
-                    </Typography>
-                </Box>  
-                <ButtonGroup variant="secondary" aria-label="outlined primary button group">
-                    <Button 
-                        style={{
-                            color: "#fff",
-                            fontSize: "22px"
-                        }}
-                        size="medium"
-                        variant="secondary"  
-                        startIcon={<CreateIcon  sx={{ fontSize: "large" }} /> }
-                        onClick={goToMatchForm}>
-                        crear partida
-                    </Button>
-                    <Button 
-                        style={{
-                            color: "#fff",
-                            fontSize: "22px"
-                        }}
-                        size="medium"
-                        variant="secondary"   
-                        startIcon={<FormatListBulletedIcon  sx={{ fontSize: "large" }} /> }
-                        onClick={goToMatchesList}>
-                        Ver partidas
-                    </Button>
-                    <Button 
-                        style={{
-                            color: "#fff",
-                            fontSize: "22px"
-                        }}
-                        variant="secondary" 
-                        startIcon={<HomeIcon  sx={{ fontSize: "large" }} /> } 
-                        onClick={goToHome} 
-                        sx={{ marginLeft: "auto"}}>
-                        Menú
-                    </Button>
-                </ButtonGroup>
-            </Toolbar>
-        </AppBar>,
-        <Box
-        display="flex"
-        justifyContent="center"
-        alignItems="left"
-        minHeight="25vh"
-        key = {2}>
+
+    return (
+        <div style={{
+            display: "flex",
+            position: "absolute",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "100%",
+            width: "100%",
+            top: 0,
+            left: 0
+          }}>
+        <PyRobotsAppbar></PyRobotsAppbar>
+        <Stack alignItems="center" gap={1} >
             <Stack direction="row" alignItems="center" gap={1} >
                 <CheckCircleIcon style={{ color: "#1C8E40", marginTop: 120}}/>
                 <Typography variant="h5" style={{fontWeight: "700",
@@ -122,7 +57,6 @@ const Results = (props) => {
                     Partida finalizada!
                 </Typography>
             </Stack>
-        </Box>,
         <TableContainer style={{marginTop: 18}} component={Paper} className={classes.tableContainer}>
         <Table sx={{ minWidth: 700 }} aria-label="simple table">
             <TableHead>
@@ -156,7 +90,9 @@ const Results = (props) => {
                 </TableBody>
             </Table>
         </TableContainer>
-    ];
+        </Stack>
+        </div>
+    );
 }
 
 export default Results;

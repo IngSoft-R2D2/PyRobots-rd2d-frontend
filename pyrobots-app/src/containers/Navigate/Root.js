@@ -1,12 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import { Stack } from "@mui/system";
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
 import Button from '@mui/material/Button';
 import PersonIcon from '@mui/icons-material/Person';
 import LoginIcon from '@mui/icons-material/Login';
-import SmartToyIcon from '@mui/icons-material/SmartToy';
 import Typography from '@mui/material/Typography';
+import PyRobotsAppbar from "./Appbar.js";
 
 const Root = () => {
 
@@ -22,41 +20,24 @@ const Root = () => {
 
   return (
     <div style={{
-        display: "flex",
-        position: "absolute",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "100%",
-        width: "100%",
-        top: 0,
-        left: 0
+      display: "flex",
+      position: "absolute",
+      justifyContent: "center",
+      alignItems: "center",
+      height: "100%",
+      width: "100%",
+      top: 0,
+      left: 0
     }}>
-      <AppBar position="fixed" sx={{ background: 'dark-blue' }}
-        style={{
-          marginRight: "0px",
-          padding: "10px 36px"
-        }}
-      >
-        <Toolbar >
-          <SmartToyIcon sx={{ fontSize: "80px" }} />
-          <Typography variant="h3"
-            component="div"
-            style={{
-              fontWeight: "700",
-              fontFamily: "Roboto",
-              padding: "18px 36px"
-            }}>
-            PyRobots
-          </Typography>
-        </Toolbar>
-      </AppBar>
-      <div>
+    <PyRobotsAppbar></PyRobotsAppbar>
+    <div>
         <Stack
           style={{
             height: "100%",
             width: "100%",
             padding: "10px 36px"
           }}
+          spacing={"20px"}
         >
           <Typography variant="h4"
             component="div"
@@ -67,7 +48,6 @@ const Root = () => {
             }}>
             Bienvenide
           </Typography>
-          <p>
             <Button
               style={{
                 color: "#fff",
@@ -79,8 +59,6 @@ const Root = () => {
               endIcon={<PersonIcon sx={{ fontSize: "large" }} />}
               sx={{ width: '300px' }}
               onClick={goToSignUp}>Registrarme</Button>
-          </p>
-          <p>
             <Button
               style={{
                 color: "#fff",
@@ -92,10 +70,9 @@ const Root = () => {
               endIcon={<LoginIcon sx={{ fontSize: "large" }} />}
               sx={{ width: '300px' }}
               onClick={goToLogin}>Loguearme</Button>
-          </p>
         </Stack>
       </div>
-    </div>
+      </div>
   );
 };
 

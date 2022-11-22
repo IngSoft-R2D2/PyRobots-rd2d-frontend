@@ -3,12 +3,12 @@ import '../LogIn.css';
 import {
     Form,
     ButtonContainer,
-    Button,
+    StyledButton,
     SuccessMessage,
     ErrorMessage
   } from "../../Commons/Forms.js";
+import PyRobotsAppbar from "./Appbar.js";
 import Input from "../../Commons/Input.js";
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 
@@ -28,10 +28,21 @@ const LogInForm = (props) => {
         password: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$/
     };
 
-    return (
+    return [
+      <div style={{
+        display: "flex",
+        position: "absolute",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "100%",
+        width: "100%",
+        top: 0,
+        left: 0
+      }}>
+      <PyRobotsAppbar></PyRobotsAppbar>,
         <main>
-          <h1 className= "title">Hola de nuevo!</h1>
-          <h2 className= "subtitle">Iniciá sesión en PyRobots </h2>
+          <h1 style={{fontFamily: "Roboto", marginTop: 120, marginRight: 18 }}>Hola de nuevo!</h1>
+          <h2 style={{fontFamily: "Roboto", marginRight: 18 }}>Iniciá sesión en PyRobots </h2>
           <Form action="" onSubmit={(event) => props.onSubmit(event)}>
             <Input
               state={user}
@@ -65,7 +76,7 @@ const LogInForm = (props) => {
            </ErrorMessage>}
     
             <ButtonContainer>
-              <Button type="submit">Enviar</Button>
+              <StyledButton type="submit">Enviar</StyledButton>
             </ButtonContainer>
 
             {validForm === true && <SuccessMessage> 
@@ -75,7 +86,8 @@ const LogInForm = (props) => {
           </Form>
         </main>
         
-    );        
+        </div>
+  ];        
 
 };  
 

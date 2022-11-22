@@ -103,7 +103,7 @@ const ButtonContainer = styled.div`
   }
 `;
 
-const Button = styled.button`
+const StyledButton = styled.button`
   height: 45px;
   line-height: 10px;
   width: 30%;
@@ -208,7 +208,7 @@ export {
   Input,
   ErrorText,
   ButtonContainer,
-  Button,
+  StyledButton,
   ValidationIcon,
   SuccessMessage,
   ErrorMessage,
