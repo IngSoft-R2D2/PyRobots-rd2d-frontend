@@ -116,40 +116,6 @@ describe ("componentes formulario", () => {
         expect(bot4).toBeInTheDocument()
       });
       
-    
-
-    // test('formulario: robots-2', async () => {
-    //     await act( async () => {render(<Router> <Match/> </Router>)})
-    //     userEvent.selectOptions(
-    //         // Find the select element
-    //         screen.getByRole('combobox', { name: /Seleccione un robot:/i }),
-    //         // Find and select the robot option
-    //         screen.getByRole('option', {name: 'mega'}),
-    //       )
-    //     expect(screen.getByRole('option', {name: 'mega'}).selected).toBe(true)
-    // }); 
-
-    // test('formulario: robots-3', async () => {
-    //     await act( async () => {render(<Router> <Match/> </Router>)})
-    //     userEvent.selectOptions(
-    //         // Find the select element
-    //         screen.getByRole('combobox', { name: /Seleccione un robot:/i }),
-    //         // Find and select the robot option
-    //         screen.getByRole('option', {name: 'bot3'}),
-    //       )
-    //     expect(screen.getByRole('option', {name: 'bot3'}).selected).toBe(true)
-    // }); 
-
-    // test('formulario: robots-4', async () => {
-    //     await act( async () => {render(<Router> <Match/> </Router>)})
-    //     userEvent.selectOptions(
-    //         // Find the select element
-    //         screen.getByRole('combobox', { name: /Seleccione un robot:/i }),
-    //         // Find and select the robot option
-    //         screen.getByRole('option', {name: 'bot4'}),
-    //       )
-    //     expect(screen.getByRole('option', {name: 'bot4'}).selected).toBe(true)
-    // }); 
 }) 
 
 describe ("campos", () => {
@@ -161,14 +127,6 @@ describe ("campos", () => {
         expect(games).toBeValid()
     });
 
-    // test('juegos validos', async () => {
-    //     await act( async () => {render(<Router> <Match/> </Router>)})
-    //     const games = screen.getByText(/cantidad de juegos/i)
-    //     // const submit = screen.getByRole('button', { name: /crear/i })
-    //     userEvent.type(games,'1000')
-    //     expect(games).toBeInvalid()
-    // });
-
     test('rondas validas', async () => {
         await act( async () => {render(<Router> <Match/> </Router>)})
         const rounds = screen.getByText(/cantidad de rondas/i)
@@ -176,14 +134,6 @@ describe ("campos", () => {
         userEvent.type(rounds,'100')
         expect(rounds).toBeValid()
     });
-
-    // test('rondas invalidas', async () => {
-    //     await act( async () => {render(<Router> <Match/> </Router>)})
-    //     const rounds = screen.getByText(/cantidad de rondas/i)
-    //     // const submit = screen.getByRole('button', { name: /crear/i })
-    //     userEvent.type(rounds,'100000')
-    //     expect(rounds).toBeInvalid()
-    // });
 
     test('minimo usuarios validos', async () => {
         await act( async () => {render(<Router> <Match/> </Router>)})
@@ -193,14 +143,6 @@ describe ("campos", () => {
         expect(min).toBeValid()
     });
 
-    // test('minimo usuarios invalidos', async () => {
-    //     await act( async () => {render(<Router> <Match/> </Router>)})
-    //     const min = screen.getByText(/mínima cantidad de jugadores/i)
-    //     // const submit = screen.getByRole('button', { name: /crear/i })
-    //     userEvent.type(min,'3')
-    //     expect(min).toBeInvalid()
-    // });
-
     test('maximo usuarios validos', async () => {
         await act( async () => {render(<Router> <Match/> </Router>)})
         const max = screen.getByText(/máxima cantidad de jugadores/i)
@@ -208,10 +150,4 @@ describe ("campos", () => {
         expect(max).toBeValid()
     });
 
-    // test('maximo usuarios invalidos', async () => {
-    //     await act( async () => {render(<Router> <Match/> </Router>)})
-    //     const max = screen.getByText(/máxima cantidad de jugadores/i)
-    //     userEvent.type(max,'3')
-    //     expect(max).toBeInvalid()
-    // });
 })

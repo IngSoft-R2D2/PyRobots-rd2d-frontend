@@ -1,5 +1,4 @@
 import { render, screen, fireEvent, act, waitFor } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
 import { BrowserRouter as Router } from 'react-router-dom';
 import BotList from "../BotList.js";
 
