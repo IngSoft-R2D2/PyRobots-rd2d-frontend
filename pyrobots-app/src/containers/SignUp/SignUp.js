@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import SignUpForm from './components/SignUpForm.js' 
 
 const SignUp = () => {
+
   const [user, changeUser] = useState({ field: "", valid: null });
   const [password, changePassword] = useState({ field: "", valid: null });
   const [password2, changePassword2] = useState({ field: "", valid: null });
