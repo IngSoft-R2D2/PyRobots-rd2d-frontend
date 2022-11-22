@@ -14,6 +14,7 @@ const Lobby = () => {
   const location = useLocation();
   const m = location.state;
   const user_id = m.user_id;
+  const creator_name = m.creator_name
   const user_is_creator = m.user_is_creator;
   const match_name = m.match_name;
   const ws = useRef(null);
@@ -122,6 +123,7 @@ const Lobby = () => {
             <div>
                 <LobbyView
                     users={users}
+                    creator={creator_name}
                     robots={robots}
                     name={match_name}/>
                 <ButtonStart 
@@ -132,6 +134,7 @@ const Lobby = () => {
             <div>
                 <LobbyView 
                     users={users}
+                    creator={creator_name}
                     robots={robots}
                     name={match_name}/>
                 <ButtonLeave match_id={match_id}/>

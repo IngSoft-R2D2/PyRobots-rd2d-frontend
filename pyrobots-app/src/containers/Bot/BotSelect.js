@@ -143,6 +143,7 @@ const BotSelect = ()=> {
               user_id= {location.state.user_id}
               user_is_creator= {location.state.user_is_creator}
               match_name= {location.state.match_name}
+              creator_name = {location.state.creator_name}
               password={password}
             />
           </Stack>
