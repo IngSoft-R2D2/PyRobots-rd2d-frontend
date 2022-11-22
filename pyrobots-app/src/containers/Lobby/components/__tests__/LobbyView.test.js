@@ -6,12 +6,13 @@ import LobbyView from "../LobbyView.js"
 const users = ["user1"]
 const robots = ["bot1"]
 const name = "test_match"
+const creator_name = "user1"
 
 beforeEach(() => {
     render
         (
         <Router>
-            <LobbyView users={users} robots={robots} name={name}/>
+            <LobbyView users={users} creator={creator_name} robots={robots} name={name}/>
         </Router>
         )
 })

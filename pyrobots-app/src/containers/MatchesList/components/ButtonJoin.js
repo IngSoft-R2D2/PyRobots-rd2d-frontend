@@ -16,7 +16,7 @@ const theme = createTheme({
   },
 });
 
-const Join = ({match_id, robot_id, user_id, user_is_creator, match_name, password}) => {
+const Join = ({match_id, robot_id, user_id, user_is_creator, creator_name, match_name, password}) => {
   const navigate = useNavigate();
   const joinMatch = async() => {
     const token = fetchToken();
@@ -36,7 +36,8 @@ const Join = ({match_id, robot_id, user_id, user_is_creator, match_name, passwor
         navigate(`/listmatches/lobby/${match_id}`,
                     {state: {user_id: user_id,
                      user_is_creator: user_is_creator,
-                     match_name: match_name}})
+                     match_name: match_name,
+                    creator_name: creator_name}})
       }else {
           alert(data.detail)
       }

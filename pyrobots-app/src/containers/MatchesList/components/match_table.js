@@ -22,7 +22,8 @@ const MatchTable = ({matches}) => {
         navigate(`lobby/${m.id}` , 
                     {state: {user_id: m.user_id,
                             user_is_creator: m.user_is_creator,
-                            match_name: m.name}});
+                            match_name: m.name,
+                            creator_name: m.creator_name}});
     }
 
     const goToSelectBot= async(m) => {
@@ -31,6 +32,7 @@ const MatchTable = ({matches}) => {
                             user_id: m.user_id,
                             user_is_creator: m.user_is_creator,
                             match_name: m.name,
+                            creator_name: m.creator_name,
                             is_secured: m.is_secured}});
     }
 

@@ -19,7 +19,7 @@ const IconContainer = styled.div`
 `;
 
 
-const LobbyView = ({users, robots, name}) => {
+const LobbyView = ({users, creator, robots, name}) => {
   return [
     <PyRobotsAppbar></PyRobotsAppbar>,
       <Box
@@ -43,9 +43,9 @@ const LobbyView = ({users, robots, name}) => {
               <ListItem key = {user}>
                 {/* el creador es rojo y tiene un ícono diferente */}
                 <ListItemAvatar>
-                <Avatar style={{ backgroundColor: users[0] === user ? "red" : "blue", fontSize: 40}}
+                <Avatar style={{ backgroundColor: creator === user ? "red" : "blue", fontSize: 40}}
                         sx={{ height: '50px', width: '50px' }}>
-                  {users[0] === user 
+                  {creator === user 
                   ?
                   <Person4OutlinedIcon />
                   :

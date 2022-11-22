@@ -169,5 +169,12 @@ describe ("Partidas", () => {
       })
       expect(match).toBeInTheDocument();
     });
+    test('Partida terminada en la que no participé no se muestra', async () => {
+      await act( async () => {render(<Router> <MatchesHistory/> </Router>)})
+      const match=screen.queryByRole('rowheader', {
+        name: /m2/i
+      })
+      expect(match).toBeNull();
+    });
 
 });
