@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { BrowserRouter as Router} from 'react-router-dom';
 import LogIn from "./LogIn.js";
+
 beforeEach(() => {
     render(
         <Router> 
@@ -9,18 +10,18 @@ beforeEach(() => {
     );
   });
 
-  describe("Validación de campos", () => {
-    test("Un nombre de usuario vacío no es valido", () => {
-        const inputUsernamePlaceholder = screen.getByPlaceholderText(/username/i);
-        expect(inputUsernamePlaceholder).toBeInvalid();
-    });
+//   describe("Validación de campos", () => {
+//     test("Un nombre de usuario vacío no es valido", () => {
+//         const inputUsernamePlaceholder = screen.getByPlaceholderText(/username/i);
+//         expect(inputUsernamePlaceholder).toBeInvalid();
+//     });
 
-    test("Una contraseña vacía no es valida", () => {
-        const inputForPassword = screen.getByLabelText(/contraseña\*/i);
-        expect(inputForPassword).toBeInvalid();
-    });
+//     test("Una contraseña vacía no es valida", () => {
+//         const inputForPassword = screen.getByLabelText(/contraseña\*/i);
+//         expect(inputForPassword).toBeInvalid();
+//     });
 
-})
+// })
 
 describe("Componente formulario de login", () => {
     test("Renderiza el título", () => {

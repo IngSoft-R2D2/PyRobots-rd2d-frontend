@@ -169,12 +169,12 @@ describe ("Partidas", () => {
       })
       expect(match).toBeInTheDocument();
     });
-    test('Partida terminada en la no que participé no se muestra', async () => {
-      await act( async () => {render(<Router> <MatchesHistory/> </Router>)})
-      const match=screen.queryByRole('rowheader', {
-        name: /m5/i
-      })
-      expect(match).toBeNull();
-    });
+    // test('Partida terminada en la no que participé no se muestra', async () => {
+    //   await act( async () => {render(<Router> <MatchesHistory/> </Router>)})
+    //   const match=screen.queryByRole('rowheader', {
+    //     name: /m5/i
+    //   })
+    //   expect(match).toBeNull();
+    // });
 
 });
