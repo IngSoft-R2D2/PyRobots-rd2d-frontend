@@ -17,6 +17,7 @@ const SimForm= (props) => {
     const inputs = props.inputs;
     const setInputs = props.setInputs; 
     const robots = props.robots; 
+    console.log(robots)
     const validForm = props.validForm;
     const alertForm = props.alertForm;
     
@@ -27,7 +28,6 @@ const SimForm= (props) => {
     }
 
   return(
-
     <div style={{
       display: "flex",
       position: "absolute",
