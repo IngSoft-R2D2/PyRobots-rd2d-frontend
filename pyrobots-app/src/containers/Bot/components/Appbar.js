@@ -24,7 +24,7 @@ const PyRobotsAppbar = () => {
         <AppBar position="fixed" sx={{ background: 'dark-blue' }} 
         key = {0} >
             <Toolbar style={{display:'flex', justifyContent:"space-between", width:'100%'}}>    
-                <Box display='flex' flexGrow={1}>
+                <Box display='flex' flexGrow={1} key = {1}>
                     <SmartToyIcon sx={{ fontSize: "80px" }} />
                     <Typography variant="h3" 
                                 component="div" 
@@ -34,7 +34,7 @@ const PyRobotsAppbar = () => {
                     PyRobots
                     </Typography>
                 </Box>  
-                <ButtonGroup variant="secondary" aria-label="outlined primary button group">
+                <ButtonGroup  variant="secondary" aria-label="outlined primary button group">
                   <Button 
                         style={{
                             color: "#fff",
@@ -43,7 +43,8 @@ const PyRobotsAppbar = () => {
                         size="medium"
                         variant="secondary"   
                         startIcon={<FormatListBulletedIcon  sx={{ fontSize: "large" }} /> }
-                        onClick={goToRobotsList}>
+                        onClick={goToRobotsList}
+                        key = {2}>
                         Ver robots
                     </Button>
                     <Button 
@@ -54,7 +55,8 @@ const PyRobotsAppbar = () => {
                         variant="secondary" 
                         startIcon={<HomeIcon  sx={{ fontSize: "large" }} /> } 
                         onClick={goToHome} 
-                        sx={{ marginLeft: "auto"}}>
+                        sx={{ marginLeft: "auto"}}
+                        key = {3}>
                         Menú
                     </Button>
                 </ButtonGroup>

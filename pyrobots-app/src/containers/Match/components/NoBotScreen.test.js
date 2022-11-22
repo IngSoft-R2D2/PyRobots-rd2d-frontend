@@ -21,7 +21,7 @@ afterAll(() => {
 
 describe ("componentes screen", () => {
 
-    test('Boton: volver atras', async () => {
+    test('alert', async () => {
         await act( async () => {render(<Router> <Match/> </Router>)})
         const name = screen.getByRole('alert', { name: "" })
         expect(name).toBeInTheDocument()

@@ -12,15 +12,6 @@ beforeEach(() => {
 });
 
 describe("Validación de campos", () => {
-    test("Un nombre de usuario vacío no es valido", () => {
-        const inputUsernamePlaceholder = screen.getByPlaceholderText(/username/i);
-        expect(inputUsernamePlaceholder).toBeInvalid();
-    });
-
-    test("Una contraseña vacía no es valida", () => {
-        const inputForPasswordPlaceholder = screen.getByPlaceholderText(/password/i);
-        expect(inputForPasswordPlaceholder).toBeInvalid();
-    });
 
     test("Se acepta un email válido", () => {
         const inputForEmail = screen.getByLabelText(/correo electrónico\*/i);
@@ -34,10 +25,6 @@ describe("Validación de campos", () => {
         expect(inputForEmail).toBeInvalid();
     });
 
-    test("Una repetición de contraseña vacía no es valida", () => {
-        const inputForPassword2 = screen.getByLabelText(/repetir contraseña\*/i);
-        expect(inputForPassword2).toBeInvalid();
-    });
 })
 
 describe("Componente formulario de register", () => {

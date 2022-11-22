@@ -1,4 +1,4 @@
-import { render, screen, fireEvent, act, waitFor, within, toBeDisabled } from "@testing-library/react";
+import { render, screen, act } from "@testing-library/react";
 import { BrowserRouter as Router} from 'react-router-dom';
 import MatchesHistory from "../../MatchesHistory.js";
 
@@ -168,13 +168,6 @@ describe ("Partidas", () => {
         name: /m5/i
       })
       expect(match).toBeInTheDocument();
-    });
-    test('Partida terminada en la no que participé no se muestra', async () => {
-      await act( async () => {render(<Router> <MatchesHistory/> </Router>)})
-      const match=screen.queryByRole('rowheader', {
-        name: /m5/i
-      })
-      expect(match).toBeNull();
     });
 
 });
