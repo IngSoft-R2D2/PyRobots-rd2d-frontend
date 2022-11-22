@@ -60,7 +60,7 @@ const BotForm = (props) => {
       top: 0,
       left: 0
     }}>
-    <PyRobotsAppbar></PyRobotsAppbar>,
+    <PyRobotsAppbar></PyRobotsAppbar>
     <div>
       <h1 style={{fontFamily: "Roboto",  marginTop: 120,marginRight: 20 }}>
         Creá un robot
@@ -97,11 +97,11 @@ const BotForm = (props) => {
         </ButtonContainer>
 
         {validForm === false && <ErrorMessage>
-		    <p>
+            <p>
           <FontAwesomeIcon icon={faExclamationTriangle}/>
             <b>Error: </b>
             {alertForm}
-			  </p>
+              </p>
           </ErrorMessage>}
         {validForm === true && <SuccessMessage>{alertForm}</SuccessMessage>}
       </Form>
