@@ -5,7 +5,7 @@ import SimForm from './components/SimForm.js';
 import NoBotSimScreen from './components/NoBotSimScreen.js';
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
-import SimScreen from '../Board/SimScreen.js';
+import SimScreen from './components/Board/SimScreen.js';
 
 const Simulation = () => {
 
