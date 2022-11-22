@@ -5,6 +5,7 @@ import PersonIcon from '@mui/icons-material/Person';
 import LoginIcon from '@mui/icons-material/Login';
 import Typography from '@mui/material/Typography';
 import PyRobotsAppbar from "./Appbar.js";
+import background from "../../templates/img/output-onlinepngtools2.png";
 
 const Root = () => {
 
@@ -27,7 +28,9 @@ const Root = () => {
       height: "100%",
       width: "100%",
       top: 0,
-      left: 0
+      left: 0,
+      backgroundColor:"#2e2e2e",
+      backgroundImage: `url(${background})` 
     }}>
     <PyRobotsAppbar></PyRobotsAppbar>
     <div>
@@ -35,7 +38,10 @@ const Root = () => {
           style={{
             height: "100%",
             width: "100%",
-            padding: "10px 36px"
+            padding: "36px 36px",
+            background: "white",
+            borderRadius: "10px",
+            border: "4px solid #1976d2",
           }}
           spacing={"20px"}
         >
