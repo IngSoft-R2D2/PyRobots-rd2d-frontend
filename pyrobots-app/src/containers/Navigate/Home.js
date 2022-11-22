@@ -6,6 +6,7 @@ import FileUploadIcon from '@mui/icons-material/FileUpload';
 import CreateIcon from '@mui/icons-material/Create';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import PyRobotsAppbar from "./Appbar.js";
+import background from "../../templates/img/output-onlinepngtools2.png";
 
 const Home = () => {
 
@@ -44,21 +45,20 @@ const Home = () => {
       height: "100%",
       width: "100%",
       top: 0,
-      left: 0
+      left: 0,
+      backgroundColor:"#2e2e2e",
+      backgroundImage: `url(${background})` 
     }}>
      <PyRobotsAppbar></PyRobotsAppbar>
       <Stack
         spacing={"20px"}
+        style={{
+          padding: "36px 36px",
+          background: "white",
+          borderRadius: "10px",
+          border: "4px solid #1976d2",
+        }}
       >
-        <Typography variant="h4"
-          component="div"
-          style={{
-            fontWeight: "700",
-            fontFamily: "Roboto",
-            padding: "25px 36px"
-          }}>
-          Bienvenide
-        </Typography>
         <Button
           style={{
             color: "#fff",
