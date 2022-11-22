@@ -16,17 +16,6 @@ const PyRobotsAppbar = () => {
     }
   
   return(
-
-    <div style={{
-      display: "flex",
-      position: "absolute",
-      justifyContent: "center",
-      alignItems: "center",
-      height: "100%",
-      width: "100%",
-      top: 0,
-      left: 0
-    }}>
     <AppBar position="fixed" sx={{ background: 'dark-blue' }} 
         key = {0} >
             <Toolbar style={{display:'flex', justifyContent:"space-between", width:'100%'}}>    
@@ -53,7 +42,6 @@ const PyRobotsAppbar = () => {
                     </Button>
             </Toolbar>
         </AppBar>
-        </div>
     );
 };
 
