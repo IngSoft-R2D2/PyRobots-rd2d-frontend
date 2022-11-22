@@ -13,7 +13,7 @@ beforeEach(() => {
 describe("Componente de abandonar partida", () => {
 
     test("El botón de abandonar partida está en el componente", () => {
-        const buttonLeave = screen.getByRole('button', {  name: /abandonar partida/i});  
+        const buttonLeave = screen.getByRole('button', {  name: /abandonar/i});  
         expect(buttonLeave).toBeInTheDocument();     
     });
     
